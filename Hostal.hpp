@@ -3,6 +3,8 @@
 //A las operaciones que no aparecía como que devolvieran algo, les puse void.
 //Vamos a usar -> o . (dinámico o estático)?
 
+//Agregar lo del define HOSTAL_H
+
 class Hostal {
   private:
     string nombre ;
