@@ -1,8 +1,8 @@
 #include ../include/DtHabitacion.hpp
 
 
-DtHabitacion::DtHabitacion(int codigo, int precio, int capacidad){
-    this->codigo = codigo ;
+DtHabitacion::DtHabitacion(int numero, int precio, int capacidad){
+    this->numero = numero ;
     this->precio = precio ;
     this->capacidad = capacidad ;
 }
@@ -10,8 +10,8 @@ DtHabitacion::DtHabitacion(int codigo, int precio, int capacidad){
 //DtHabitacion::DtHabitacion() {} el destructor. No encuentro el símbolo de ñoqui para ponerle.
 
 
-int DtHabitacion::getCodigo(){
-    return codigo ;
+int DtHabitacion::getNumero(){
+    return numero ;
 }
 
 int DtHabitacion::getPrecio(){
