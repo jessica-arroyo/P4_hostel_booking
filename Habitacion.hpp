@@ -5,7 +5,7 @@
 //A las operaciones que no aparecía como que devolvieran algo, les puse void.
 //Vamos a usar -> o . (dinámico o estático)?
 
-#include ../include/Hostal.hpp
+#include ../include/Hostal.hpp //va el include?
 
 class Habitacion {
   private:
