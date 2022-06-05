@@ -3,7 +3,10 @@
 //A las operaciones que no aparecía como que devolvieran algo, les puse void.
 //Vamos a usar -> o . (dinámico o estático)?
 
-//Agregar lo del define HOSTAL_H
+
+#ifndef HOSTAL_H
+#define HOSTAL_H
+
 
 class Hostal {
   private:
@@ -48,4 +51,7 @@ class Hostal {
  //Pregunta: va el destructor?
  
  */
-} 
+}; 
+
+#endif
+
