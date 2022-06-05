@@ -3,14 +3,14 @@
 
 class DtHabitacion {
     private:
-      int codigo ;
+      int numero ;
       int precio ;
       int capacidad ;
   
     public:
-      DtHabitacion(int codigo, int precio, int capacidad) ;
+      DtHabitacion(int numero, int precio, int capacidad) ;
       //DtHabitacion() el destructor. No encuentro el símbolo de ñoqui para ponerle.
-      int getCodigo();
+      int getNumero();
       int getPrecio();
       int getCapacidad();
 };
