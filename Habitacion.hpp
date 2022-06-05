@@ -1,9 +1,11 @@
-//Agregar lo del define HABITACION_H
 
-//No me acuerdo si las definiciones de las operaciones iban acá o en el .cpp.
+
 // Puse las operaciones que estaban en el DCD, pero capaz que hay más.
 //A las operaciones que no aparecía como que devolvieran algo, les puse void.
 //Vamos a usar -> o . (dinámico o estático)?
+
+#ifndef HABITACION_H
+#define HABITACION_H
 
 #include ../include/Hostal.hpp //va el include?
 
@@ -40,4 +42,8 @@ class Habitacion {
      
     //Pregunta: va el destructor?
     */
-} 
+}; 
+
+#endif
+
+
