@@ -2,16 +2,16 @@
 //en el .hpp ya está incluído en el hostal.hpp (que no sé si hay que incluirlo).
 //los constructores por defecto, los que no tienen parámetros hay que ponerlos. Es una pregunta jeje.
 
-Habitacion::Habitacion(int codigo, int precio, int capacidad){
-    this->codigo = codigo ;
+Habitacion::Habitacion(int numero, int precio, int capacidad){
+    this->numero = numero ;
     this->precio = precio ;
     this->capacidad = capacidad ;
 }
 
 //Habitacion::Habitacion() ; es el destructor que no encontré para poner el símbolo del ñoqui.
 
-int Habitacion::getCodigo(){
-   return codigo ;
+int Habitacion::getNumero(){
+   return numero ;
 }
 
 int Habitacion::getPrecio(){
@@ -22,8 +22,8 @@ int Habitacion::getCapacidad(){
     return capacidad ;
 }
 
-void Habitacion::setCodigo(int codigo){
-    this->codigo = codigo ;
+void Habitacion::setNumero(int numero){
+    this->numero = numero ;
 }
 
 void Habitacion::setPrecio(int precio){
