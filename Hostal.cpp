@@ -1,17 +1,21 @@
 #include ../include/Hostal.hpp
 
 
-Hostal(nombre string, direccion string, telefono int,0) ; //empieza con calificacionPromedio=0.
+Hostal::Hostal(nombre string, direccion string, telefono int,0) ; //empieza con calificacionPromedio=0.
 
-//Hostal() ; es el destructor que no encontré para poner el símbolo del ñoqui.
+//Hostal::Hostal() ; es el destructor que no encontré para poner el símbolo del ñoqui.
 
-string getNombre() ;
+string Hostal::getNombre(){
+}
 
-string getDireccion() ;
+string Hostal::getDireccion(){
+}
 
-int getTelefono() ;
+int Hostal::getTelefono(){
+}
 
-int getCalificacionPromedio() ;
+int Hostal::getCalificacionPromedio(){
+}
 
 void setNombre(string nom) ;
 
