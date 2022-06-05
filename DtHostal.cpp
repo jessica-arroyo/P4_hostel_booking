@@ -1,15 +1,28 @@
 #include ../include/DtHostal.hpp
 
 
+DtHostal::DtHostal(string nom, string direc, int tel, string calProm){
+    this->nombre = nom ;
+    this->direccion = direc ;
+    this->telefono = tel ;
+    this->calificacionPromedio = calProm ;
+}
 
-DtHostal(string nom, string direc, int tel, string calProm) ;
+//DtHostal::DtHostal() {} el destructor. No encuentro el símbolo de ñoqui para ponerle.
 
-//DtHostal() el destructor. No encuentro el símbolo de ñoqui para ponerle.
 
-string getNombre() ;
+string DtHostal::getNombre(){
+    return nombre ;
+}
 
-string getDireccion() ;
+string DtHostal::getDireccion(){
+    return direccion ;
+}
 
-int getTelefono();
+int DtHostal::getTelefono(){
+    return telefono ;
+}
 
-int getCalPromedio() ;
+int DtHostal::getCalPromedio(){
+    return calificacionPromedio ;
+}
