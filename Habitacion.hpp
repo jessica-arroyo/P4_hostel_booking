@@ -21,9 +21,9 @@ class Habitacion {
     int getNumero() ;
     int getPrecio() ;
     int getCapacidad() ;
-    void setNumero(int num) ;
-    void setPrecio(int pr) ;
-    void setCapacidad(int cap) ;
+    void setNumero(int numero) ;
+    void setPrecio(int precio) ;
+    void setCapacidad(int capacidad) ;
     
     /*create(habitacion DtHabitacion); //el constructor sería este, el de arriba, o ambos?
     add(hab habitacion) ;
