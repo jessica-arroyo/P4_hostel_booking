@@ -7,21 +7,17 @@ DtHabitacion::DtHabitacion(int codigo, int precio, int capacidad){
     this->capacidad = capacidad ;
 }
 
-//DtHostal::DtHostal() {} el destructor. No encuentro el símbolo de ñoqui para ponerle.
+//DtHabitacion::DtHabitacion() {} el destructor. No encuentro el símbolo de ñoqui para ponerle.
 
 
-string DtHostal::getNombre(){
-    return nombre ;
+int DtHabitacion::getCodigo(){
+    return codigo ;
 }
 
-string DtHostal::getDireccion(){
-    return direccion ;
+int DtHabitacion::getPrecio(){
+    return precio ;
 }
 
-int DtHostal::getTelefono(){
-    return telefono ;
-}
-
-int DtHostal::getCalPromedio(){
-    return calificacionPromedio ;
+int DtHabitacion::getCapacidad(){
+    return capacidad ;
 }
