@@ -7,7 +7,7 @@
 #ifndef HABITACION_H
 #define HABITACION_H
 
-#include ../include/Hostal.hpp //va el include?
+#include "Hostal.hpp" //va este include?
 
 class Habitacion {
   private:
