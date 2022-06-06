@@ -2,7 +2,7 @@
 
 //std::map<std::string , Estudiante > estudiantes;
 
-Hostal::Hostal(nombre string, direccion string, telefono int,0){
+Hostal::Hostal(std::string nombre, std::string direccion, int telefono,0){
     this->nombre = nombre ;
     this->direccion = direccion ;
     this->telefono = telefono ;
