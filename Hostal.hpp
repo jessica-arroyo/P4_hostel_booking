@@ -30,7 +30,7 @@ class Hostal {
     //Las colecciones irian en los controladores? Y en cada clase se define un puntero a esa colección? Y algunas colecciones se guaradarían en cada clase?
     //Comentario/Recordatorio para los maps no es necesario pedir memoria dinámica explícitamente.
   public:
-    Hostal(nombre string, direccion string, telefono int,0) ; //empieza con calificacionPromedio=0.
+    Hostal(std::string nombre, std::string direccion, int telefono,0) ; //empieza con calificacionPromedio=0.
     ~Hostal() ;
     string getNombre() ;
     string getDireccion() ;
