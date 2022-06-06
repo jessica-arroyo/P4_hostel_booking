@@ -4,6 +4,7 @@
 //A las operaciones que no aparecía como que devolvieran algo, les puse void.
 //Vamos a usar -> o . (dinámico o estático)?
 
+//std::map<std::string , Estudiante > estudiantes;
 
 #ifndef HOSTAL_H
 #define HOSTAL_H
