@@ -2,7 +2,7 @@
 
 // Puse las operaciones que estaban en el DCD, pero capaz que hay más.
 //A las operaciones que no aparecía como que devolvieran algo, les puse void.
-//Vamos a usar -> o . (dinámico o estático)?
+//Vamos a usar -> o . (dinámico o estático)? Creo que dinámico.
 
 
 //Ver los include a poner. Los .hpp a incluír.
