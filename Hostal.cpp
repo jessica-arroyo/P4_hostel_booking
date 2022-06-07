@@ -41,3 +41,20 @@ void Hostal::setTelefono(int tel){
 void Hostal::setCalPromedio(int calProm){
     this->calificacionPromedio = calProm ;
 }
+
+/* bool Hostal::exists(string hostal.nombre) ; //esto no se debe de poder: debería ser std::string hostal.getNombre() 
+ void create(DtHostalInicial hostal) ; //el constructor sería este,el de arriba, o ambos? Aparte creo que es DtHostal normal.
+ 
+ //veo que siempre le pasan una referencia al objeto, en vez del objeto en sí.
+ void Hostal::add(Hostal nuevo){}
+ DtHostal Hostal::getDtHostal(){}
+ Hostal Hostal::find(std::string nombreHostal){} 
+ void Hostal::linkeohos(Habitacion hab){}
+ void Hostal::asignarEmpleadoAHostal(Empleado emp){}
+ void Hostal::accesoHostal(){}
+ void Hostal::agregarReservaAlHostal(Reserva res){}
+ void Hostal::entrarRes(){}
+ // void Hostal::obtenerReservas(){} es un void? No debería devolver un conjunto o un map más bien de Reserva?
+ //string Hostal::getNombreHostal(){} // es el mismo de arriba?
+ //void Hostal::obtenerEstadiasdelHostal(std::string emailHuesped){} verificar que esta efectivamente no devuelva nada (por lo de obtener pero no devuelve nada).
+ */
