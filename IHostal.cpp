@@ -2,4 +2,4 @@
 
 IHostal::IHostal(){}
 
-IHostal::IHostal(){}
+IHostal::~IHostal(){}
