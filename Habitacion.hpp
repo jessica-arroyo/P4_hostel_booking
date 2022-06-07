@@ -7,7 +7,7 @@
 #ifndef HABITACION_H
 #define HABITACION_H
 
-#include "Hostal.hpp" //va este include?
+#include "Hostal.hpp"
 
 class Habitacion {
   private:
@@ -17,7 +17,7 @@ class Habitacion {
     Hostal *hostal ;
   public:
     Habitacion(numero int,precio int,capacidad int) ;
-    //Habitacion() ; este es el destructor pero no encuentro el símbolo del ñoqui.
+    ~Habitacion() ; 
     int getNumero() ;
     int getPrecio() ;
     int getCapacidad() ;
