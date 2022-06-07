@@ -1,11 +1,12 @@
 #include ../include/Habitacion.hpp
-//en el .hpp ya está incluído en el hostal.hpp (que no sé si hay que incluirlo).
+//en el .hpp está incluído en el hostal.hpp.
 //los constructores por defecto, los que no tienen parámetros hay que ponerlos. Es una pregunta jeje.
 
 Habitacion::Habitacion(int numero, int precio, int capacidad){
     this->numero = numero ;
     this->precio = precio ;
     this->capacidad = capacidad ;
+    //tengo que crear un puntero al Hostal al que pertenezca la Habitacion, por lo que debería saber cuál es el Hostal. Pasarlo por parámetro?
 }
 
 //Habitacion::Habitacion() ; es el destructor que no encontré para poner el símbolo del ñoqui.
