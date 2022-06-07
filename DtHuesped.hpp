@@ -4,19 +4,14 @@
 #include <iostream>
 using namespace std;
 
-class DtHuesped {
+class DtHuesped: DtHuesped {
     private:
-    string nombre;
-    string email;
     bool esFinger;
 
     public:
     DtHuesped();
     ~DtHuesped();
-    DtHuesped(string , string , bool) ;
-
-    string getNombre() ;
-    string getEmail() ;
+    DtHuesped(string , string , string, bool) ;
     bool getEsFinger() ;
 };
 
