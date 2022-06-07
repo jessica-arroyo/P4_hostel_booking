@@ -8,7 +8,7 @@ Hostal::Hostal(std::string nombre, std::string direccion, int telefono,0){
     this->calificacionPromedio = 0 ; //se crea con calificacionPromedio igual a cero.
 }
 
-//Hostal::Hostal() ; es el destructor que no encontré para poner el símbolo del ñoqui.
+Hostal::~Hostal(){}
 
 string Hostal::getNombre(){
    return nombre ;
