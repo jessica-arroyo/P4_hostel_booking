@@ -22,7 +22,7 @@ class IHostal {
     virtual std::map<string , DtHostal *> hos top3hostales()=0 ;
     virtual DtHostal infoHostal(string nombreHostal)=0 ;
     virtual map<int , DtHabitacion *> habs listarHabitaciones()=0 ;
-    virtual Hostal encontrarHostal(string nombreHostal)=0 ; //acá creo que tiene que devolver el DtHostal.
+    virtual Hostal encontrarHostal(string nombreHostal)=0 ; //acá creo que tiene que devolver el DtHostal. Porque no se pueden devolver objetos.
     virtual map<int , DtHabitacion *> habs devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout)=0 ;
 };
 
