@@ -16,7 +16,7 @@ class Habitacion {
     int capacidad ;
     Hostal *hostal ;
   public:
-    Habitacion(numero int,precio int,capacidad int) ;
+    Habitacion(int numero,int precio, int capacidad) ;
     ~Habitacion() ; 
     int getNumero() ;
     int getPrecio() ;
@@ -25,23 +25,20 @@ class Habitacion {
     void setPrecio(int precio) ;
     void setCapacidad(int capacidad) ;
     
-    /*create(habitacion DtHabitacion); //el constructor sería este, el de arriba, o ambos?
-    add(hab habitacion) ;
-    linkeohab(hostal Hostal) ;
+    //create(DtHabitacion habitacion); //el constructor sería este, el de arriba, o ambos?
+    add(Habitacion hab) ;
+    linkeohab(Hostal hostal) ;
     DtHabitacion getDtHabitacion() ;
-    bool estadisponibleHabitacion(checkin DtFechaHora,checkout
-    DtFechaHora) ;
-    int getPrecio(hab Habitacion) ; // es el mismo de arriba?
-    encontrarHabitacion(codigoHabitacion int,nombreHostal string); //verificar que esta efectivamente no devuelva nada (por lo de encontrar pero no devuelve nada).
+    bool estadisponibleHabitacion(DtFechaHora checkin, DtFechaHora checkout) ;
+    int getPrecio(Habitacion hab) ; // es el mismo de arriba?
+    //encontrarHabitacion(int codigoHabitacion, string nombreHostal); //verificar que esta efectivamente no devuelva nada (por lo de encontrar pero no devuelve nada).
     Habitacion buscarHab() ;
-    find(codigoHabitacion string) ; //en tanto que find, no debería devolver algo? Una Habitacion en este caso.
-    accederHab(codigoHabitacion int) ;
-    int encontrarPrecio(hab Habitacion) ;
-    agregarHabitacion(hab Habitacion) ;
-    int getCodigoHab() ; // es el mismo de arriba?
-     
-    //Pregunta: va el destructor?
-    */
+    //find(int codigoHabitacion) ; //en tanto que find, no debería devolver algo? Una Habitacion en este caso.
+    accederHab(int codigoHabitacion) ;
+    int encontrarPrecio(Habitacion hab) ;
+    agregarHabitacion(Habitacion hab) ;
+    //int getCodigoHab() ; // es el mismo de arriba?
+    
 }; 
 
 #endif
