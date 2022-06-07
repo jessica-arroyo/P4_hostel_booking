@@ -6,7 +6,7 @@ TipoCargo  DtEmpleado::getCargo() {
     return cargo;
 }
 
-DtEmpleado::DtEmpleadp(string nombre, string email, string password, TipoCargo cargo) : DtUsuario(nombre, email, password) {
+DtEmpleado::DtEmpleado(string nombre, string email, string password, TipoCargo cargo) : DtUsuario(nombre, email, password) {
     this->cargo = cargo;
 }
 
