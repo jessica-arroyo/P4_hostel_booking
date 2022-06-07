@@ -25,3 +25,5 @@ class IHostal {
     virtual Hostal encontrarHostal(string nombreHostal)=0 ; //acá creo que tiene que devolver el DtHostal.
     virtual map<int , DtHabitacion *> habs devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout)=0 ;
 };
+
+#endif
