@@ -1,6 +1,5 @@
 #include ../include/Hostal.hpp
 
-//std::map<std::string , Estudiante > estudiantes;
 
 Hostal::Hostal(std::string nombre, std::string direccion, int telefono,0){
     this->nombre = nombre ;
