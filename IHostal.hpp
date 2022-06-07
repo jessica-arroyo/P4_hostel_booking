@@ -10,6 +10,8 @@
 
 class IHostal {
   public:
+    IHostal::IHostal(){}
+    virtual IHostal::IHostal(){}=0 ;
     altaHostal(DtHostal hostal) ;
     std::map<string , DtHostal *> hos listarHostales() : Set(DtHostal) ; //La colección de Hostales va a ser un map o un set (porque podríamos querer tener ordenados 
     //a los Hostales en base a su calificacionPromedio para tener más fácil lo de Top 3 Hostales)
