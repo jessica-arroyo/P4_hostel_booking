@@ -40,8 +40,8 @@ class Hostal {
     void setCalPromedio(int calProm) ;
     
   
-   /* bool exists(hostal.nombre string) ; //esto no se debe de poder: debería ser std::string hostal.getNombre() 
- void create(hostal DtHostalInicial) ; //el constructor sería este,el de arriba, o ambos? Aparte creo que es DtHostal normal.
+   /* bool exists(string hostal.nombre) ; //esto no se debe de poder: debería ser std::string hostal.getNombre() 
+ void create(DtHostalInicial hostal) ; //el constructor sería este,el de arriba, o ambos? Aparte creo que es DtHostal normal.
  */
  //veo que siempre le pasan una referencia al objeto, en vez del objeto en sí.
  void add(Hostal nuevo) ;
