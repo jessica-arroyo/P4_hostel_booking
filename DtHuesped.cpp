@@ -11,3 +11,4 @@ DtHuesped::DtHuesped(string nombre, string email, string password, bool esFinger
 }
 
 DtHuesped::~DtHuesped(){}
+DtHuesped::DtHuesped(){} // va esto?
