@@ -8,7 +8,7 @@ DtHostal::DtHostal(string nom, string direc, int tel, string calProm){
     this->calificacionPromedio = calProm ;
 }
 
-//DtHostal::DtHostal() {} el destructor. No encuentro el símbolo de ñoqui para ponerle.
+DtHostal::~DtHostal() {} 
 
 
 string DtHostal::getNombre(){
