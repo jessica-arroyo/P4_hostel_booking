@@ -9,7 +9,7 @@ class DtHabitacion {
   
     public:
       DtHabitacion(int numero, int precio, int capacidad) ;
-      //DtHabitacion() el destructor. No encuentro el símbolo de ñoqui para ponerle.
+      ~DtHabitacion();
       int getNumero();
       int getPrecio();
       int getCapacidad();
