@@ -12,6 +12,13 @@ class ControladorHostal: public: IHostal {
         ControladorHostal() ;
         static ControladorHostal *_instancia ;
         std::map<string,Hostal*> SetHostales ;
+        //acá guardan usuarios y otros objetos del estilo recordados.
     public:
-        ControladorHostal() ;
-  }
+        ~ControladorHostal() ;
+        static ControladorHostal *getInstancia() ;
+        
+        
+  };
+
+#endif
+
