@@ -7,7 +7,7 @@ DtHabitacion::DtHabitacion(int numero, int precio, int capacidad){
     this->capacidad = capacidad ;
 }
 
-//DtHabitacion::DtHabitacion() {} el destructor. No encuentro el símbolo de ñoqui para ponerle.
+//DtHabitacion::~DtHabitacion() {}
 
 
 int DtHabitacion::getNumero(){
