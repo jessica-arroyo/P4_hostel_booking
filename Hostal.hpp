@@ -26,9 +26,7 @@ class Hostal {
     std::map<std::string , Empleado *> empleados;
     std::map<std::string , Huesped *> huespedes;
     
-   
-    //Las colecciones irian en los controladores? Y en cada clase se define un puntero a esa colección? Y algunas colecciones se guaradarían en cada clase?
-    //Comentario/Recordatorio para los maps no es necesario pedir memoria dinámica explícitamente.
+  
   public:
     Hostal(std::string nombre, std::string direccion, int telefono,0) ; //empieza con calificacionPromedio=0.
     ~Hostal() ;
