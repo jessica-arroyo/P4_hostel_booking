@@ -1,3 +1,4 @@
+// faltan las funciones del dcd, estoy mirando el teórico para entender cómo van
 #ifndef EMPLEADO_H
 #define EMPLEADO_H
 #include <string>
@@ -25,4 +26,7 @@ class Empleado: public Usuario  {
     bool getCargo() ;
     void setCargo(TipoCargo);
 };
+
++find(emailHuesped: string)
+  
 #endif
