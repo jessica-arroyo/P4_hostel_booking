@@ -4,7 +4,7 @@
 #include "Hostal.hpp"
 #include "DtHostal.hpp"
 #include "DtHabitacion.hpp"
-//tengo que poner include "Habitacion.hpp"?
+// hay que poner include "Habitacion.hpp"?
 #include <map>
 #include <iostream>
 
