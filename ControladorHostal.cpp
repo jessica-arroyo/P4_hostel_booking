@@ -18,7 +18,22 @@ ControladorHostal *ControladorHostal::getInstancia(){
     return _instancia ;
 }
 
-void ControladorHostal::altaHostal(DtHostal hostal){}
+void ControladorHostal::altaHostal(DtHostal hostal){
+    string nomh = hostal->getNombre() ;
+    map<string, Hostal*>::iterator h = SetHostales.find(nomh) ; 
+    if(h!= SetHostales.end()){
+        throw exception "Hostal ya registrado" ;
+    }
+    else{
+        string direc = hostal->getDireccion() ;
+        int tel = hostal->getTelefono() ;
+        int calProm = hostal->getCalificacionPromedio() ;
+        
+        
+    }
+          
+}
+
 std::map<string , DtHostal *> ControladorHostal::listarHostales(){} //La colección de Hostales va a ser un map o un set (porque podríamos querer tener ordenados 
 //a los Hostales en base a su calificacionPromedio para tener más fácil lo de Top 3 Hostales)
 map<int , DtHabitacion *> ControladorHostal::listarHabitaciones(DtFechaHora checkIn, DtFechaHora checkOut, bool esGrupal, string nombreHostal){}
