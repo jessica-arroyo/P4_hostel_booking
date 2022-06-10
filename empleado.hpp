@@ -15,18 +15,23 @@ enum TipoCargo
 };
 
 class Empleado: public Usuario  {
-    
-    private:
+  
+  private:
     TipoCargo cargo;
-    
-    public:
+  
+  public:
     Empleado();
     ~Empleado();
     Empleado(string , string, string, TipoCargo) ;
     bool getCargo() ;
     void setCargo(TipoCargo);
+    bool estaAsignado(string);
+    DtEmpleado *getDtEmpleado(); // esta bien que sea puntero? o quiero el dato en ese momento nada más? 
+    void asignarHostalAEmpleado(Hostal);
+    void entrarHostal();
+  
+    
 };
 
-+find(emailHuesped: string)
-  
+
 #endif
