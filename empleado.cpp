@@ -45,6 +45,15 @@ set<Hostal *>::iterator it;
 }
 
 DtEmpleado *Empleado::getDtEmpleado(){
-#    DtEmpleado *dte = new DtEmpleado(this->nombre, this->email, this->password, this->cargo);
-#    return dte;
+    DtEmpleado *dte = new DtEmpleado(this->nombre, this->email, this->password, this->cargo);
+    return dte;
 }
+
+void Empleado::asignarHostalAEmpleado(Hostal *nuevohostal){
+    this->hostales.insert(nuevohostal);
+}
+
+
+void Empleado::entrarHostal(){
+}
+
