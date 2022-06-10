@@ -4,6 +4,9 @@
 #include <string>
 #include <iostream>
 #include "usuario.hpp"
+#include "DtEmpleado.hpp"
+#include "Hostal.hpp"
+
 using namespace std;
 
 enum TipoCargo
