@@ -1,4 +1,3 @@
-// faltan las funciones del dcd, estoy mirando el teórico para entender cómo van
 #ifndef EMPLEADO_H
 #define EMPLEADO_H
 #include <string>
