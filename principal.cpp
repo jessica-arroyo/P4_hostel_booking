@@ -208,12 +208,12 @@ int main()
 	
 	Fabrica *f = NULL;
 	f = Fabrica::getInstancia();
-	IAsignatura *iAsignatura = f->getIAsignatura();
+	IHostal *iHostal = f->getIHostal();
 	IUsuario *iUsuario = f->getIUsuario();
-	IClase *iClase = f->getIClase();
-	IReloj *iReloj = f->getIReloj();
-	DtFechaHora horaActual = DtFechaHora(0, 0, 1, 1, 2020);
-	iReloj->setFechaHora(horaActual);
+	IReserva *iReserca = f->getIReserva();
+	IFecha *iFecha = f->getIFecha();
+	DtFechaHora horaActual = DtFechaHora(0, 0, 1, 1, 2022);
+	iFecha->setFechaHora(horaActual);
 
 
 	bool termino = false;
@@ -222,19 +222,33 @@ int main()
 		bool retroceder = false;
 		string c;
 		cout << "\nBienvenido. Elija la opción.\n\n";
-        cout << "1. Administrador\n";
-        cout << "2. Docente\n";
-        cout << "3. Estudiante\n";
-        cout << "4. Cargar datos de prueba\n";
-		cout << "5. Consultar hora actual\n";
-		cout << "6. Cambiar hora\n";
-        cout << "7. Salir\n\n";
+        cout << "1. Alta de Usuario\n";
+        cout << "2. Alta de Hostal\n";
+        cout << "3. Alta de Habitacion\n";
+		cout << "4. Asignar Empleado a Hostal\n";
+		cout << "5. Realizar Reserva\n";
+		cout << "6. Consultar Top 3 Hostales\n";
+		cout << "7. Registrar Estadía\n";
+		cout << "8. Finalizar Estadía\n";
+		cout << "9. Calificar Estadía\n";
+		cout << "10. Comentar Calificación\n";
+		cout << "11. Consulta de Usuario\n";
+		cout << "12. Consulta de Hostal\n";
+		cout << "13. Consulta de Reserva\n";
+		cout << "14. Consulta de Estadía\n";
+		cout << "15. Baja de Reserva\n";
+		cout << "16. Suscribirse a Notificaciones\n";
+		cout << "17. Consulta de Notificaciones\n";
+		cout << "18. Eliminar suscripción\n";
+		cout << "19. Modificar fecha y hora\n";
+		cout << "20. Cargar datos de prueba\n";
+        cout << "0. Salir\n\n";
         cout << "Opción:";
         cin >> c;
 
-        if(c == "1")//Administrador
-        {	
-        	while(!termino && !retroceder)
+        if(c == "1")
+        {}	
+        	/*while(!termino && !retroceder)
         	{
 				cout << "\nElija la opción.\n\n";
 	        	cout << "1. Alta de usuario\n";
@@ -477,9 +491,9 @@ int main()
         	cin.ignore(numeric_limits<streamsize>::max(), '\n');
         	cout << "Error, debe ingresar numero entre 1 y 7\n";
         }
-	}
-	delete iClase;
-	delete iAsignatura;
+	}*/
+	delete iHostal;
+	delete iReserva;
 	delete iUsuario;
 	delete f;
 	return 0;
