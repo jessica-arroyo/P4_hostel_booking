@@ -3,6 +3,9 @@
 #include <string>
 #include <iostream>
 #include "usuario.hpp"
+#include "DtHuesped.hpp"
+#include "DtEstadia.hpp"
+
 using namespace std;
 
 class Huesped: public Usuario  {
@@ -16,5 +19,10 @@ class Huesped: public Usuario  {
     Huesped(string , string, string, bool) ;
     bool getEsFinger() ;
     void setEsFinger(bool);
+    DtHuesped *getDtHuesped();
+    void accesoHuesped(string);
+    void obtenerEstadiasHuesped();
+    void accederEstadia(DtEstadia); // como pongo DtEstadia aca la tengo que incluir?
+    
 };
 #endif
