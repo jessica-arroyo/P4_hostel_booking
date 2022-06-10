@@ -16,3 +16,14 @@ bool Huesped::getEsFinger() {
 void Huesped::setEsFinger(bool esFinger){
     this->esFinger = esFinger;
 }
+
+DtHuesped *Huesped::getDtHuesped(){
+    DtHuesped *dth = new DtHuesped(this->nombre, this->email, this->password, this->esFinger);
+    return dth;
+}
+
+void Huesped::accesoHuesped(string){}
+
+void Huesped::obtenerEstadiasHuesped(){}
+
+void accederEstadia(DtEstadia){}
