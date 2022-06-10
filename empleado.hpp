@@ -20,6 +20,7 @@ class Empleado: public Usuario  {
   
   private:
     TipoCargo cargo;
+    set<Hostal *> hostales;
   
   public:
     Empleado();
