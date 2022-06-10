@@ -2,6 +2,8 @@
 #define USUARIO_H
 #include <string>
 #include <iostream>
+#include "DtUsuario.hpp"
+
 using namespace std;
 
 class Usuario  {
@@ -21,5 +23,6 @@ class Usuario  {
     void setNombre(string );
     void setEmail(string);
     void setCargo(string);
+    DtUsuario *getDataUs(); 
 };
 #endif
