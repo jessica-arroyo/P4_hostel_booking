@@ -26,7 +26,7 @@ class IUsuario {
     virtual void reingresarEmail(string emailUser) = 0;
   
     virtual map<string, Empleado *> listarEmpleadosNoAsignados(string nombreHostal);
-    virtual void asignarEmpleado(emailEmpleado: string, cargo: TipoCargo) = 0;
+    virtual void asignarEmpleado(string emailEmpleado, TipoCargo cargo) = 0;
     virtual void cancelarAsignarEmpleado() = 0;
     virtual map<string, Huesped *> listarHuespedes(int codigoHabitacion);
     virtual void confirmarHuesped(string emailHuespedReserva) = 0;
@@ -34,7 +34,7 @@ class IUsuario {
     virtual map<string, Usuario *> listarUsuarios();
     virtual DtEmpleado mostrarEmpleado(DtEmpleado empleado);  
     virtual DtHuesped mostrarHuesped(DtHuesped huesped); 
-    virtual void encontrarHuesped(emailHuespedReserva: string);
+    virtual void encontrarHuesped(string emailHuespedReserva);
       
 };
 
