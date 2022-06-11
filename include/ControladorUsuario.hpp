@@ -21,8 +21,8 @@ class ControladorUsuario: public: IUsuario {
     static ControladoUsuario *getInstancia();
     
     // alta de usuario 
-    void ingresarEmpleado(DtEmpleado *dte);
-    void ingresarHuesped(DtHuesped *dth);
+    bool ingresarEmpleado(DtEmpleado *dte);
+    bool ingresarHuesped(DtHuesped *dth);
     void confirmarAlta();
     void cancelarAlta();
     void reingresarEmail(string emailUser);  
