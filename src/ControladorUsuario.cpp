@@ -23,7 +23,13 @@ ControladorUsuario *ControladorUsuario::getInstancia()
 }
 
 // alta de usuario 
-    void ControladorUsuario::ingresarEmpleado(DtEmpleado *dte){}
+    bool ControladorUsuario::ingresarEmpleado(DtEmpleado *dte){
+    Estudiante* res = NULL;
+	std::map<std::string, Usuario*>::iterator e = empleados.find(emailEst);
+	if (e != usuarios.end()) 
+		res = dynamic_cast<Estudiante*>(u->second);
+	return (res != NULL);
+    }
     void ControladorUsuario::ingresarHuesped(DtHuesped *dth){}
     void ControladorUsuario::confirmarAlta(){}
     void ControladorUsuario::cancelarAlta(){}
@@ -42,5 +48,12 @@ ControladorUsuario *ControladorUsuario::getInstancia()
     
     map<string, Reserva *> ControladorUsuario::listarReservas(string nombreHostal, string email){}
 
-
+bool ControladorUsuario::existeEst(std::string emailEst)
+{
+	Estudiante* res = NULL;
+	std::map<std::string, Usuario*>::iterator u = usuarios.find(emailEst);
+	if (u != usuarios.end()) 
+		res = dynamic_cast<Estudiante*>(u->second);
+	return (res != NULL);
+}
 
