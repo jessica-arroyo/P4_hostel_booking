@@ -19,8 +19,8 @@ class IUsuario {
     virtual ~IUsuario(){}=0 ;
     
     // alta de usuario 
-    virtual void ingresarEmpleado(DtEmpleado *dte) = 0;
-    virtual void ingresarHuesped(DtHuesped *dth) = 0;
+    virtual bool ingresarEmpleado(DtEmpleado *dte);
+    virtual bool ingresarHuesped(DtHuesped *dth);
     virtual void confirmarAlta() = 0;
     virtual void cancelarAlta() = 0;
     virtual void reingresarEmail(string emailUser) = 0;
