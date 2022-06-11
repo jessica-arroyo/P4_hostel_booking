@@ -42,6 +42,21 @@ ControladorUsuario *ControladorUsuario::getInstancia()
 		res = dynamic_cast<Huesped*>(h->second);
 	return (res != NULL);
     }
+
+bool ControladorUsuario::reingresarEmail(string emailUser)
+{
+	if (this->dth == NULL){
+		this->dte->setEmail(emailUser);
+	}else{
+		this->dth->setEmail(emailUser);
+	}
+	Usuario* res = NULL;
+	std::map<std::string, Usuario*>::iterator u = usuarios.find(emailUser);
+	if (u != usuarios.end()) 
+		res = dynamic_cast<Usuario*>(u->second);
+	return (res != NULL);
+}
+
 void ControladorUsuario::confirmarAlta()
 {
     if (this->dth == NULL)
@@ -73,19 +88,6 @@ void ControladorUsuario::cancelarAlta()
     this->dth = NULL;
 }
 
-bool ControladorUsuario::reingresarEmail(string emailUser)
-{
-	if (this->dth == NULL){
-		this->dte->setEmail(emailUser);
-	}else{
-		this->dth->setEmail(emailUser);
-	}
-	Usuario* res = NULL;
-	std::map<std::string, Usuario*>::iterator u = usuarios.find(emailUser);
-	if (u != usuarios.end()) 
-		res = dynamic_cast<Usuario*>(u->second);
-	return (res != NULL);
-}
       
     map<string, Empleado *> ControladorUsuario::listarEmpleadosNoAsignados(string nombreHostal){}
     void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo){}
