@@ -88,14 +88,71 @@ void ControladorUsuario::cancelarAlta()
     this->dth = NULL;
 }
 
-      
+// consulta de Usuario
+map<string, Usuario *> ControladorUsuario::listarUsuarios(){
+
+}
+
+map<string, Usuario *> ControladorUsuario::listarUsuarios() 
+{
+	std::map<std::string , Usuario*>::iterator i = usuarios.begin();
+	Usuario *u;
+	while(i != usuarios.end())
+	{
+		u = i->second;
+		if (dynamic_cast <Estudiante*> (u))
+		{
+			e = dynamic_cast <Estudiante*> (u);
+			res.insert();
+		}
+		i++;
+	}
+	return res;
+}
+
+map<string, DtAsignatura> ControladorAsignatura::listarAsignaturas()
+{
+	map<string, DtAsignatura> res;
+	DtAsignatura aux;
+	map<string, Asignatura*>::iterator i;
+	for(i = this->asignaturas.begin(); i != this->asignaturas.end(); i++)
+	{
+		aux = DtAsignatura(i->second->getCodigo(), i->second->getNombre(), i->second->getSumaTiempoDictado());
+		res.insert(make_pair(i->second->getCodigo(),aux));
+	}
+	if ( res.empty())
+		throw logic_error("no existen asignaturas") ;
+	return res;
+}
+
+std::map<std::string, DtEstudiante> ControladorUsuario::listarEstudiantes() 
+{
+	std::map<std::string, DtEstudiante> res;
+	std::map<std::string , Usuario*>::iterator i = usuarios.begin();
+	Usuario *u;
+	Estudiante *e;
+	while(i != usuarios.end())
+	{
+		u = i->second;
+		if (dynamic_cast <Estudiante*> (u))
+		{
+			e = dynamic_cast <Estudiante*> (u);
+			res.insert(std::make_pair(i->first, e->getDataEst()));
+		}
+		i++;
+	}
+	return res;
+}
+
+
+
+
     map<string, Empleado *> ControladorUsuario::listarEmpleadosNoAsignados(string nombreHostal){}
     void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo){}
     void ControladorUsuario::cancelarAsignarEmpleado(){}
     map<string, Huesped *> ControladorUsuario::listarHuespedes(int codigoHabitacion){}
     void ControladorUsuario::confirmarHuesped(string emailHuespedReserva){}
     void ControladorUsuario::agregarHuesped(string emailHuesped){}
-    map<string, Usuario *> ControladorUsuario::listarUsuarios(){}
     DtEmpleado ControladorUsuario::mostrarEmpleado(DtEmpleado empleado){} 
     DtHuesped ControladorUsuario::mostrarHuesped(DtHuesped huesped){}
     void ControladorUsuario::encontrarHuesped(string emailHuespedReserva){}
