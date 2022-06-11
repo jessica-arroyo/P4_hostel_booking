@@ -8,8 +8,14 @@ ControladorUsuario::ControladorUsuario() {
 
 ControladorUsuario::~ControladorUsuario() 
 {
-	map<std::string , Usuario*>::iterator i = usuarios.begin();
-	while (i != usuarios.end())
+	map<std::string , Empleado*>::iterator i = empleados.begin();
+	while (i != empleados.end())
+	{
+		delete i->second;
+		i++;
+	}
+	map<std::string , Huesped*>::iterator i = huespedes.begin();
+	while (i != huespedes.end())
 	{
 		delete i->second;
 		i++;
@@ -47,14 +53,20 @@ bool ControladorUsuario::reingresarEmail(string emailUser)
 {
 	if (this->dth == NULL){
 		this->dte->setEmail(emailUser);
+		Empleado* res = NULL;
+		std::map<std::string, Empleado*>::iterator e = empleados.find(emailUser);
+		if (e != empleados.end()) 
+			res = dynamic_cast<Empleado*>(e->second);
+		return (res != NULL);
 	}else{
 		this->dth->setEmail(emailUser);
+		Huesped* res = NULL;
+		std::map<std::string, Huesped*>::iterator h = huespedes.find(emailUser);
+		if (h != huespedes.end()) 
+			res = dynamic_cast<Huesped*>(h->second);
+		return (res != NULL);
 	}
-	Usuario* res = NULL;
-	std::map<std::string, Usuario*>::iterator u = usuarios.find(emailUser);
-	if (u != usuarios.end()) 
-		res = dynamic_cast<Usuario*>(u->second);
-	return (res != NULL);
+	
 }
 
 void ControladorUsuario::confirmarAlta()
@@ -88,15 +100,15 @@ void ControladorUsuario::cancelarAlta()
     this->dth = NULL;
 }
 
-// consulta de Usuario
+// consulta de Usuario EN PROCESO
 map<string, Usuario *> ControladorUsuario::listarUsuarios(){
 
 }
 
 map<string, Usuario *> ControladorUsuario::listarUsuarios() 
 {
-	std::map<std::string , Usuario*>::iterator i = usuarios.begin();
-	Usuario *u;
+	std::map<std::string , Empleado*>::iterator i = empleados.begin();
+	Empleado *e;
 	while(i != usuarios.end())
 	{
 		u = i->second;
