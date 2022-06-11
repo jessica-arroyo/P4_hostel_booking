@@ -1,4 +1,4 @@
-#include ../include/DtHostal.hpp
+#include "../include/DtHostal.hpp"
 
 
 DtHostal::DtHostal(string nom, string direc, int tel, string calProm){

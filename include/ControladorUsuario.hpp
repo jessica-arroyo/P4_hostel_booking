@@ -15,16 +15,17 @@ class ControladorUsuario: public: IUsuario {
   private:
     ControladorUsuario() ;
     static ControladorUsuario *instancia ;
-    set<Empleado *> empleados;
-    set<Huesped *> huespedes;
+
+    std::map<std::string , Empleado*> empleados;
+    std::map<std::string , Huesped*> huespedes;
   
   public:
     ~ControladorUsuario() ;
     static ControladoUsuario *getInstancia();
     
     // alta de usuario 
-    void ingresarEmpleado(DtEmpleado *dte);
-    void ingresarHuesped(DtHuesped *dth);
+    bool ingresarEmpleado(DtEmpleado *dte);
+    bool ingresarHuesped(DtHuesped *dth);
     void confirmarAlta();
     void cancelarAlta();
     void reingresarEmail(string emailUser);  

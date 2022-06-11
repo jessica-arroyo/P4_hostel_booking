@@ -8,8 +8,14 @@ ControladorUsuario::ControladorUsuario() {
 
 ControladorUsuario::~ControladorUsuario() 
 {
-	map<std::string , Usuario*>::iterator i = usuarios.begin();
-	while (i != usuarios.end())
+	map<std::string , Empleado*>::iterator i = empleados.begin();
+	while (i != empleados.end())
+	{
+		delete i->second;
+		i++;
+	}
+	map<std::string , Huesped*>::iterator i = huespedes.begin();
+	while (i != huespedes.end())
 	{
 		delete i->second;
 		i++;
@@ -47,14 +53,20 @@ bool ControladorUsuario::reingresarEmail(string emailUser)
 {
 	if (this->dth == NULL){
 		this->dte->setEmail(emailUser);
+		Empleado* res = NULL;
+		std::map<std::string, Empleado*>::iterator e = empleados.find(emailUser);
+		if (e != empleados.end()) 
+			res = dynamic_cast<Empleado*>(e->second);
+		return (res != NULL);
 	}else{
 		this->dth->setEmail(emailUser);
+		Huesped* res = NULL;
+		std::map<std::string, Huesped*>::iterator h = huespedes.find(emailUser);
+		if (h != huespedes.end()) 
+			res = dynamic_cast<Huesped*>(h->second);
+		return (res != NULL);
 	}
-	Usuario* res = NULL;
-	std::map<std::string, Usuario*>::iterator u = usuarios.find(emailUser);
-	if (u != usuarios.end()) 
-		res = dynamic_cast<Usuario*>(u->second);
-	return (res != NULL);
+	
 }
 
 void ControladorUsuario::confirmarAlta()
@@ -88,14 +100,71 @@ void ControladorUsuario::cancelarAlta()
     this->dth = NULL;
 }
 
-      
+// consulta de Usuario EN PROCESO
+map<string, Usuario *> ControladorUsuario::listarUsuarios(){
+
+}
+
+map<string, Usuario *> ControladorUsuario::listarUsuarios() 
+{
+	std::map<std::string , Empleado*>::iterator i = empleados.begin();
+	Empleado *e;
+	while(i != usuarios.end())
+	{
+		u = i->second;
+		if (dynamic_cast <Estudiante*> (u))
+		{
+			e = dynamic_cast <Estudiante*> (u);
+			res.insert();
+		}
+		i++;
+	}
+	return res;
+}
+
+map<string, DtAsignatura> ControladorAsignatura::listarAsignaturas()
+{
+	map<string, DtAsignatura> res;
+	DtAsignatura aux;
+	map<string, Asignatura*>::iterator i;
+	for(i = this->asignaturas.begin(); i != this->asignaturas.end(); i++)
+	{
+		aux = DtAsignatura(i->second->getCodigo(), i->second->getNombre(), i->second->getSumaTiempoDictado());
+		res.insert(make_pair(i->second->getCodigo(),aux));
+	}
+	if ( res.empty())
+		throw logic_error("no existen asignaturas") ;
+	return res;
+}
+
+std::map<std::string, DtEstudiante> ControladorUsuario::listarEstudiantes() 
+{
+	std::map<std::string, DtEstudiante> res;
+	std::map<std::string , Usuario*>::iterator i = usuarios.begin();
+	Usuario *u;
+	Estudiante *e;
+	while(i != usuarios.end())
+	{
+		u = i->second;
+		if (dynamic_cast <Estudiante*> (u))
+		{
+			e = dynamic_cast <Estudiante*> (u);
+			res.insert(std::make_pair(i->first, e->getDataEst()));
+		}
+		i++;
+	}
+	return res;
+}
+
+
+
+
     map<string, Empleado *> ControladorUsuario::listarEmpleadosNoAsignados(string nombreHostal){}
     void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo){}
     void ControladorUsuario::cancelarAsignarEmpleado(){}
     map<string, Huesped *> ControladorUsuario::listarHuespedes(int codigoHabitacion){}
     void ControladorUsuario::confirmarHuesped(string emailHuespedReserva){}
     void ControladorUsuario::agregarHuesped(string emailHuesped){}
-    map<string, Usuario *> ControladorUsuario::listarUsuarios(){}
     DtEmpleado ControladorUsuario::mostrarEmpleado(DtEmpleado empleado){} 
     DtHuesped ControladorUsuario::mostrarHuesped(DtHuesped huesped){}
     void ControladorUsuario::encontrarHuesped(string emailHuespedReserva){}

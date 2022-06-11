@@ -1,4 +1,4 @@
-#include ../include/Hostal.hpp
+#include "../include/Hostal.hpp"
 
 
 Hostal::Hostal(std::string nombre, std::string direccion, int telefono,0){
