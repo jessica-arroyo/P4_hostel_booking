@@ -31,17 +31,45 @@ bool ControladorHostal::existeHostal(string nombre){
     return (SetHostales.find(nomh) != SetHostales.end()) ;
 }
 
-std::map<string , DtHostal *> ControladorHostal::listarHostales(){} //La colección de Hostales va a ser un map o un set (porque podríamos querer tener ordenados 
-//a los Hostales en base a su calificacionPromedio para tener más fácil lo de Top 3 Hostales)
-map<int , DtHabitacion *> ControladorHostal::listarHabitaciones(DtFechaHora checkIn, DtFechaHora checkOut, bool esGrupal, string nombreHostal){}
+std::map<string, DtHostal> ControladorHostal::listarHostales(){
+    
+	map<string, DtHostal> hostales;
+	DtAsignatura h;
+	map<string, Hostal*>::iterator i; 
+	for(i = this->hostales.begin(); i != this->hostales.end(); i++)
+	{
+		h = DtHostal(i->second->getNombre(), i->second->getDireccion(), i->second->getTelefono(), i->second->getCalificacionPromedio());
+		hostales.insert(make_pair(i->second->getNombre(),h));
+	}
+	if ( hostales.empty())
+		throw logic_error("No hay hostales registrados") ;
+	return res;
+
+}  
+
+DtHostal ControladorHostal::infoHostal(string nombreHostal){
+    map<string,Hostal*>::iterator i ;
+    i = this->SetHostales.find(nombreHostal) ;
+    DtHostal h = DtHostal(i->second->getNombre(), i->second->getDireccion(), i->second->getTelefono(), i->second->getCalificacionPromedio()); 
+    this->nombrerecordado = nombreHostal ;
+
+    return h ;
+}
+
+map<int , DtCalificacion> ControladorHostal::listarCalificaciones(){
+    
+}
+
+
+map<int , DtHabitacion> ControladorHostal::listarHabitacionesDisp(DtFechaHora checkIn, DtFechaHora checkOut, bool esGrupal, string nombreHostal){}
 void ControladorHostal::ingresarDatos(string nombreHostal, DtHabitacion habitacion){}
 void ControladorHostal::agregarHabitacion(){}
 void ControladorHostal::cancelarHabitacion(){}
-std::map<string , DtHostal *> ControladorHostal::top3hostales(){}
-DtHostal ControladorHostal::infoHostal(string nombreHostal){}
-map<int , DtHabitacion *> ControladorHostal::listarHabitaciones(){}
+std::map<string , DtHostal> ControladorHostal::top3hostales(){}
+
+map<int , DtHabitacion> ControladorHostal::listarHabitaciones(){}
 DtHostal ControladorHostal::encontrarHostal(string nombreHostal){} //acá puse que se devuelva el DtHostal. Porque no se devuelven objetos.
-map<int , DtHabitacion *> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout){}
+map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout){}
         
 
 
