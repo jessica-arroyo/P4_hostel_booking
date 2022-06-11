@@ -15,6 +15,8 @@ class ControladorUsuario: public: IUsuario {
   private:
     ControladorUsuario() ;
     static ControladorUsuario *instancia ;
+    set<Empleado *> empleados;
+    set<Huesped *> huespedes;
   
   public:
     ~ControladorUsuario() ;
