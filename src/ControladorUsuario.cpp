@@ -1,7 +1,10 @@
 #include "../include/ControladorUsuario.hpp"
 
 
-ControladorUsuario::ControladorUsuario() {}
+ControladorUsuario::ControladorUsuario() {
+    this->dte = NULL;
+    this->dth = NULL;
+}
 
 ControladorUsuario::~ControladorUsuario() 
 {
@@ -24,16 +27,65 @@ ControladorUsuario *ControladorUsuario::getInstancia()
 
 // alta de usuario 
     bool ControladorUsuario::ingresarEmpleado(DtEmpleado *dte){
-    Estudiante* res = NULL;
-	std::map<std::string, Usuario*>::iterator e = empleados.find(emailEst);
-	if (e != usuarios.end()) 
-		res = dynamic_cast<Estudiante*>(u->second);
+  	Empleado* res = NULL;
+	this->dte = dte;
+	std::map<std::string, Empleado*>::iterator e = empleados.find(dte->getEmail());
+	if (e != empleados.end()) 
+		res = dynamic_cast<Empleado*>(e->second);
 	return (res != NULL);
     }
-    void ControladorUsuario::ingresarHuesped(DtHuesped *dth){}
-    void ControladorUsuario::confirmarAlta(){}
-    void ControladorUsuario::cancelarAlta(){}
-    void ControladorUsuario::reingresarEmail(string emailUser){}
+    bool ControladorUsuario::ingresarHuesped(DtHuesped *dth){
+        Huesped* res = NULL;
+	this->dth = dth;
+	std::map<std::string, Huesped*>::iterator h = huespedes.find(dth->getEmail());
+	if (h != huespedes.end()) 
+		res = dynamic_cast<Huesped*>(h->second);
+	return (res != NULL);
+    }
+void ControladorUsuario::confirmarAlta()
+{
+    if (this->dth == NULL)
+    {
+        //caso ingreso Empleado
+        Empleado *e = new Empleado(
+            this->dte->getNombre(),
+            this->dte->getEmail(),
+            this->dte->getPassword(),
+	    this->dte->getCargo());
+        this->usuarios[this->dte->getEmail()] = e;
+    }
+    else
+    {
+        Huesped *h = new Huesped(
+            this->dth->getNombre(),
+            this->dth->getEmail(),
+            this->dth->getPassword(),
+            this->dth->getEsFinger());
+        this->usuarios[this->dth->getEmail()] = h;
+    }
+    this->dte = NULL;
+    this->dth = NULL;
+}
+
+void ControladorUsuario::cancelarAlta()
+{
+    this->dte = NULL;
+    this->dth = NULL;
+}
+
+bool ControladorUsuario::reingresarEmail(string emailUser)
+{
+	if (this->dth == NULL){
+		this->dte->setEmail(emailUser);
+	}else{
+		this->dth->setEmail(emailUser);
+	}
+	Usuario* res = NULL;
+	std::map<std::string, Usuario*>::iterator u = usuarios.find(emailUser);
+	if (u != usuarios.end()) 
+		res = dynamic_cast<Usuario*>(u->second);
+	return (res != NULL);
+}
       
     map<string, Empleado *> ControladorUsuario::listarEmpleadosNoAsignados(string nombreHostal){}
     void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo){}
@@ -48,12 +100,4 @@ ControladorUsuario *ControladorUsuario::getInstancia()
     
     map<string, Reserva *> ControladorUsuario::listarReservas(string nombreHostal, string email){}
 
-bool ControladorUsuario::existeEst(std::string emailEst)
-{
-	Estudiante* res = NULL;
-	std::map<std::string, Usuario*>::iterator u = usuarios.find(emailEst);
-	if (u != usuarios.end()) 
-		res = dynamic_cast<Estudiante*>(u->second);
-	return (res != NULL);
-}
 
