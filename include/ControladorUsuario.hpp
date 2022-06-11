@@ -1,7 +1,12 @@
 #ifndef CONTROLADORUSUARIO_H
 #define CONTROLADORUSUARIO_H
 
-
+#include "Reserva.hpp"
+#include "DtEmpleado.hpp"
+#include "DtHuesped.hpp"
+#include "Empleado.hpp"
+#include "Huesped.hpp"
+#include "Usuario.hpp"
 #include <map>
 #include <iostream>
 using namespace std;
