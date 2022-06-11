@@ -826,14 +826,13 @@ int main()
 					if(hostales.empty())
 					{
 						throw invalid_argument ("No hay hostales registrados") ;
-						//tengo que poner que alguna cosa para salir?	
 					}
 					else 
 					{
     					int j = 1;
     					cout<< "Lista de Hostales /n" ;
     					for(i=hostales.begin(); i != hostales.end(); i++){
-        					cout<< j <<": " << i->second.getNombre() << "/n";
+        					cout<< j <<"Nombre: " << i->second.getNombre() << "/n";
         					j++;
     					}
 
@@ -880,8 +879,64 @@ int main()
 				}
 				break ;
 
-			}
-		}
+				case 12 :
+				{
+					map<string, DtHostal> hostales = IHostal->listarHostales();
+    				map<string , DtHostal> :: iterator i;
+					if(hostales.empty())
+					{
+						throw invalid_argument ("No hay hostales registrados") ;
+					}
+					else 
+					{
+    					int j = 1;
+    					cout<< "Lista de Hostales /n" ;
+    					for(i=hostales.begin(); i != hostales.end(); i++){
+        					cout<< j <<"Nombre: " << i->second.getNombre() << "/n";
+							cout<< "Dirección:" << i->second.getDireccion() << "/n";
+							cout<< "Teléfono:" << i->second.getTelefono() << "/n";
+							cout<< "Calificación Promedio:" << i->second.getCalificacionPromedio() << "/n";
+        					j++;
+    					}
+
+						cout<<"Ingrese el nombre del hostal del que desea ver la información." ;
+						string nomhos ;
+						cin>> nomhos ;
+						while(!iHostal->existeHostal(nomhos)){
+							cout<< "El nombre ingresado no corresponde a un hostal del sistema." ;
+							cout<<"Ingrese un nombre correspondiente a un hostal del sistema." ;
+							cin<<nomhos ;
+						}
+						DtHostal infoh = iHostal->infoHostal(nomhos) ;
+
+						cout<< "Información básica del hostal seleccionado:/n" ;
+						cout<<"Nombre: " << infohos->getNombre() << "/n";
+						cout<< "Dirección:" << infohos->getDireccion() << "/n";
+						cout<< "Teléfono:" << infohos->getTelefono() << "/n";
+						cout<< "Calificación Promedio:" << infohos->getCalificacionPromedio() << "/n";
+
+						set<DtCalificacion> calificaciones = IHostal->listarCalificaciones();
+    					set<DtCalificacion> :: iterator i;
+						if(calificaciones.empty())
+						{
+							throw invalid_argument ("No hay calificaciones de ese hostal") ;
+						}
+						else 
+						{
+    						int j = 1;
+    						cout<< "Lista de Hostales /n" ;
+    						for(i=hostales.begin(); i != hostales.end(); i++){
+        						cout<< j <<"Nombre: " << i->second.getNombre() << "/n";
+								cout<< "Dirección:" << i->second.getDireccion() << "/n";
+								cout<< "Teléfono:" << i->second.getTelefono() << "/n";
+								cout<< "Calificación Promedio:" << i->second.getCalificacionPromedio() << "/n";
+        						j++;
+    						}
+						
+						}
+					}
+				}
+				break ;
 		
 
         //if(c == "1")
