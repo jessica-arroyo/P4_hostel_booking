@@ -1,6 +1,13 @@
 #ifndef IUSUARIO_H
 #define IUSUARIO_H
 
+#include "DtEmpleado.hpp"
+#include "DtHuesped.hpp"
+#include "Empleado.hpp"
+#include "Huesped.hpp"
+#include "Usuario.hpp"
+
+
 #include <map>
 #include <string>
 #include <set>
