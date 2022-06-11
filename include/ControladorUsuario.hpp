@@ -15,6 +15,7 @@ class ControladorUsuario: public: IUsuario {
   private:
     ControladorUsuario() ;
     static ControladorUsuario *instancia ;
+    std::map<std::string , Usuario*> usuarios;
   
   public:
     ~ControladorUsuario() ;
