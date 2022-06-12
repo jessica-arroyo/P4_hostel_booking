@@ -1,3 +1,4 @@
+/*
 #include "include/altaAsignatura.hpp"
 #include "include/asignarDocenteAAsignatura.hpp"
 #include "include/finalizacionDeClase.hpp"
@@ -11,14 +12,16 @@
 #include "include/eliminacionAsignatura.hpp"
 #include "include/tiempoDeAsistenciaAClase.hpp"
 #include "include/consultaNotificaciones.hpp"
-#include "include/subscribir.hpp"
+#include "include/subscribir.hpp" */
+#include "../include/ControladorHostal.hpp"
+#include "../include/Fabrica.hpp"
 #include <iostream>
 #include <limits>
 #include <ios>
 
 using namespace std;
 
-int cargarMensaje(DtFechaHora fecha, string email, int idClase, int aResponder, string texto){ // pasar -1 al aResponder para no resp.
+/*int cargarMensaje(DtFechaHora fecha, string email, int idClase, int aResponder, string texto){ // pasar -1 al aResponder para no resp.
 	Fabrica* f = Fabrica::getInstancia();
 	IClase *iClase = f->getIClase();
 	IReloj *iReloj = f->getIReloj();
@@ -30,7 +33,8 @@ int cargarMensaje(DtFechaHora fecha, string email, int idClase, int aResponder, 
 		iClase->responderA(aResponder);
 	return iClase->registrarMensaje(texto) ; 
 }
-
+*/
+/*
 void cargarDatosPrueba(IAsignatura *iAsignatura, IClase *iClase, IUsuario *iUsuario, IReloj *iReloj)
 {
 	//Docentes
@@ -202,18 +206,18 @@ void cargarDatosPrueba(IAsignatura *iAsignatura, IClase *iClase, IUsuario *iUsua
 	iReloj->setFechaHora( f4 );
 	iUsuario->finReproduccion(emailEstudiante[1], idClase[1]) ;
 }
-
+*/
 int main()
 {
 	
 	Fabrica *f = NULL;
 	f = Fabrica::getInstancia();
 	IHostal *iHostal = f->getIHostal();
-	IUsuario *iUsuario = f->getIUsuario();
-	IReserva *iReserca = f->getIReserva();
-	IFecha *iFecha = f->getIFecha();
-	DtFechaHora horaActual = DtFechaHora(0, 0, 1, 1, 2022);
-	iFecha->setFechaHora(horaActual);
+	//IUsuario *iUsuario = f->getIUsuario();
+	//IReserva *iReserca = f->getIReserva();
+	//IFecha *iFecha = f->getIFecha();
+	//DtFechaHora horaActual = DtFechaHora(0, 0, 1, 1, 2022);
+	//iFecha->setFechaHora(horaActual);
 
 
 	bool bandera = false;
@@ -259,7 +263,7 @@ int main()
 		
         switch (numingresado)
         {
-            case 1:
+            /*case 1:
 			{
 				int tipoUsuario ;
 				cout<< "\nIngrese '0' si desea dar de alta a un empleado, '1' en caso de querer dar de alta un huesped\n" ;
@@ -799,12 +803,14 @@ int main()
 
 
 				}
-				break ;
+				break ; */
 				case 2: 
 				{
 					string nombreHostal ;
 					string direccion ;
 					int telefono ; 
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 					cout<< "Ingrese el nombre del hostal\n" ;
 					cin>> nombreHostal ;
 					cout<< "Ingrese la dirección\n" ;
@@ -819,7 +825,18 @@ int main()
 					iHostal->altadeHostal(nombreHostal,direccion,telefono,0) ; //se crea el Hostal con calificacionPromedio=0.
 				}
 				break ;
-				case 3:
+				
+				case 0:
+           		{
+                	cout << "Hasta luego.\n";
+                	bandera = true;
+            	}
+            	break;
+            	
+				default:
+                cout << "Ingrese un número del 0 al 20\n";   
+    	}
+				/*case 3:
 				{
 					map<string, DtHostal> hostales = IHostal->listarHostales();
     				map<string , DtHostal> :: iterator i;
@@ -933,10 +950,10 @@ int main()
         						j++;
     						}
 						
-						}
+						} 
 					}
 				}
-				break ;
+				break ; 
 		
 
         //if(c == "1")
@@ -1186,8 +1203,8 @@ int main()
         }
 	}*/
 	delete iHostal;
-	delete iReserva;
-	delete iUsuario;
+	//delete iReserva;
+	//delete iUsuario;
 	delete f;
 	return 0;
 }

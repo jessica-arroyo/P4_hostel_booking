@@ -7,7 +7,14 @@ using namespace std ;
 
 ControladorHostal::ControladorHostal(){}
 
-ControladorHostal::~ControladorHostal(){}
+ControladorHostal::~ControladorHostal(){
+    map<std::string , Hostal*>::iterator iH = SetHostales.begin();
+	while (iH!=SetHostales.end())
+	{
+		delete iH->second;
+		iH++;
+	}
+}
 
 ControladorHostal *ControladorHostal::_instancia = NULL ;
 
@@ -56,7 +63,7 @@ DtHostal ControladorHostal::infoHostal(string nombreHostal){
     return h ;
 }
 
-map<int , DtCalificacion> ControladorHostal::listarCalificaciones(){
+/*map<int , DtCalificacion> ControladorHostal::listarCalificaciones(){
     
 }
 
@@ -70,6 +77,7 @@ std::map<string , DtHostal> ControladorHostal::top3hostales(){}
 map<int , DtHabitacion> ControladorHostal::listarHabitaciones(){}
 DtHostal ControladorHostal::encontrarHostal(string nombreHostal){} //acá puse que se devuelva el DtHostal. Porque no se devuelven objetos.
 map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout){}
+*/
         
 
 
