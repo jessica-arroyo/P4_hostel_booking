@@ -37,7 +37,7 @@ ControladorUsuario *ControladorUsuario::getInstancia()
 	this->dte = dte;
 	std::map<std::string, Empleado*>::iterator e = empleados.find(dte->getEmail());
 	if (e != empleados.end()) 
-		res = dynamic_cast<Empleado*>(e->second);
+		res = e->second;
 	return (res != NULL);
     }
     bool ControladorUsuario::ingresarHuesped(DtHuesped *dth){
@@ -45,7 +45,7 @@ ControladorUsuario *ControladorUsuario::getInstancia()
 	this->dth = dth;
 	std::map<std::string, Huesped*>::iterator h = huespedes.find(dth->getEmail());
 	if (h != huespedes.end()) 
-		res = dynamic_cast<Huesped*>(h->second);
+		res = h->second;
 	return (res != NULL);
     }
 
@@ -56,14 +56,14 @@ bool ControladorUsuario::reingresarEmail(string emailUser)
 		Empleado* res = NULL;
 		std::map<std::string, Empleado*>::iterator e = empleados.find(emailUser);
 		if (e != empleados.end()) 
-			res = dynamic_cast<Empleado*>(e->second);
+			res = e->second;
 		return (res != NULL);
 	}else{
 		this->dth->setEmail(emailUser);
 		Huesped* res = NULL;
 		std::map<std::string, Huesped*>::iterator h = huespedes.find(emailUser);
 		if (h != huespedes.end()) 
-			res = dynamic_cast<Huesped*>(h->second);
+			res = h->second;
 		return (res != NULL);
 	}
 	
