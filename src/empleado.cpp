@@ -10,7 +10,7 @@ Empleado::Empleado(string nombre, string email, string password, TipoCargo cargo
     this->cargo = cargo;
 }
 
-TipoCargo Empleado::getCargo(){
+/* TipoCargo Empleado::getCargo(){
     if (this->cargo == 0)
     {
         cout << "Administracion";
@@ -25,6 +25,10 @@ TipoCargo Empleado::getCargo(){
         cout << "Infraestructura";
     }
     return cargo;
+}*/
+
+TipoCargo Empleado::getCargo(){
+    return this->cargo
 }
 
 void Empleado::setCargo(TipoCargo cargo){
