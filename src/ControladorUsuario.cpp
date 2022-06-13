@@ -45,17 +45,15 @@ void ControladorUsuario::confirmarAltaEmpleado(string nombre, string email, stri
 	Empleado *e = new Empleado(nombre,email,password,cargo);
         this->empleados[email] = e;
 	e->hostal=NULL;
-    }
-    else
-    {
-        Huesped *h = new Huesped(nombre,email,password,esFinger);
+}
+void ControladorUsuario::confirmarAltaHuesped(string nombre, string email, string password, bool esFinger)
+{     
+	Huesped *h = new Huesped(nombre,email,password,esFinger);
         this->huespedes[email] = h;
-    }
 }
 
 
-
-// consulta de Usuario EN PROCESO
+// consulta de Usuario 
 
 map<string, Usuario *> ControladorUsuario::listarUsuarios() 
 {
