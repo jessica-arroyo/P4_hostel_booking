@@ -27,6 +27,22 @@ int Hostal::getCalificacionPromedio(){
     return calificacionPromedio ;
 }
 
+map<int , Habitacion *> Hostal::getHabitaciones(){
+    return habitaciones ;
+}
+
+map<int , Reserva *> Hostal::getReservas(){
+    return reservas ;
+}
+
+map<int , Empleado *> Hostal::getEmpleados(){
+    return empleados ;
+}
+
+map<int , Huesped *> Hostal::getHuespedes(){
+    return huespedes ;
+}
+
 void Hostal::setNombre(string nom){
     this->nombre = nom ;
 }
@@ -43,26 +59,30 @@ void Hostal::setCalPromedio(int calProm){
     this->calificacionPromedio = calProm ;
 }
 
- DtHostal Hostal::getDtHostal(){
+void Hostal::agregarReservaAHostal(Reserva *res){
+    this->reservas[res.getCodigo()] = res;
+}
+
+void Hostal::agregarHuespedAHostal(Huesped *hues){
+    this->huespedes[hues.getEmail()] = hues;
+}
+
+void Hostal::asignarEmpleadoAHostal(Empleado *emp){
+    this->empleados[emp.getEmail()] = emp;
+} 
+
+DtHostal Hostal::getDtHostal(){
     DtHostal h = DtHostal(this->nombre, this->direccion, this->telefono, this->calificacionPromedio) ;
     return h ;
- } //Pau esto es lo mismo que el creador dthostal() en dthostal, borralo y usa el otro en donde lo hayas usado
+ } //Pau esto es lo mismo que el creador dthostal() en dthostal, borralo y usa el otro en donde lo hayas usado.
+ //Yo puse una función que devuelva el Dt, porque en los ejemplos que vi, el objeto tiene una función para autoconvertirse a Dt.
 
 void Hostal::setHabitacion(Habitacion *hab){
     this->habitaciones[hab.getNumero()] = hab;
 }
 
-//map<int , Habitacion *> getHabitaciones() ;
-    //map<int , Reserva *> getReservas() ;
-    //map<int , Empleado *> getEmpleados() ;
-    //map<int , Huesped *> getHuespedes() ;
-
- /*
- void Hostal::linkeohos(Habitacion hab){}
- void Hostal::asignarEmpleadoAHostal(Empleado emp){}
  void Hostal::accesoHostal(){}
- void Hostal::agregarReservaAlHostal(Reserva res){}
  void Hostal::entrarRes(){}
- //void Hostal::obtenerReservas(){} es un void? No debería devolver un conjunto o un map más bien de Reserva?
- //void Hostal::obtenerEstadiasdelHostal(std::string emailHuesped){} verificar que esta efectivamente no devuelva nada (por lo de obtener pero no devuelve nada).
- */
+ void Hostal::obtenerEstadiasdelHostal(string emailHuesped){} //Debería devolver un map de DtEstadia.
+ //void Hostal::linkeohos(Habitacion hab){} //ya está arriba.
+ 
