@@ -31,7 +31,7 @@ bool estaAsignado(string nombreHostal)
 }
 
 DtEmpleado Empleado::getDtEmpleado(){
-    DtEmpleado dte = DtEmpleado(this->nombre, this->email, this->password, this->cargo);
+    DtEmpleado dte = DtEmpleado(this->nombre, this->email, this->password, this->cargo, this->nombreHostal);
     return dte;
 }
 
