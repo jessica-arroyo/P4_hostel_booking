@@ -35,7 +35,7 @@ class ControladorHostal: public: IHostal {
         
         map<int , DtHabitacion> listarHabitaciones() ;
         DtHostal encontrarHostal(string nombreHostal) ; //acá puse que se devuelva el DtHostal. Porque no se devuelven objetos.
-        map<int , DtHabitacion> devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout) ;
+        map<int , DtHabitacion> devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal) ;
         */
         
   };
