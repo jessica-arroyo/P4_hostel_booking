@@ -24,6 +24,7 @@ class Habitacion {
     void setNumero(int numero) ;
     void setPrecio(int precio) ;
     void setCapacidad(int capacidad) ;
+    void setHostal(Hostal* hostal);
     
     //create(DtHabitacion habitacion); //el constructor sería este, el de arriba, o ambos?
     add(Habitacion hab) ;

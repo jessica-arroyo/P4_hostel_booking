@@ -36,6 +36,7 @@ class Hostal {
     void setDireccion(string direc) ;
     void setTelefono(int tel) ;
     void setCalPromedio(int calProm) ;
+    void setHabitacion(Habitacion *hab);
  
  
     DtHostal getDtHostal() ;
