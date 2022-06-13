@@ -3,7 +3,7 @@
 
 #include "Hostal.hpp"
 #include "DtHostal.hpp"
-//#include "DtHabitacion.hpp"
+#include "DtHabitacion.hpp"
 // poner include "Habitacion.hpp"?
 #include <map>
 #include <iostream>

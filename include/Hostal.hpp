@@ -14,10 +14,10 @@ class Hostal {
     string direccion ;
     int telefono ;
     float calificacionPromedio ;
-    //map<int , Habitacion *> habitaciones; 
-    //map<int , Reserva *> reservas;
-    //map<string , Empleado *> empleados;
-    //map<string , Huesped *> huespedes;
+    map<int , Habitacion *> habitaciones; 
+    map<int , Reserva *> reservas;
+    map<string , Empleado *> empleados;
+    map<string , Huesped *> huespedes;
     
   
   public:
@@ -27,10 +27,10 @@ class Hostal {
     string getDireccion() ;
     int getTelefono() ;
     int getCalificacionPromedio() ;
-    //map<int , Habitacion *> getHabitaciones() ;
-    //map<int , Reserva *> getReservas() ;
-    //map<int , Empleado *> getEmpleados() ;
-    //map<int , Huesped *> getHuespedes() ;
+    map<int , Habitacion *> getHabitaciones() ;
+    map<int , Reserva *> getReservas() ;
+    map<int , Empleado *> getEmpleados() ;
+    map<int , Huesped *> getHuespedes() ;
 
     void setNombre(string nom) ;
     void setDireccion(string direc) ;

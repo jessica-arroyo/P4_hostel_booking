@@ -38,6 +38,10 @@ bool ControladorHostal::existeHostal(string nombre){
     return (SetHostales.find(nomh) != SetHostales.end()) ;
 }
 
+bool existeHabitacion(int numero, string nombreHostal){
+	//se chequeó desde afuera que le ingresen un hostal válido. Se tiene que chequear de nuevo?
+}
+
 std::map<string, DtHostal> ControladorHostal::listarHostales(){
     
 	map<string, DtHostal> hostales;

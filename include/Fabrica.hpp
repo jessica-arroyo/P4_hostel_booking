@@ -4,13 +4,13 @@
 //#include "../include/IUsuario.hpp"
 #include "../include/IHostal.hpp"
 //#include "../include/IReserva.hpp"
-//#include "../include/IFecha.hpp"
+#include "../include/IFecha.hpp"
 #include <cstddef>
 
-//class ControladorUsuario;
+class ControladorUsuario;
 class ControladorHostal;
-//class ControladorReserva;
-//class Fecha;
+class ControladorReserva;
+class Fecha;
 
 class Fabrica
 {
@@ -21,15 +21,15 @@ class Fabrica
 	public:
 		~Fabrica();
 		IHostal *getIHostal();
-		//IFecha *getIFecha();
-		//IUsuario *getIUsuario();
-		//IReserva *getIReserva();
+		IFecha *getIFecha();
+		IUsuario *getIUsuario();
+		IReserva *getIReserva();
 		static Fabrica* getInstancia();
 };
 
-//#include "../include/ControladorUsuario.hpp"
+#include "../include/ControladorUsuario.hpp"
 #include "../include/ControladorHostal.hpp"
-//#include "../include/ControladorReserva.hpp"
-//#include "../include/Fecha.hpp"
+#include "../include/ControladorReserva.hpp"
+#include "../include/Fecha.hpp"
 
 #endif
