@@ -37,8 +37,8 @@ void Huesped::setEmail(string email){
     this->email = email;
 }
 
-DtUsuario *Usuario::getDataUs(){
-    DtUsuario *dtu = new DtUsuario(this->nombre, this->email, this->password);
+DtUsuario Usuario::getDataUs(){
+    DtUsuario dtu = DtUsuario(this->nombre, this->email, this->password);
     return dtu;
 }
 

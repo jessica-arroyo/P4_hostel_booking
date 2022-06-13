@@ -10,6 +10,7 @@ Empleado::Empleado(string nombre, string email, string password, TipoCargo cargo
     this->cargo = cargo;
 }
 
+
 TipoCargo Empleado::getCargo(){
     return this->cargo
 }
@@ -18,11 +19,9 @@ void Empleado::setCargo(TipoCargo cargo){
     this->cargo = cargo;
 }
 
-bool estaAsignado(string nombreHostal){
-set<Hostal *>::iterator it;
-    for (it = this->hostales.begin(); it != this->hostales.end(); it++)
-    {
-        if (nombreHostal == (*it)->getNombre())
+bool estaAsignado(string nombreHostal)
+{
+    if (nombreHostal == hostal->getNombre())
         {
             return true;
         }
@@ -31,13 +30,13 @@ set<Hostal *>::iterator it;
 
 }
 
-DtEmpleado *Empleado::getDtEmpleado(){
-    DtEmpleado *dte = new DtEmpleado(this->nombre, this->email, this->password, this->cargo);
+DtEmpleado Empleado::getDtEmpleado(){
+    DtEmpleado dte = DtEmpleado(this->nombre, this->email, this->password, this->cargo, this->nombreHostal);
     return dte;
 }
 
 void Empleado::asignarHostalAEmpleado(Hostal *nuevohostal){
-    this->hostales.insert(nuevohostal);
+    hostal = nuevohostal;
 }
 
 
