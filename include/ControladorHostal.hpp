@@ -12,7 +12,7 @@ class ControladorHostal: public: IHostal {
     private:
         ControladorHostal() ;
         static ControladorHostal *_instancia ;
-        std::map<string,Hostal*> SetHostales ;
+        map<std::string,Hostal*> SetHostales ;
         //acá guardan usuarios y otros objetos que se precisen recordar.
         Hostal * hostalCreado ;
         string nombrerecordado ;
@@ -20,9 +20,10 @@ class ControladorHostal: public: IHostal {
     public:
         ~ControladorHostal() ;
         static ControladorHostal *getInstancia() ;
-    
+        
+        void agregarHabitacion(numero,precio,capacidad,nombreH) ;
         void altaHostal(string nombre, string direccion, int telefono, int calificacionProm) ;
-        std::map<string , DtHostal> listarHostales() ; //La colección de Hostales va a ser un map o un set (porque podríamos querer tener ordenados 
+        map<std::string , DtHostal> listarHostales() ; //La colección de Hostales va a ser un map o un set (porque podríamos querer tener ordenados 
         //a los Hostales en base a su calificacionPromedio para tener más fácil lo de Top 3 Hostales)
         DtHostal infoHostal(string nombreHostal) ;
         /*map<int , DtHabitacion > listarHabitacionesDisp(DtFechaHora checkIn, DtFechaHora checkOut, bool esGrupal, string nombreHostal) ;
@@ -30,7 +31,7 @@ class ControladorHostal: public: IHostal {
         void ingresarDatos(string nombreHostal, DtHabitacion habitacion) ;
         void agregarHabitacion() ;
         void cancelarHabitacion() ;
-        void std::map<string , DtHostal> top3hostales() ;
+        void map<std::string , DtHostal> top3hostales() ;
         
         map<int , DtHabitacion> listarHabitaciones() ;
         DtHostal encontrarHostal(string nombreHostal) ; //acá puse que se devuelva el DtHostal. Porque no se devuelven objetos.
@@ -40,4 +41,5 @@ class ControladorHostal: public: IHostal {
   };
 
 #endif
+
 
