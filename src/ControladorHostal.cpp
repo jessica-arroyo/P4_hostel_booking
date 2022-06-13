@@ -67,6 +67,13 @@ DtHostal ControladorHostal::infoHostal(string nombreHostal){
     return h ;
 }
 
+void ControladorHostal::agregarHabitacion(numero,precio,capacidad,nombreH){
+    Habitacion *hab = new Habitacion(numero,precio,capacidad,nombreH);
+    map<string,Hostal*>::iterator i;
+    i = this->SetHostales.find(nombreH)->second;
+    i.setHabitacion(hab);
+    hab.setHostal(i);
+}
 /*map<int , DtCalificacion> ControladorHostal::listarCalificaciones(){
     
 }
@@ -74,7 +81,7 @@ DtHostal ControladorHostal::infoHostal(string nombreHostal){
 
 map<int , DtHabitacion> ControladorHostal::listarHabitacionesDisp(DtFechaHora checkIn, DtFechaHora checkOut, bool esGrupal, string nombreHostal){}
 void ControladorHostal::ingresarDatos(string nombreHostal, DtHabitacion habitacion){}
-void ControladorHostal::agregarHabitacion(){}
+
 void ControladorHostal::cancelarHabitacion(){}
 std::map<string , DtHostal> ControladorHostal::top3hostales(){}
 
@@ -82,8 +89,6 @@ map<int , DtHabitacion> ControladorHostal::listarHabitaciones(){}
 DtHostal ControladorHostal::encontrarHostal(string nombreHostal){} //acá puse que se devuelva el DtHostal. Porque no se devuelven objetos.
 map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout){}
 */
-        
-
 
 
 
