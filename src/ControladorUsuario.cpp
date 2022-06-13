@@ -56,62 +56,30 @@ void ControladorUsuario::confirmarAltaEmpleado(string nombre, string email, stri
 
 
 // consulta de Usuario EN PROCESO
-map<string, Usuario *> ControladorUsuario::listarUsuarios(){
-
-}
 
 map<string, Usuario *> ControladorUsuario::listarUsuarios() 
 {
-	std::map<std::string , Empleado*>::iterator i = empleados.begin();
+	std::map<string, DtUsuario> res;
+	std::map<string , Empleado*>::iterator i = empleados.begin();
 	Empleado *e;
-	while(i != usuarios.end())
+	while(i != empleados.end())
 	{
-		u = i->second;
-		if (dynamic_cast <Estudiante*> (u))
-		{
-			e = dynamic_cast <Estudiante*> (u);
-			res.insert();
-		}
+		e = i->second;
+		res.insert(make_pair(i->first, DtUsuario(e->getNombre() , e->getEmail() , e->getPassword())));
+	}
+		i++;
+	}
+	std::map<string , Huesped*>::iterator i = huespedes.begin();
+	Huesped *h;
+	while(i != huespedes.end())
+	{
+		h = i->second;
+		res.insert(make_pair(i->first, DtUsuario(h->getNombre() , h->getEmail() , h->getPassword())));
+	}
 		i++;
 	}
 	return res;
 }
-
-map<string, DtAsignatura> ControladorAsignatura::listarAsignaturas()
-{
-	map<string, DtAsignatura> res;
-	DtAsignatura aux;
-	map<string, Asignatura*>::iterator i;
-	for(i = this->asignaturas.begin(); i != this->asignaturas.end(); i++)
-	{
-		aux = DtAsignatura(i->second->getCodigo(), i->second->getNombre(), i->second->getSumaTiempoDictado());
-		res.insert(make_pair(i->second->getCodigo(),aux));
-	}
-	if ( res.empty())
-		throw logic_error("no existen asignaturas") ;
-	return res;
-}
-
-std::map<std::string, DtEstudiante> ControladorUsuario::listarEstudiantes() 
-{
-	std::map<std::string, DtEstudiante> res;
-	std::map<std::string , Usuario*>::iterator i = usuarios.begin();
-	Usuario *u;
-	Estudiante *e;
-	while(i != usuarios.end())
-	{
-		u = i->second;
-		if (dynamic_cast <Estudiante*> (u))
-		{
-			e = dynamic_cast <Estudiante*> (u);
-			res.insert(std::make_pair(i->first, e->getDataEst()));
-		}
-		i++;
-	}
-	return res;
-}
-
-
 
 
     map<string, Empleado *> ControladorUsuario::listarEmpleadosNoAsignados(string nombreHostal){}
