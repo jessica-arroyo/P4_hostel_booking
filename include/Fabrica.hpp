@@ -1,9 +1,9 @@
 #ifndef FABRICA_H
 #define FABRICA_H
 
-#include "../include/IUsuario.hpp"
+//#include "../include/IUsuario.hpp"
 #include "../include/IHostal.hpp"
-#include "../include/IReserva.hpp"
+//#include "../include/IReserva.hpp"
 #include "../include/IFecha.hpp"
 #include <cstddef>
 
