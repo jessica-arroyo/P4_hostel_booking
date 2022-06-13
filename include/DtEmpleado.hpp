@@ -8,12 +8,14 @@ using namespace std;
 class DtEmpleado: public DtUsuario {
     private:
     TipoCargo cargo;
+    string nombreHostal;
 
     public:
     DtEmpleado();
     ~DtEmpleado();
-    DtEmpleado(string , string ,string , TipoCargo) ;
+    DtEmpleado(string , string ,string , TipoCargo, string) ;
     TipoCargo getCargo() ;
+    string getNombreHostal() ;
 };
 
 #endif
