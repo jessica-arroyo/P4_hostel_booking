@@ -35,11 +35,12 @@ void ControladorHostal::altaHostal(string nombre, string direccion, int telefono
 
 bool ControladorHostal::existeHostal(string nombre){
     
-    return (SetHostales.find(nomh) != SetHostales.end()) ;
+    return (SetHostales.find(nombre) != SetHostales.end()) ; // ver el end funca
 }
 
 bool existeHabitacion(int numero, string nombreHostal){
-	//se chequeó desde afuera que le ingresen un hostal válido. Se tiene que chequear de nuevo?
+	 Hostal* hostal = setHostales.find(nombreHostal);
+     return (hostal->getHabitaciones().find(numero) != hostal->getHabitaciones().end());
 }
 
 std::map<string, DtHostal> ControladorHostal::listarHostales(){
@@ -87,7 +88,7 @@ std::map<string , DtHostal> ControladorHostal::top3hostales(){}
 
 map<int , DtHabitacion> ControladorHostal::listarHabitaciones(){}
 DtHostal ControladorHostal::encontrarHostal(string nombreHostal){} //acá puse que se devuelva el DtHostal. Porque no se devuelven objetos.
-map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout){}
+map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal){}
 */
 
 

@@ -28,7 +28,7 @@ class IUsuario {
     virtual map<string, Empleado *> listarEmpleadosNoAsignados(string nombreHostal);
     virtual void asignarEmpleado(string emailEmpleado, TipoCargo cargo) = 0;
     virtual void cancelarAsignarEmpleado() = 0;
-    virtual map<string, Huesped *> listarHuespedes(int codigoHabitacion);
+    virtual map<string, Huesped *> listarHuespedes();
     virtual void confirmarHuesped(string emailHuespedReserva) = 0;
     virtual void agregarHuesped(string emailHuesped) = 0;
     virtual map<string, Usuario *> listarUsuarios();
