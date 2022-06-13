@@ -17,8 +17,8 @@ void Huesped::setEsFinger(bool esFinger){
     this->esFinger = esFinger;
 }
 
-DtHuesped *Huesped::getDtHuesped(){
-    DtHuesped *dth = new DtHuesped(this->nombre, this->email, this->password, this->esFinger);
+DtHuesped Huesped::getDtHuesped(){
+    DtHuesped dth = DtHuesped(this->nombre, this->email, this->password, this->esFinger);
     return dth;
 }
 
