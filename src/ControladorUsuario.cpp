@@ -2,8 +2,6 @@
 
 
 ControladorUsuario::ControladorUsuario() {
-    this->dte = NULL;
-    this->dth = NULL;
 }
 
 ControladorUsuario::~ControladorUsuario() 
@@ -32,73 +30,29 @@ ControladorUsuario *ControladorUsuario::getInstancia()
 }
 
 // alta de usuario 
-    bool ControladorUsuario::ingresarEmpleado(DtEmpleado *dte){
-  	Empleado* res = NULL;
-	this->dte = dte;
-	std::map<std::string, Empleado*>::iterator e = empleados.find(dte->getEmail());
-	if (e != empleados.end()) 
-		res = dynamic_cast<Empleado*>(e->second);
-	return (res != NULL);
-    }
-    bool ControladorUsuario::ingresarHuesped(DtHuesped *dth){
-        Huesped* res = NULL;
-	this->dth = dth;
-	std::map<std::string, Huesped*>::iterator h = huespedes.find(dth->getEmail());
-	if (h != huespedes.end()) 
-		res = dynamic_cast<Huesped*>(h->second);
-	return (res != NULL);
-    }
-
-bool ControladorUsuario::reingresarEmail(string emailUser)
+bool ControladorUsuario::existeEmpleado(string emailUser)
 {
-	if (this->dth == NULL){
-		this->dte->setEmail(emailUser);
-		Empleado* res = NULL;
-		std::map<std::string, Empleado*>::iterator e = empleados.find(emailUser);
-		if (e != empleados.end()) 
-			res = dynamic_cast<Empleado*>(e->second);
-		return (res != NULL);
-	}else{
-		this->dth->setEmail(emailUser);
-		Huesped* res = NULL;
-		std::map<std::string, Huesped*>::iterator h = huespedes.find(emailUser);
-		if (h != huespedes.end()) 
-			res = dynamic_cast<Huesped*>(h->second);
-		return (res != NULL);
-	}
-	
+	return (empleados.find(emailUser)!= empleados.end()) ;
 }
 
-void ControladorUsuario::confirmarAlta()
+bool ControladorUsuario::existeHuesped(string emailUser)
 {
-    if (this->dth == NULL)
-    {
-        //caso ingreso Empleado
-        Empleado *e = new Empleado(
-            this->dte->getNombre(),
-            this->dte->getEmail(),
-            this->dte->getPassword(),
-	    this->dte->getCargo());
-        this->usuarios[this->dte->getEmail()] = e;
+	return (huespedes.find(emailUser)!= huespedes.end()) ;
+}
+
+void ControladorUsuario::confirmarAltaEmpleado(string nombre, string email, string password, TipoCargo cargo)
+{     
+	Empleado *e = new Empleado(nombre,email,password,cargo);
+        this->empleados[email] = e;
     }
     else
     {
-        Huesped *h = new Huesped(
-            this->dth->getNombre(),
-            this->dth->getEmail(),
-            this->dth->getPassword(),
-            this->dth->getEsFinger());
-        this->usuarios[this->dth->getEmail()] = h;
+        Huesped *h = new Huesped(nombre,email,password,esFinger);
+        this->huespedes[email] = h;
     }
-    this->dte = NULL;
-    this->dth = NULL;
 }
 
-void ControladorUsuario::cancelarAlta()
-{
-    this->dte = NULL;
-    this->dth = NULL;
-}
+
 
 // consulta de Usuario EN PROCESO
 map<string, Usuario *> ControladorUsuario::listarUsuarios(){
