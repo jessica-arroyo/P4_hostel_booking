@@ -35,6 +35,10 @@ void Habitacion::setCapacidad(int capacidad){
     this->capacidad = capacidad ;
 }
 
+void Habitacion::setHostal(Hostal* hostal){
+    this->hostal = hostal ;
+}
+
 /*
 //Habitacion::create(DtHabitacion habitacion); //el constructor sería este, el de arriba, o ambos?
 Habitacion::add(Habitacion hab){}

@@ -46,7 +46,11 @@ void Hostal::setCalPromedio(int calProm){
  DtHostal Hostal::getDtHostal(){
     DtHostal h = DtHostal(this->nombre, this->direccion, this->telefono, this->calificacionPromedio) ;
     return h ;
- } 
+ } //Pau esto es lo mismo que el creador dthostal() en dthostal, borralo y usa el otro en donde lo hayas usado
+
+void Hostal::setHabitacion(Habitacion *hab){
+    this->habitaciones[hab.getNumero()] = hab;
+}
 
 //map<int , Habitacion *> getHabitaciones() ;
     //map<int , Reserva *> getReservas() ;
