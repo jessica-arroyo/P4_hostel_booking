@@ -44,6 +44,7 @@ void ControladorUsuario::confirmarAltaEmpleado(string nombre, string email, stri
 {     
 	Empleado *e = new Empleado(nombre,email,password,cargo);
         this->empleados[email] = e;
+	e->hostal=NULL;
     }
     else
     {
