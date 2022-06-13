@@ -1196,7 +1196,34 @@ int main()
 
 				case 5:
            		{
-                	//Realizar Reserva
+					map<string, DtHostal> hostales = IHostal->listarHostales();
+    				map<string , DtHostal> :: iterator i;
+					if(hostales.empty())
+					{
+						throw invalid_argument ("No hay hostales registrados") ;
+					}
+					else 
+					{
+    					int j = 1;
+    					cout<< "Lista de Hostales /n" ;
+    					for(i=hostales.begin(); i != hostales.end(); i++){
+        					cout<< j <<"Nombre: " << i->second.getNombre() << "/n";
+							cout<< "Dirección:" << i->second.getDireccion() << "/n";
+							cout<< "Teléfono:" << i->second.getTelefono() << "/n";
+							cout<< "Calificación Promedio:" << i->second.getCalificacionPromedio() << "/n";
+        					j++;
+    					}
+
+						cout<<"Ingrese el nombre del hostal del que desea ver la información." ;
+						string nomhos ;
+						cin>> nomhos ;
+						while(!iHostal->existeHostal(nomhos)){
+							cout<< "El nombre ingresado no corresponde a un hostal del sistema." ;
+							cout<<"Ingrese un nombre correspondiente a un hostal del sistema." ;
+							cin<<nomhos ;
+						}
+					}
+
             	}
             	break;
 
