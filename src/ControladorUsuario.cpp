@@ -65,7 +65,7 @@ map<string, Usuario *> ControladorUsuario::listarUsuarios()
 	while(i != empleados.end())
 	{
 		e = i->second;
-		res.insert(make_pair(i->first, DtUsuario(e->getNombre() , e->getEmail() , e->getPassword())));
+		res.insert(make_pair(i->first, e.getDtUsuario()));
 	}
 		i++;
 	}
@@ -74,13 +74,22 @@ map<string, Usuario *> ControladorUsuario::listarUsuarios()
 	while(i != huespedes.end())
 	{
 		h = i->second;
-		res.insert(make_pair(i->first, DtUsuario(h->getNombre() , h->getEmail() , h->getPassword())));
+		res.insert(make_pair(i->first, h.getDtUsuario()));
 	}
 		i++;
 	}
 	return res;
 }
 
+DtEmpleado ControladorUsuario::mostrarEmpleado(string emailEmpleado)
+{
+    return empleados.find(emailEmpleado)->second->getDtEmpleado();
+} 
+
+DtHuesped ControladorUsuario::mostrarUsuario(string emailHuesped)
+{
+    return huespedes.find(emailHuesped)->second->getDtHuesped();
+} 
 
     map<string, Empleado *> ControladorUsuario::listarEmpleadosNoAsignados(string nombreHostal){}
     void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo){}
