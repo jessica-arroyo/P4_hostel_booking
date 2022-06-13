@@ -1,3 +1,4 @@
+/*
 #include "include/altaAsignatura.hpp"
 #include "include/asignarDocenteAAsignatura.hpp"
 #include "include/finalizacionDeClase.hpp"
@@ -11,14 +12,16 @@
 #include "include/eliminacionAsignatura.hpp"
 #include "include/tiempoDeAsistenciaAClase.hpp"
 #include "include/consultaNotificaciones.hpp"
-#include "include/subscribir.hpp"
+#include "include/subscribir.hpp" */
+#include "../include/ControladorHostal.hpp"
+#include "../include/Fabrica.hpp"
 #include <iostream>
 #include <limits>
 #include <ios>
 
 using namespace std;
 
-int cargarMensaje(DtFechaHora fecha, string email, int idClase, int aResponder, string texto){ // pasar -1 al aResponder para no resp.
+/*int cargarMensaje(DtFechaHora fecha, string email, int idClase, int aResponder, string texto){ // pasar -1 al aResponder para no resp.
 	Fabrica* f = Fabrica::getInstancia();
 	IClase *iClase = f->getIClase();
 	IReloj *iReloj = f->getIReloj();
@@ -30,7 +33,8 @@ int cargarMensaje(DtFechaHora fecha, string email, int idClase, int aResponder, 
 		iClase->responderA(aResponder);
 	return iClase->registrarMensaje(texto) ; 
 }
-
+*/
+/*
 void cargarDatosPrueba(IAsignatura *iAsignatura, IClase *iClase, IUsuario *iUsuario, IReloj *iReloj)
 {
 	//Docentes
@@ -202,7 +206,7 @@ void cargarDatosPrueba(IAsignatura *iAsignatura, IClase *iClase, IUsuario *iUsua
 	iReloj->setFechaHora( f4 );
 	iUsuario->finReproduccion(emailEstudiante[1], idClase[1]) ;
 }
-
+*/
 int main()
 {
 	
@@ -259,7 +263,7 @@ int main()
 		
         switch (numingresado)
         {
-            case 1:
+            case 1: //Alta de Usuario
 			{
 				int tipoUsuario ;
 				cout<< "\nIngrese '0' si desea dar de alta a un empleado, '1' en caso de querer dar de alta un huesped\n" ;
@@ -282,8 +286,8 @@ int main()
 					  tipoUsuario = 2;
 					}
                 }
-				if(tipoUsuario == 0){
-					bool noesta ;
+				if(tipoUsuario == 0){//Empleado
+					bool esta ;
 					string nombre ;
 					string email ;
 					string password ;
@@ -314,15 +318,15 @@ int main()
 					  			cargo = 4;
 							}
                 		}
-						if(cargo==0)
+						if(cargo==0) //Administración
 						{
-							noesta = iUsuario->ingresarEmpleado(nombre,email,password, ADMINISTRACION) ;
-							if(!noesta)
+							esta = iUsuario->existeEmpleado(email) ; //devuelve true si está registrado el email.
+							if(esta) //Si el email ya está registrado.
 							{
 								int i ;
 								cout << "\nEmail ya registrado\n";
 								cout << "Si desea reingresar el email, ingrese '1', si desea cancelar ingrese '0'.\n";
-								cinn>> i ;
+								cin>> i ;
 									if(!cin.good())
 									{
 					  				cout << "ERROR\n";
@@ -341,77 +345,133 @@ int main()
 					  					i = 2;
 									}
                 				}
-								if(i==1)
+								if(i==1) //Si desea reingresar el email.
 								{
 						
 									cout << "\nEmail ya registrado\n";
 									cout << "Ingrese un email que no esté registrado:\n";
 									cin >> email;
-									noesta = iUsuario->reingresarEmail(email) ;
+									esta = iUsuario->existeEmpleado(email) ;
 
-									while(i==1 && !noesta)
+									while(i==1 && esta) //Mientras quiera reingresar y el email ya esté registrado.
 									{
 										cout << "\nEmail ya registrado\n";
 										cout << "Si desea reingresar el email, ingrese '1', de lo contrario ingrese '0'.\n";
 										cin>> i ;
-										if(i==1)
+										if(!cin.good())
+                            			{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				i = 2;
+                            			}
+                        				while (i != 0 && i != 1){
+                            				cout << "Ingrese '0' o '1'\n";
+                            				cin >> i;
+                            				if(!cin.good())
+                            				{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				i = 2;
+                            				}
+                        				}		
+										if(i==1) //Si desea seguir reingresando.
 										{
 											cout << "Ingrese un email que no esté registrado:\n";
 											cin >> email;
-											noesta = iUsuario->reingresarEmail(email) ;
+											esta = iUsuario->existeEmpleado(email) ;
 										}
+										//Sino va a la próxima iteración del while (el while de i==1 && esta) y sale.
 										
-									}
-									if(i==1 && noesta)
+									} 
+									//Salió del while de reingresar, ya sea porque quedó bien ingresado o porque quiso cancelar.
+									if(!esta) //Si quedó bien ingresado.
 									{
-										//a cada vez que se pregunta con ingrese 1 si tal cosa o 0 si tal otra, se debe chequear si eñ
-										// numero ingresado es 0 o 1 ?
 										int j ; 
 										cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
 										cin>> j ;
+										if(!cin.good())
+                            			{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				j = 2;
+                            			}
+                        				while (j != 0 && j != 1){
+                            				cout << "Ingrese '0' o '1'\n";
+                            				cin >> j;
+                            				if(!cin.good())
+                            				{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				j = 2;
+                            				}
+                        				}
+
 										if(j==1)
 										{
-											iUsuario->confirmarAlta() ;
+											iUsuario->confirmarEmpleado(nombre,email,password,ADMINISTRACION) ;
 										}
 										else
 										{
-											iUsuario->cancelarAlta() ;
+											cout<<"Se canceló el alta" ;
 										}
+									}
+									if(i==0){ //Si salió del while (el while de i==1 y esta), porque quiso cancelar.
+										cout<<"Se canceló el alta" ;
 									}
 							
 								}		
-								else if(i==0)
+								else if(i==0) //Si desea cancelar, sin haber reingresado el email.
 								{
-									iUsuario->cancelarAlta() ;
+									cout<<"Se canceló el alta" ;
 								}
 							
 							}
-							else
-							{
-								//a cada vez que se pregunta con ingrese 1 si tal cosa o 0 si tal otra, se debe chequear si eñ
-								// numero ingresado es 0 o 1 ?
+							else 
+							{ //Si no estaba ingresado el email la primera vez que se leyó el email.
 								int j ; 
 								cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
 								cin>> j ;
-								if(j==1)
+								if(!cin.good())
+                            	{
+                            		cout << "ERROR\n";
+                            		cin.clear();
+                            		cin.ignore(1000,'\n');
+                            		j = 2;
+                            	}
+                        		while (j != 0 && j != 1){
+                            		cout << "Ingrese '0' o '1'\n";
+                            		cin >> j;
+                            		if(!cin.good())
+                            		{
+                            		cout << "ERROR\n";
+                            		cin.clear();
+                            		cin.ignore(1000,'\n');
+                            		j = 2;
+                            		}
+                        		}
+								if(j==1) 
 								{
-								iUsuario->confirmarAlta() ;
+								iUsuario->confirmarEmpleado(nombre,email,password, ADMINISTRACION) ;
 								}
 								else
 								{
-								iUsuario->cancelarAlta() ;
+									cout<<"Se canceló el alta" ;
 								}
 							}
 
 						}
-						else if(cargo==1) {
-							noesta = ingresarEmpleado(nombre,email,password, LIMPIEZA) ;
-							if(!noesta)
+						else if(cargo==1) { //Limpieza
+							esta = iUsuario->existeEmpleado(email) ; //devuelve true si está registrado el email.
+							if(esta) //Si el email ya está registrado.
 							{
 								int i ;
 								cout << "\nEmail ya registrado\n";
 								cout << "Si desea reingresar el email, ingrese '1', si desea cancelar ingrese '0'.\n";
-								cinn>> i ;
+								cin>> i ;
 									if(!cin.good())
 									{
 					  				cout << "ERROR\n";
@@ -430,76 +490,134 @@ int main()
 					  					i = 2;
 									}
                 				}
-								if(i==1)
+								if(i==1) //Si desea reingresar el email.
 								{
 						
 									cout << "\nEmail ya registrado\n";
 									cout << "Ingrese un email que no esté registrado:\n";
 									cin >> email;
-									noesta = iUsuario->reingresarEmail(email) ;
+									esta = iUsuario->existeEmpleado(email) ;
 
-									while(i==1 && !noesta)
+									while(i==1 && esta) //Mientras quiera reingresar y el email ya esté registrado.
 									{
 										cout << "\nEmail ya registrado\n";
 										cout << "Si desea reingresar el email, ingrese '1', de lo contrario ingrese '0'.\n";
 										cin>> i ;
-										if(i==1)
+										if(!cin.good())
+                            			{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				i = 2;
+                            			}
+                        				while (i != 0 && i != 1){
+                            				cout << "Ingrese '0' o '1'\n";
+                            				cin >> i;
+                            				if(!cin.good())
+                            				{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				i = 2;
+                            				}
+                        				}		
+										if(i==1) //Si desea seguir reingresando.
 										{
 											cout << "Ingrese un email que no esté registrado:\n";
 											cin >> email;
-											noesta = iUsuario->reingresarEmail(email) ;
+											esta = iUsuario->existeEmpleado(email) ;
 										}
+										//Sino va a la próxima iteración del while (el while de i==1 && esta) y sale.
 										
-									}
-									if(i==1 && noesta)
+									} 
+									//Salió del while de reingresar, ya sea porque quedó bien ingresado o porque quiso cancelar.
+									if(!esta) //Si quedó bien ingresado.
 									{
-										//a cada vez que se pregunta con ingrese 1 si tal cosa o 0 si tal otra, se debe chequear si eñ
-										// numero ingresado es 0 o 1 ?
 										int j ; 
 										cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
 										cin>> j ;
+										if(!cin.good())
+                            			{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				j = 2;
+                            			}
+                        				while (j != 0 && j != 1){
+                            				cout << "Ingrese '0' o '1'\n";
+                            				cin >> j;
+                            				if(!cin.good())
+                            				{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				j = 2;
+                            				}
+                        				}
+
 										if(j==1)
 										{
-											iUsuario->confirmarAlta() ;
+											iUsuario->confirmarEmpleado(nombre,email,password,LIMPIEZA) ;
 										}
 										else
 										{
-											iUsuario->cancelarAlta() ;
+											cout<<"Se canceló el alta" ;
 										}
+									}
+									if(i==0){ //Si salió del while (el while de i==1 y esta), porque quiso cancelar.
+										cout<<"Se canceló el alta" ;
 									}
 							
 								}		
-								else if(i==0)
+								else if(i==0) //Si desea cancelar, sin haber reingresado el email.
 								{
-									iUsuario->cancelarAlta() ;
+									cout<<"Se canceló el alta" ;
 								}
 							
 							}
-							else
-							{
-								//a cada vez que se pregunta con ingrese 1 si tal cosa o 0 si tal otra, se debe chequear si eñ
-								// numero ingresado es 0 o 1 ?
+							else 
+							{ //Si no estaba ingresado el email la primera vez que se leyó el email.
 								int j ; 
 								cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
 								cin>> j ;
-								if(j==1)
+								if(!cin.good())
+                            	{
+                            		cout << "ERROR\n";
+                            		cin.clear();
+                            		cin.ignore(1000,'\n');
+                            		j = 2;
+                            	}
+                        		while (j != 0 && j != 1){
+                            		cout << "Ingrese '0' o '1'\n";
+                            		cin >> j;
+                            		if(!cin.good())
+                            		{
+                            		cout << "ERROR\n";
+                            		cin.clear();
+                            		cin.ignore(1000,'\n');
+                            		j = 2;
+                            		}
+                        		}
+								if(j==1) 
 								{
-								iUsuario->confirmarAlta() ;
+									iUsuario->confirmarEmpleado(nombre,email,password, LIMPIEZA) ;
 								}
 								else
 								{
-								iUsuario->cancelarAlta() ;
+									cout<<"Se canceló el alta" ;
 								}
 							}
+
 						}
-						else if(cargo==2) {
-							noesta = ingresarEmpleado(nombre,email,password, RECEPCION) ;
-							if(!noesta)
+						
+						else if(cargo==2) {//Recepción
+							esta = iUsuario->existeEmpleado(email) ; //devuelve true si está registrado el email.
+							if(esta) //Si el email ya está registrado.
 							{
 								int i ;
 								cout << "\nEmail ya registrado\n";
 								cout << "Si desea reingresar el email, ingrese '1', si desea cancelar ingrese '0'.\n";
-								cinn>> i ;
+								cin>> i ;
 									if(!cin.good())
 									{
 					  				cout << "ERROR\n";
@@ -518,76 +636,133 @@ int main()
 					  					i = 2;
 									}
                 				}
-								if(i==1)
+								if(i==1) //Si desea reingresar el email.
 								{
 						
 									cout << "\nEmail ya registrado\n";
 									cout << "Ingrese un email que no esté registrado:\n";
 									cin >> email;
-									noesta = iUsuario->reingresarEmail(email) ;
+									esta = iUsuario->existeEmpleado(email) ;
 
-									while(i==1 && !noesta)
+									while(i==1 && esta) //Mientras quiera reingresar y el email ya esté registrado.
 									{
 										cout << "\nEmail ya registrado\n";
 										cout << "Si desea reingresar el email, ingrese '1', de lo contrario ingrese '0'.\n";
 										cin>> i ;
-										if(i==1)
+										if(!cin.good())
+                            			{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				i = 2;
+                            			}
+                        				while (i != 0 && i != 1){
+                            				cout << "Ingrese '0' o '1'\n";
+                            				cin >> i;
+                            				if(!cin.good())
+                            				{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				i = 2;
+                            				}
+                        				}		
+										if(i==1) //Si desea seguir reingresando.
 										{
 											cout << "Ingrese un email que no esté registrado:\n";
 											cin >> email;
-											noesta = iUsuario->reingresarEmail(email) ;
+											esta = iUsuario->existeEmpleado(email) ;
 										}
+										//Sino va a la próxima iteración del while (el while de i==1 && esta) y sale.
 										
-									}
-									if(i==1 && noesta)
+									} 
+									//Salió del while de reingresar, ya sea porque quedó bien ingresado o porque quiso cancelar.
+									if(!esta) //Si quedó bien ingresado.
 									{
-										//a cada vez que se pregunta con ingrese 1 si tal cosa o 0 si tal otra, se debe chequear si eñ
-										// numero ingresado es 0 o 1 ?
 										int j ; 
 										cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
 										cin>> j ;
+										if(!cin.good())
+                            			{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				j = 2;
+                            			}
+                        				while (j != 0 && j != 1){
+                            				cout << "Ingrese '0' o '1'\n";
+                            				cin >> j;
+                            				if(!cin.good())
+                            				{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				j = 2;
+                            				}
+                        				}
+
 										if(j==1)
 										{
-											iUsuario->confirmarAlta() ;
+											iUsuario->confirmarEmpleado(nombre,email,password,RECEPCION) ;
 										}
 										else
 										{
-											iUsuario->cancelarAlta() ;
+											cout<<"Se canceló el alta" ;
 										}
+									}
+									if(i==0){ //Si salió del while (el while de i==1 y esta), porque quiso cancelar.
+										cout<<"Se canceló el alta" ;
 									}
 							
 								}		
-								else if(i==0)
+								else if(i==0) //Si desea cancelar, sin haber reingresado el email.
 								{
-									iUsuario->cancelarAlta() ;
+									cout<<"Se canceló el alta" ;
 								}
 							
 							}
-							else
-							{
-								//a cada vez que se pregunta con ingrese 1 si tal cosa o 0 si tal otra, se debe chequear si eñ
-								// numero ingresado es 0 o 1 ?
+							else 
+							{ //Si no estaba ingresado el email la primera vez que se leyó el email.
 								int j ; 
 								cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
 								cin>> j ;
-								if(j==1)
+								if(!cin.good())
+                            	{
+                            		cout << "ERROR\n";
+                            		cin.clear();
+                            		cin.ignore(1000,'\n');
+                            		j = 2;
+                            	}
+                        		while (j != 0 && j != 1){
+                            		cout << "Ingrese '0' o '1'\n";
+                            		cin >> j;
+                            		if(!cin.good())
+                            		{
+                            		cout << "ERROR\n";
+                            		cin.clear();
+                            		cin.ignore(1000,'\n');
+                            		j = 2;
+                            		}
+                        		}
+								if(j==1) 
 								{
-								iUsuario->confirmarAlta() ;
+									iUsuario->confirmarEmpleado(nombre,email,password, RECEPCION) ;
 								}
 								else
 								{
-								iUsuario->cancelarAlta() ;
+									cout<<"Se canceló el alta" ;
 								}
 							}
+							
 						}
-						else if(cargo==3) {
-							noesta = ingresarEmpleado(nombre,email,password, INFRAESTRUCTURA) ;
-							if(!noesta)
+						else if(cargo==3) {//Infraestructura
+							esta = iUsuario->existeEmpleado(email) ; //devuelve true si está registrado el email.
+							if(esta) //Si el email ya está registrado.
 							{
 								int i ;
 								cout << "\nEmail ya registrado\n";
 								cout << "Si desea reingresar el email, ingrese '1', si desea cancelar ingrese '0'.\n";
-								cinn>> i ;
+								cin>> i ;
 									if(!cin.good())
 									{
 					  				cout << "ERROR\n";
@@ -606,72 +781,128 @@ int main()
 					  					i = 2;
 									}
                 				}
-								if(i==1)
+								if(i==1) //Si desea reingresar el email.
 								{
 						
 									cout << "\nEmail ya registrado\n";
 									cout << "Ingrese un email que no esté registrado:\n";
 									cin >> email;
-									noesta = iUsuario->reingresarEmail(email) ;
+									esta = iUsuario->existeEmpleado(email) ;
 
-									while(i==1 && !noesta)
+									while(i==1 && esta) //Mientras quiera reingresar y el email ya esté registrado.
 									{
 										cout << "\nEmail ya registrado\n";
 										cout << "Si desea reingresar el email, ingrese '1', de lo contrario ingrese '0'.\n";
 										cin>> i ;
-										if(i==1)
+										if(!cin.good())
+                            			{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				i = 2;
+                            			}
+                        				while (i != 0 && i != 1){
+                            				cout << "Ingrese '0' o '1'\n";
+                            				cin >> i;
+                            				if(!cin.good())
+                            				{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				i = 2;
+                            				}
+                        				}		
+										if(i==1) //Si desea seguir reingresando.
 										{
 											cout << "Ingrese un email que no esté registrado:\n";
 											cin >> email;
-											noesta = iUsuario->reingresarEmail(email) ;
+											esta = iUsuario->existeEmpleado(email) ;
 										}
+										//Sino va a la próxima iteración del while (el while de i==1 && esta) y sale.
 										
-									}
-									if(i==1 && noesta)
+									} 
+									//Salió del while de reingresar, ya sea porque quedó bien ingresado o porque quiso cancelar.
+									if(!esta) //Si quedó bien ingresado.
 									{
-										//a cada vez que se pregunta con ingrese 1 si tal cosa o 0 si tal otra, se debe chequear si eñ
-										// numero ingresado es 0 o 1 ?
 										int j ; 
 										cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
 										cin>> j ;
+										if(!cin.good())
+                            			{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				j = 2;
+                            			}
+                        				while (j != 0 && j != 1){
+                            				cout << "Ingrese '0' o '1'\n";
+                            				cin >> j;
+                            				if(!cin.good())
+                            				{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				j = 2;
+                            				}
+                        				}
+
 										if(j==1)
 										{
-											iUsuario->confirmarAlta() ;
+											iUsuario->confirmarEmpleado(nombre,email,password,INFRAESTRUCTURA) ;
 										}
 										else
 										{
-											iUsuario->cancelarAlta() ;
+											cout<<"Se canceló el alta" ;
 										}
+									}
+									if(i==0){ //Si salió del while (el while de i==1 y esta), porque quiso cancelar.
+										cout<<"Se canceló el alta" ;
 									}
 							
 								}		
-								else if(i==0)
+								else if(i==0) //Si desea cancelar, sin haber reingresado el email.
 								{
-									iUsuario->cancelarAlta() ;
+									cout<<"Se canceló el alta" ;
 								}
 							
 							}
-							else
-							{
-								//a cada vez que se pregunta con ingrese 1 si tal cosa o 0 si tal otra, se debe chequear si eñ
-								// numero ingresado es 0 o 1 ?
+							else 
+							{ //Si no estaba ingresado el email la primera vez que se leyó el email.
 								int j ; 
 								cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
 								cin>> j ;
-								if(j==1)
+								if(!cin.good())
+                            	{
+                            		cout << "ERROR\n";
+                            		cin.clear();
+                            		cin.ignore(1000,'\n');
+                            		j = 2;
+                            	}
+                        		while (j != 0 && j != 1){
+                            		cout << "Ingrese '0' o '1'\n";
+                            		cin >> j;
+                            		if(!cin.good())
+                            		{
+                            		cout << "ERROR\n";
+                            		cin.clear();
+                            		cin.ignore(1000,'\n');
+                            		j = 2;
+                            		}
+                        		}
+								if(j==1) 
 								{
-								iUsuario->confirmarAlta() ;
+									iUsuario->confirmarEmpleado(nombre,email,password, INFRAESTRUCTURA) ;
 								}
 								else
 								{
-								iUsuario->cancelarAlta() ;
+									cout<<"Se canceló el alta" ;
 								}
 							}
-						}		
 
+						} 	
 
-				} else if (tipoUsuario == 1){
-					bool noesta ;
+				} else if (tipoUsuario == 1){//Huesped
+					bool esta ;
 					string nombre ;
 					string email ;
 					string password ;
@@ -705,17 +936,18 @@ int main()
                 		}
 					if(finger == 0){
 						esFinger = true;
-					} else if (finger == 1){
+					} else { //ya chequeaste que solo se ingresó 0 o 1, por lo que si no es 0 es 1 el valor ingresado.
 						esFinger = false;
 					}
 					//ponemos lo de try y catch?
-					noesta = iUsuario->ingresarEmpleado(nombre,email,password, esFinger) ;
-					if(!noesta)
+					
+					esta = iUsuario->existeUsuario(email) ; //devuelve true si está registrado el email.
+							if(esta) //Si el email ya está registrado.
 							{
 								int i ;
 								cout << "\nEmail ya registrado\n";
 								cout << "Si desea reingresar el email, ingrese '1', si desea cancelar ingrese '0'.\n";
-								cinn>> i ;
+								cin>> i ;
 									if(!cin.good())
 									{
 					  				cout << "ERROR\n";
@@ -734,93 +966,236 @@ int main()
 					  					i = 2;
 									}
                 				}
-								if(i==1)
+								if(i==1) //Si desea reingresar el email.
 								{
 						
 									cout << "\nEmail ya registrado\n";
 									cout << "Ingrese un email que no esté registrado:\n";
 									cin >> email;
-									noesta = iUsuario->reingresarEmail(email) ;
+									esta = iUsuario->existeUsuario(email) ;
 
-									while(i==1 && !noesta)
+									while(i==1 && esta) //Mientras quiera reingresar y el email ya esté registrado.
 									{
 										cout << "\nEmail ya registrado\n";
 										cout << "Si desea reingresar el email, ingrese '1', de lo contrario ingrese '0'.\n";
 										cin>> i ;
-										if(i==1)
+										if(!cin.good())
+                            			{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				i = 2;
+                            			}
+                        				while (i != 0 && i != 1){
+                            				cout << "Ingrese '0' o '1'\n";
+                            				cin >> i;
+                            				if(!cin.good())
+                            				{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				i = 2;
+                            				}
+                        				}		
+										if(i==1) //Si desea seguir reingresando.
 										{
 											cout << "Ingrese un email que no esté registrado:\n";
 											cin >> email;
-											noesta = iUsuario->reingresarEmail(email) ;
+											esta = iUsuario->existeUsuario(email) ;
 										}
+										//Sino va a la próxima iteración del while (el while de i==1 && esta) y sale.
 										
-									}
-									if(i==1 && noesta)
+									} 
+									//Salió del while de reingresar, ya sea porque quedó bien ingresado o porque quiso cancelar.
+									if(!esta) //Si quedó bien ingresado.
 									{
-										//a cada vez que se pregunta con ingrese 1 si tal cosa o 0 si tal otra, se debe chequear si eñ
-										// numero ingresado es 0 o 1 ?
 										int j ; 
 										cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
 										cin>> j ;
+										if(!cin.good())
+                            			{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				j = 2;
+                            			}
+                        				while (j != 0 && j != 1){
+                            				cout << "Ingrese '0' o '1'\n";
+                            				cin >> j;
+                            				if(!cin.good())
+                            				{
+                            				cout << "ERROR\n";
+                            				cin.clear();
+                            				cin.ignore(1000,'\n');
+                            				j = 2;
+                            				}
+                        				}
+
 										if(j==1)
 										{
-											iUsuario->confirmarAlta() ;
+											iUsuario->confirmarUsuario(nombre,email,password,esFinger) ;
 										}
 										else
 										{
-											iUsuario->cancelarAlta() ;
+											cout<<"Se canceló el alta" ;
 										}
+									}
+									if(i==0){ //Si salió del while (el while de i==1 y esta), porque quiso cancelar.
+										cout<<"Se canceló el alta" ;
 									}
 							
 								}		
-								else if(i==0)
+								else if(i==0) //Si desea cancelar, sin haber reingresado el email.
 								{
-									iUsuario->cancelarAlta() ;
+									cout<<"Se canceló el alta" ;
 								}
 							
 							}
-							else
-							{
-								//a cada vez que se pregunta con ingrese 1 si tal cosa o 0 si tal otra, se debe chequear si eñ
-								// numero ingresado es 0 o 1 ?
+							else 
+							{ //Si no estaba ingresado el email la primera vez que se leyó el email.
 								int j ; 
 								cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
 								cin>> j ;
-								if(j==1)
+								if(!cin.good())
+                            	{
+                            		cout << "ERROR\n";
+                            		cin.clear();
+                            		cin.ignore(1000,'\n');
+                            		j = 2;
+                            	}
+                        		while (j != 0 && j != 1){
+                            		cout << "Ingrese '0' o '1'\n";
+                            		cin >> j;
+                            		if(!cin.good())
+                            		{
+                            		cout << "ERROR\n";
+                            		cin.clear();
+                            		cin.ignore(1000,'\n');
+                            		j = 2;
+                            		}
+                        		}
+								if(j==1) 
 								{
-								iUsuario->confirmarAlta() ;
+									iUsuario->confirmarUsuario(nombre,email,password, esFinger) ;
 								}
 								else
 								{
-								iUsuario->cancelarAlta() ;
+									cout<<"Se canceló el alta" ;
 								}
 							}
+					
 						}
 
-
 				}
-				break ;
-				case 2: 
+				break ; 
+				case 2: //Alta de Hostal
 				{
 					string nombreHostal ;
 					string direccion ;
 					int telefono ; 
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 					cout<< "Ingrese el nombre del hostal\n" ;
-					cin>> nombreHostal ;
-					cout<< "Ingrese la dirección\n" ;
-					cin>> direccion ;
-					cout<< "Ingrese el teléfono\n" ;
-					cin>> telefono ;
+					getline(cin,nombreHostal) ;
 					while(iHostal->existeHostal(nombreHostal) == true){
 						cout<< "Hostal ya registrado\n" ;
-						cout<< "Ingrese nuevamente el nombre" ;
-						cin>> nombreHostal ;
+						cout<< "Ingrese nuevamente el nombre\n" ;
+						getline(cin,nombreHostal) ;
 					}
+					cout<< "Ingrese la dirección\n" ;
+					getline(cin,direccion) ;
+					cout<< "Ingrese el teléfono\n" ;
+					getline(cin,telefono) ;
 					iHostal->altadeHostal(nombreHostal,direccion,telefono,0) ; //se crea el Hostal con calificacionPromedio=0.
 				}
-				break ;
-				case 3:
+				break ;  
+
+				case 3: //Alta de Habitación
 				{
+					map<string, DtHostal> hostales = IHostal->listarHostales();
+    				map<string , DtHostal> :: iterator i;
+					if(hostales.empty())
+					{
+						throw invalid_argument ("No hay hostales registrados") ;
+					}
+					else 
+					{
+    					int j = 1;
+    					cout<< "\nLista de Hostales\n" ;
+    					for(i=hostales.begin(); i != hostales.end(); i++){
+        					cout<< j <<"Nombre: " << i->second.getNombre() << "\n";
+        					j++;
+    					}
+
+						int numero ;
+						int precio ;
+						int capacidad ;
+						string nombreH ; 
+						cout<< "Ingrese el nombre del hostal al que pertenece la habitación\n" ;
+						cin>> nombreH ;
+						cout<< "Ingrese el numero\n" ;
+						cin>> numero ;
+						cout<< "Ingrese el precio\n" ; //hay que aclarar que es sin el signo de pesos?
+						cin>> precio ;
+						cout<< "Ingrese la capacidad\n" ;
+						cin>> capacidad ;
+						while(iHostal->existeHostal(nombreHostal) == false){
+							cout<< "Hostal no registrado\n" ;
+							cout<< "Ingrese nuevamente el nombre" ;
+							cin>> nombreH ;
+						}
+						
+						while(iHostal->existeHabitacion(numero, nombreH) == true){
+							cout<< "Habitacion ya registrada\n" ;
+							cout<< "Ingrese nuevamente el numero" ;
+							cin>> numero ;
+						}
+
+						int j ; 
+                        cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
+                        cin>> j ;
+                        if(!cin.good())
+                            {
+                            cout << "ERROR\n";
+                            cin.clear();
+                            cin.ignore(1000,'\n');
+                            j = 2;
+                            }
+                        while (j != 0 && j != 1){
+                            cout << "Ingrese '0' o '1'\n";
+                            cin >> j;
+                            if(!cin.good())
+                            {
+                            cout << "ERROR\n";
+                            cin.clear();
+                            cin.ignore(1000,'\n');
+                            j = 2;
+                            }
+                        }
+                        if(j==1)
+                        {
+                            iHostal->agregarHabitacion(numero,precio,capacidad,nombreH) ;
+							cout<<"Se realizó el alta" ;
+                        }
+                        else
+                        {
+                            cout<<"Se canceló el alta" ;
+                        }
+					
+					}
+
+				}
+				break ;
+
+				case 4:
+           		{
+                	//Asignar Empleado a Hostal
+            	}
+            	break;
+
+				case 5:
+           		{
 					map<string, DtHostal> hostales = IHostal->listarHostales();
     				map<string , DtHostal> :: iterator i;
 					if(hostales.empty())
@@ -833,53 +1208,62 @@ int main()
     					cout<< "Lista de Hostales /n" ;
     					for(i=hostales.begin(); i != hostales.end(); i++){
         					cout<< j <<"Nombre: " << i->second.getNombre() << "/n";
+							cout<< "Dirección:" << i->second.getDireccion() << "/n";
+							cout<< "Teléfono:" << i->second.getTelefono() << "/n";
+							cout<< "Calificación Promedio:" << i->second.getCalificacionPromedio() << "/n";
         					j++;
     					}
 
-						int numero ;
-						int precio ;
-						int capacidad ;
-						string nombreH ; 
-						cout<< "Ingrese el nombre del hostal al que pertenece la habitación\n" ;
-						cin>> nombreH ;
-						cout<< "Ingrese la dirección\n" ;
-						cin>> direccion ;
-						cout<< "Ingrese el teléfono\n" ;
-						cin>> telefono ;
-						while(iHostal->existeHostal(nombreHostal) == false){
-							cout<< "Hostal no registrado\n" ;
-							cout<< "Ingrese nuevamente el nombre" ;
-							cin>> nombreH ;
+						cout<<"Ingrese el nombre del hostal del que desea ver la información." ;
+						string nomhos ;
+						cin>> nomhos ;
+						while(!iHostal->existeHostal(nomhos)){
+							cout<< "El nombre ingresado no corresponde a un hostal del sistema." ;
+							cout<<"Ingrese un nombre correspondiente a un hostal del sistema." ;
+							cin<<nomhos ;
 						}
-						while(iHostal->existeHabitacion(numero) == true){
-							cout<< "Habitacion ya registrada\n" ;
-							cout<< "Ingrese nuevamente el numero" ;
-							cin>> numero ;
-						}
-
-						iHostal->ingresarDatos(numero,precio,capacidad,nombreH) ;
-						
-						//a cada vez que se pregunta con ingrese 1 si tal cosa o 0 si tal otra, se debe chequear si eñ
-						// numero ingresado es 0 o 1 ?
-						int j ; 
-						cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
-						cin>> j ;
-						if(j==1)
-						{
-							iHostal->agregarHabitacion() ;
-						}
-						else
-						{
-							iHostal->cancelarHabitacion() ;
-						}
-						
 					}
 
+            	}
+            	break;
 
-				}
-				break ;
+				case 6:
+           		{
+                	//Consulta de Top 3 Hostales.
+            	}
+            	break;
 
-				case 12 :
+				case 7:
+           		{
+                	//Registrar Estadía
+            	}
+            	break;
+
+				case 8:
+           		{
+                	//Finalizar Estadía
+            	}
+            	break;
+
+				case 9:
+           		{
+                	//Calificar Estadía
+            	}
+            	break;
+
+				case 10:
+           		{
+                	//Comentar Calificación
+            	}
+            	break;
+
+				case 11:
+           		{
+                	//Consulta de Usuario
+            	}
+            	break;
+
+				case 12 : //Consulta de Hostal
 				{
 					map<string, DtHostal> hostales = IHostal->listarHostales();
     				map<string , DtHostal> :: iterator i;
@@ -933,10 +1317,20 @@ int main()
         						j++;
     						}
 						
-						}
+						} 
 					}
 				}
-				break ;
+				break ; 
+
+				case 0:
+           		{
+                	cout << "Hasta luego.\n";
+                	bandera = true;
+            	}
+            	break;
+            	
+				default:
+                cout << "Ingrese un número del 0 al 20\n";   
 		
 
         //if(c == "1")
@@ -1185,9 +1579,12 @@ int main()
         	cout << "Error, debe ingresar numero entre 1 y 7\n";
         }
 	}*/
+	}
 	delete iHostal;
 	delete iReserva;
 	delete iUsuario;
 	delete f;
 	return 0;
 }
+}
+
