@@ -1214,12 +1214,12 @@ int main()
         					j++;
     					}
 
-						cout<<"Ingrese el nombre del hostal del que desea ver la información." ;
+						cout<<"Ingrese el nombre del hostal del que desea ver la información. /n" ;
 						string nomhos ;
 						cin>> nomhos ;
 						while(!iHostal->existeHostal(nomhos)){
-							cout<< "El nombre ingresado no corresponde a un hostal del sistema." ;
-							cout<<"Ingrese un nombre correspondiente a un hostal del sistema." ;
+							cout<< "El nombre ingresado no corresponde a un hostal del sistema./n" ;
+							cout<<"Ingrese un nombre correspondiente a un hostal del sistema./n" ;
 							cin>>nomhos ;
 						}
 
@@ -1230,8 +1230,8 @@ int main()
 						Fecha fechaCheckOut;
 						cin>> fechaCheckOut;
 						int j ; 
-                        cout << "Ingrese 0 si la reserva sera individual o 1 si sera grupal. /n";
 						bool esGrupal;
+                        cout << "Ingrese 0 si la reserva sera individual o 1 si sera grupal. /n";
                         cin>> j ;
                         if(!cin.good())
                             {
@@ -1254,9 +1254,9 @@ int main()
 						if (j==0) esGrupal = false;
 						else esGrupal = true;
 
-						 map<int , DtHabitacion *> setHabitOp = iHostal->devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, nomhos); //cambiar arriba lo de fecha
+						 map<int , DtHabitacion> setHabitOp = IHostal->devolverHabitacionesDisponibles(fechaCheckIn, fechaCheckOut, nomhos); //cambiar arriba lo de fecha
 
-					map<string , DtHostal> :: iterator i;
+					map<int , DtHabitacion> :: iterator iR2;
 					if(setHabitOp.empty())
 					{
 						throw invalid_argument ("No hay habitaciones registradas") ;
@@ -1265,17 +1265,17 @@ int main()
 					{
     					int y = 1;
     					cout<< "Lista de Habitaciones disponibles /n" ;
-    					for(i=setHabitOp.begin(); i != setHabitOp.end(); i++){
-        					cout<< y <<"Numero: " << i->second.getNumero() << "/n";
+    					for(iR2=setHabitOp.begin(); iR2 != setHabitOp.end(); iR2++){
+        					cout<< y <<"Numero: " << iR2->second.getNumero() << "/n";
 							y++;
 						}
 					}
 					int numhab;
-					cout<<"Ingrese el numero  de la habiacion que desea seleccionar. /n" ;
+					cout<<"Ingrese el numero  de la habitacion que desea seleccionar. /n" ;
 						cin>> numhab ;
 						while(!cin.good())
                             {
-                            cout << "ERROR NO ES UN NUMERO VALIDO PUTO\n";
+                            cout << "ERROR NO ES UN NUMERO VALIDO\n";
                             cin.clear();
                             cin.ignore(1000,'\n');
 							cout<<"Ingrese el numero  de la habitacion que desea seleccionar. /n" ;
@@ -1284,21 +1284,46 @@ int main()
 						while(!iHostal->existeHabitacion(numhab,nomhos)){
 							cout<< "El numero ingresado no corresponde a una habitacion del sistema." ;
 							cout<<"Ingrese un numero correspondiente a una habitacion del sistema." ;
-							cin>>nomhos ;
+							cin>>numhab;
 						}
-						listarHuespedes()
-						cout<<"Ingrese el email del huesped el cual realiza la reserva. /n" ;
-						string mailHuesped ;
-						cin>> mailHuesped ;
-						while(!iUsuario->existeHuesped(mailHuesped)){
-							cout<< "El email ingresado no corresponde a un huesped del sistema." ;
-							cout<<"Ingrese un email correspondiente a un huesped del sistema." ;
-							cin>>nomhos ;
-						}
-					}
+						map<string , DtHuesped> conjuntoHuespedes = IUsuario->listarHuespedes();
 
-            	}
-            	break;
+						map<string , DtHuesped> :: iterator iR3;
+						if(conjuntoHuespedes.empty())
+						{
+							throw invalid_argument ("No hay huespedes registrados. /n") ;
+						}
+						else 
+						{
+    						int y = 1;
+    						cout<< "Lista de Huespedes registrados. /n" ;
+    						for(iR3=conjuntoHuespedes.begin(); iR3 != conjuntoHuespedes.end(); iR3++){
+        						cout<< y <<"Email: " << iR3->second.getEmail() << "/n";
+								y++;
+							}
+						}
+							cout<<"Ingrese el email del huesped el cual realiza la reserva. /n" ;
+							string mailHuesped ;
+							cin>> mailHuesped ;
+							while(!iUsuario->existeHuesped(mailHuesped)){
+								cout<< "El email ingresado no corresponde a un huesped del sistema." ;
+								cout<<"Ingrese un email correspondiente a un huesped del sistema." ;
+								cin>>mailHuesped;
+							}
+							if (esGrupal) {
+								cout<<"Ingrese el email del huesped al cual desea agregar a la reserva. /n" ;
+								string mailHuesped ;
+								cin>> mailHuesped ;
+								while(!iUsuario->existeHuesped(mailHuesped)){
+									cout<< "El email ingresado no corresponde a un huesped del sistema." ;
+									cout<<"Ingrese un email correspondiente a un huesped del sistema." ;
+									cin>>mailHuesped;
+								}
+							}
+						}
+
+            		}
+            		break;
 
 				case 6:
            		{
