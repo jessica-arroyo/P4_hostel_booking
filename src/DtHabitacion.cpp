@@ -7,7 +7,7 @@ DtHabitacion::DtHabitacion(int numero, int precio, int capacidad){
     this->capacidad = capacidad ;
 }
 
-//DtHabitacion::~DtHabitacion() {}
+DtHabitacion::~DtHabitacion() {}
 
 
 int DtHabitacion::getNumero(){

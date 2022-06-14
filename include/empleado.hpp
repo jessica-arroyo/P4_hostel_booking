@@ -2,18 +2,20 @@
 #define EMPLEADO_H
 #include <string>
 #include <iostream>
-#include "usuario.hpp"
+#include "Usuario.hpp"
 #include "DtEmpleado.hpp"
 #include "Hostal.hpp"
+
+class Hostal ;
 
 using namespace std;
 
 enum TipoCargo
 {
-  Administracion,
-  Limpieza,
-  Recepcion,
-  Infraestructura
+  ADMINISTRACION,
+  LIMPIEZA,
+  RECEPCION,
+  INFRAESTRUCTURA
 };
 
 class Empleado: public Usuario  {
@@ -25,16 +27,17 @@ class Empleado: public Usuario  {
   public:
     Empleado();
     ~Empleado();
-    Empleado(string , string, string, TipoCargo) ;
+    Empleado(string nombre , string email, string password, TipoCargo cargo) ;
     bool getCargo() ;
-    void setCargo(TipoCargo);
-    bool estaAsignado(string);
-    DtEmpleado *getDtEmpleado(); // esta bien que sea puntero? o quiero el dato en ese momento nada más? 
-    void asignarHostalAEmpleado(Hostal);
-    void entrarHostal();
+    void setCargo(TipoCargo cargo);
+    bool estaAsignado(string nombreHostal);
+    DtEmpleado getDtEmpleado(); //va sin puntero creo. 
+    void asignarHostalAEmpleado(Hostal *nuevohostal);
+    //void entrarHostal();
   
     
 };
 
+#include "Hostal.hpp"
 
 #endif
