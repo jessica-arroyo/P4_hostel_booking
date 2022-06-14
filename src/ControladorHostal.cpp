@@ -1,16 +1,18 @@
 #include "../include/ControladorHostal.hpp"
 
-//#include "Habitacion.hpp" //Ya se incluye porque Hostal incluye a Habitacion.
+#include "Habitacion.hpp" //Ya se incluye porque Hostal incluye a Habitacion?
 
 //usan una biblioteca <cstddef>.
 //tengo que poner lo de include la biblioteca <iostream>?
 
+#include <map>
+#include <set>
 using namespace std ;
 
 ControladorHostal::ControladorHostal(){}
 
 ControladorHostal::~ControladorHostal(){
-    map<std::string , Hostal*>::iterator iH = SetHostales.begin();
+    map<string , Hostal*>::iterator iH = SetHostales.begin();
 	while (iH!=SetHostales.end())
 	{
 		delete iH->second;
@@ -78,12 +80,12 @@ void ControladorHostal::agregarHabitacion(numero,precio,capacidad,nombreH){
 }
 
 
-//map<int , DtCalificacion> ControladorHostal::listarCalificaciones(string nomhos){ //de un hostal en particular.
+//set<DtCalificacion> ControladorHostal::listarCalificaciones(string nomhos){ //de un hostal en particular.
     
 //}
 
 
-//std::map<string , DtHostal> ControladorHostal::top3hostales(){}
+//map<string , DtHostal> ControladorHostal::top3hostales(){}
 
 //map<int , DtHabitacion> ControladorHostal::listarHabitaciones(){}
 
