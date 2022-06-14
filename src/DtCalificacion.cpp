@@ -4,7 +4,7 @@ using namespace std ;
 
     DtCalificacion::DtCalificacion(){}
 	
-	DtCalificacion::DtCalificacion(DtFechaHora fecha, string comentario, string respuesta){
+	DtCalificacion::DtCalificacion(DtFechaHora fecha, string comentario, string respuesta, int puntaje){
 		this->fecha = fecha ;
 		this->comentario = comentario ;
 		this->respuesta = respuesta ;

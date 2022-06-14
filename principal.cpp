@@ -14,11 +14,12 @@
 #include "include/consultaNotificaciones.hpp"
 #include "include/subscribir.hpp" */
 
-//#include "../include/ControladorHostal.hpp"
-//#include "../include/Fabrica.hpp"
+#include "../include/Fabrica.hpp"
 #include <iostream>
 #include <limits>
 #include <ios>
+#include <map>
+#include <set>
 
 using namespace std;
 
@@ -1233,7 +1234,7 @@ int main()
 						cin>>anio;
 						cout<<"Ingrese hora de entrada. /n";
 						cin>>hora;
-						DtFechaHora fechaCheckIn = new  DtFechaHora(hora, dia,mes,anio);
+						DtFechaHora fechaCheckIn = DtFechaHora(hora, dia,mes,anio);
 						cout<<"Ingrese fecha de salida. /n";
 						cout<<"Ingrese dia de salida. /n";
 						cin>>dia;
@@ -1243,7 +1244,7 @@ int main()
 						cin>>anio;
 						cout<<"Ingrese hora de salida. /n";
 						cin>>hora;
-						DtFechaHora fechaCheckOut = new  DtFechaHora(hora, dia,mes,anio);
+						DtFechaHora fechaCheckOut = DtFechaHora(hora, dia,mes,anio);
 						int j ; 
 						bool esGrupal;
                         cout << "Ingrese 0 si la reserva sera individual o 1 si sera grupal. /n";
@@ -1427,7 +1428,7 @@ int main()
 
 				case 12 : //Consulta de Hostal
 				{
-					map<string, DtHostal> hostales = IHostal->listarHostales();
+					/*map<string, DtHostal> hostales = IHostal->listarHostales();
     				map<string , DtHostal> :: iterator i;
 					if(hostales.empty())
 					{
@@ -1480,10 +1481,35 @@ int main()
     						}
 						
 						} 
-					}
+					}*/
 				}
 				break ; 
-
+				case 19:
+				{
+					int hora;
+					int min;
+					int dia;
+					int mes;
+					int anio;
+					cout << "Ingrese fecha y hora: \n";
+					cout << "Hora: ";
+					cin >> hora;
+					cout << "Minutos: ";
+					cin >> min;
+					cout << "Dia: ";
+					cin >> dia;
+					cout << "Mes: ";
+					cin >> mes;
+					cout << "Año[aaaa]: ";
+					cin >> anio;
+					try{
+					DtFechaHora horaActual = DtFechaHora(hora, min, dia, mes, anio);
+					iReloj->setFechaHora(horaActual);
+					}catch (const invalid_argument& ia){
+						cout << "\nError: " << ia.what() << "\n";
+					}
+				}
+				break;
 				case 0:
            		{
                 	cout << "Hasta luego.\n";

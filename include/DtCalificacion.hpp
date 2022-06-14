@@ -18,7 +18,7 @@ private:
     int puntaje;
 public:
     DtCalificacion();
-    DtCalificacion(DtFechaHora fecha, string comentario, string respuesta);
+    DtCalificacion(DtFechaHora fecha, string comentario, string respuesta, int puntaje);
     ~DtCalificacion();
     string getComentario() ;
 	DtFechaHora getFecha();
