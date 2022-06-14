@@ -35,13 +35,19 @@ void Reserva::setCosto (float costo){
 	costo = costo ;
 }
 
-void Reserva::agregarEstadia (Estadia * est){}
+void Reserva::setEstadia (Estadia * est){
+	est = est ;
+}
 
-void Reserva::agregarHabitacion(Habitacion *hab){}
+void Reserva::setHabitacion(Habitacion *hab){
+	hab = hab ;
+}
 
-void Reserva::agregarHuesped(Huesped* hues){}
+void Reserva::setHuesped(Huesped* hues){
+	hues = hues ;
+}
 
-int getCodigo (){
+int Reserva::getCodigo (){
 	return this->codigo;
 }
 
@@ -65,12 +71,18 @@ float Reserva::getCosto (){
 	return this->costo;
 }
 
-Estadia* Reserva::getEstadia (){}
+Estadia* Reserva::getEstadia (){
+	return this->est;
+}
 
-Habitacion* Reserva::getHabitacion(){}
+Habitacion* Reserva::getHabitacion(){
+	return this->hab;
+}
 
-Huesped* Reserva::getHuesped(){}
-
+Huesped* Reserva::getHuesped(){
+	return this->hues;
+}
+/*
 std::string Reserva::getEmailHuesped (){}
 
 float Reserva::getNumeroHabitacion (){}
@@ -109,6 +121,6 @@ Reserva::encontrarhab(){}
 
 //Reserva::obtenerCodigoHabitacion(){}
 
-Reserva::remove(Reserva r){}
+Reserva::remove(Reserva r){}*/
 
 #endif
