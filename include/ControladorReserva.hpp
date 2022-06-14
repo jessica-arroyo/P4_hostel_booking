@@ -2,8 +2,9 @@
 #define CONTROLADORRESERVA_H
 
 #include "Reserva.hpp"
-#include "Calificacion.hpp"
-#include "Estadia.hpp"
+#include "DtReserva.hpp"
+#include "DtCalificacion.hpp"
+#include "DtEstadia.hpp"
 #include "IReserva.hpp"
 #include "Huesped.hpp"
 #include "ControladorHostal.hpp"
@@ -19,34 +20,36 @@ class ControladorReserva: public IReserva
 private:
     ControladorReserva() ;
     static ControladorReserva *_instancia;
-    std::map<int,Reserva*> SetReservas;
-    std::map<int,Estadia*> SetEstadias;
-    std::map<int,Calificacion*> SetCalificaciones;
+    map<int,Reserva*> SetReservas;
+    //map<int,Estadia*> SetEstadias;
+    //map<int,Calificacion*> SetCalificaciones;
 
     //no era que no íbamos a tener una colección genérica ni para Estadias ni para Calificaciones?
 
 public:
     ~ControladorReserva();
     static ControladorReserva *getInstancia() ;
-    void confirmarReserva();
-    void cancelarReserva();
-    std::map<int,DtCalificacion> chequearCalificacion(string nombreHostal);
-    std::map<int,DtReserva> listarReservas(string nombreHostal, string emailHuesped);
-    void inscribirEstadia(DtReserva reserva);
-    void finalizarEstadia(string nombreHostal, string emailHuesped);
-    std::map<int,DtEstadia> obtenerEstadiasFinalizadas(string emailHuesped,string nombreHostal);
-    DtReserva obtenerReservaAsociada(string nombreEstadia);
-    DtCalificacion obtenerCalificacion(string nombreEstadia);
-    DtEstadiaobtenerEstadia(string nombreEstadia);
-    std::map<int,DtEstadia> listarEstadias(string nombreHostal);
-    std::map<int,DtReserva> obtenerReservas(string nombreHostal);
-    std::map<int,DtReserva> listarReservas();
-    std::map<int,DtCalificacion> listarCalificaciones();
-    void ingresarComentario(string comentario,string respuesta);
-    std::map<string,string>listarComentariosSinR(string emailEmpleado); //pongo asi string string en map o solo un map<string> basta
-    void insertarCalificacion(string comentario, int puntaje, DtEstadia estadia);
-    void confirmarBaja();
-    void cancelarBaja();
+    //void confirmarReserva();
+    //void cancelarReserva();
+    //set<DtCalificacion> chequearCalificacion(string nombreHostal);
+    //map<int,DtReserva> listarReservas(string nombreHostal, string emailHuesped);
+    //void inscribirEstadia(DtReserva reserva);
+    //void finalizarEstadia(string nombreHostal, string emailHuesped);
+    //set<DtEstadia> obtenerEstadiasFinalizadas(string emailHuesped,string nombreHostal);
+    //DtReserva obtenerReservaAsociada(string nombreEstadia); //la estadia no tiene atributo nombre.
+    //DtCalificacion obtenerCalificacion(string nombreEstadia); //la estadia no tiene atributo nombre.
+    //DtEstadia obtenerEstadia(string nombreEstadia); //la estadia no tiene atributo nombre.
+    //set<DtEstadia> listarEstadias(string nombreHostal);
+    //map<int,DtReserva> obtenerReservas(string nombreHostal);
+    //map<int,DtReserva> listarReservas();
+    //set<DtCalificacion> listarCalificaciones();
+    //void ingresarComentario(string comentario,string respuesta);
+    //set<string> listarComentariosSinR(string emailEmpleado); 
+    //void insertarCalificacion(string comentario, int puntaje, DtEstadia estadia);
+    //void confirmarBaja();
+    //void cancelarBaja();
 };
 
 #endif
+
+

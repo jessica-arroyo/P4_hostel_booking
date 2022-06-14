@@ -1,18 +1,19 @@
 #include "../include/ControladorUsuario.hpp"
 
+using namespace std;
 
 ControladorUsuario::ControladorUsuario() {
 }
 
 ControladorUsuario::~ControladorUsuario() 
 {
-	map<std::string , Empleado*>::iterator i = empleados.begin();
+	map<string , Empleado*>::iterator i = empleados.begin();
 	while (i != empleados.end())
 	{
 		delete i->second;
 		i++;
 	}
-	map<std::string , Huesped*>::iterator i = huespedes.begin();
+	map<string , Huesped*>::iterator i = huespedes.begin();
 	while (i != huespedes.end())
 	{
 		delete i->second;
@@ -20,7 +21,7 @@ ControladorUsuario::~ControladorUsuario()
 	}
 }
 
-ControladorUsuario *ControladorUsuario::instancia = NULL;
+ControladorUsuario *ControladorUsuario::_instancia = NULL;
 
 ControladorUsuario *ControladorUsuario::getInstancia()
 {
@@ -57,8 +58,8 @@ void ControladorUsuario::confirmarAltaHuesped(string nombre, string email, strin
 
 map<string, Usuario *> ControladorUsuario::listarUsuarios() 
 {
-	std::map<string, DtUsuario> res;
-	std::map<string , Empleado*>::iterator i = empleados.begin();
+	map<string, DtUsuario> res;
+	map<string , Empleado*>::iterator i = empleados.begin();
 	Empleado *e;
 	while(i != empleados.end())
 	{
@@ -67,7 +68,7 @@ map<string, Usuario *> ControladorUsuario::listarUsuarios()
 	
 		i++;
 	}
-	std::map<string , Huesped*>::iterator i = huespedes.begin();
+	map<string , Huesped*>::iterator i = huespedes.begin();
 	Huesped *h;
 	while(i != huespedes.end())
 	{
@@ -91,7 +92,7 @@ DtHuesped ControladorUsuario::mostrarHuesped(string emailHuesped)
 } 
 
     //map<string, Empleado *> ControladorUsuario::listarEmpleadosNoAsignados(string nombreHostal){}
-    //void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo){}
+    //void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo){} //el TipoCargo se pasó al crear el usuario.
     //void ControladorUsuario::cancelarAsignarEmpleado(){}
     //map<string, Huesped *> ControladorUsuario::listarHuespedes(int codigoHabitacion){}
     //void ControladorUsuario::confirmarHuesped(string emailHuespedReserva){}

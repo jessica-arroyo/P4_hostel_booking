@@ -16,10 +16,10 @@ using namespace std;
 class ControladorUsuario: public: IUsuario {
   private:
     ControladorUsuario() ;
-    static ControladorUsuario *instancia ;
+    static ControladorUsuario *_instancia ;
 
-    std::map<std::string , Empleado*> empleados;
-    std::map<std::string , Huesped*> huespedes;
+    map<string , Empleado*> empleados;
+    map<string , Huesped*> huespedes;
   
   public:
     ~ControladorUsuario() ;
@@ -31,8 +31,11 @@ class ControladorUsuario: public: IUsuario {
     void confirmarAltaEmpleado(string nombre, string email, string password, TipoCargo cargo) ;
     void confirmarAltaHuesped(string nombre, string email, string password, bool esFinger) ;
     
-    DtEmpleado mostrarEmpleado(DtEmpleado emailEmpleado);  
-    DtHuesped mostrarHuesped(DtHuesped emailHuesped); 
+    //consulta de usuario
+    map<string, Usuario *> listarUsuarios();
+
+    DtEmpleado mostrarEmpleado(string emailEmpleado);  
+    DtHuesped mostrarHuesped(string emailHuesped); 
 
 
     //las siguientes 5 no van más.
@@ -45,12 +48,13 @@ class ControladorUsuario: public: IUsuario {
     
     //las que comenté de acá abajo son para que compile sin que estén hechas aun.
     //map<string, Empleado *> listarEmpleadosNoAsignados(string nombreHostal);
-    //void asignarEmpleado(string emailEmpleado, TipoCargo cargo);
+    //void asignarEmpleado(string emailEmpleado, TipoCargo cargo); //el TipoCargo se pasó al crear el usuario.
     //void cancelarAsignarEmpleado();  
+    //map<string, Huesped *> listarHuespedes(); //a
     //map<string, Huesped *> listarHuespedes(int codigoHabitacion);
     //void confirmarHuesped(string emailHuespedReserva);
     //void agregarHuesped(string emailHuesped);
-    //map<string, Usuario *> listarUsuarios();
+    
     
     //void encontrarHuesped(string emailHuespedReserva);
     

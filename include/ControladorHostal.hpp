@@ -6,9 +6,11 @@
 #include "IHostal.hpp"
 #include "Empleado.hpp"
 #include "Huesped.hpp"
-//#include "DtHabitacion.hpp" 
-//#include "DtCalificacion.hpp"
+#include "DtHabitacion.hpp" 
+#include "DtCalificacion.hpp"
+
 #include <map>
+#include <set>
 #include <iostream>
 #include <string>
 
@@ -30,10 +32,10 @@ class ControladorHostal: public: IHostal {
         void altaHostal(string nombre, string direccion, int telefono, int calificacionProm) ; 
         map<string , DtHostal> listarHostales() ; 
         DtHostal infoHostal(string nombreHostal) ; 
-        //map<int , DtCalificacion> listarCalificaciones(string nomhos) ; 
+        //set<DtCalificacion> listarCalificaciones(string nomhos) ; 
         //void map<string , DtHostal> top3hostales() ; 
         //map<int , DtHabitacion> listarHabitaciones() ; 
-        //Hostal* encontrarHostal(string nombreHostal) ;  //Originalmente estaba puesto que devuelva un Hostal. Tiene que devolver un puntero a un Hostal.
+        //Hostal* encontrarHostal(string nombreHostal) ;  
         //map<int , DtHabitacion> devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal) ; 
         
 
