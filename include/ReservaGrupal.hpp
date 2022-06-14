@@ -13,12 +13,13 @@ class Huesped;
 class ReservaGrupal : public Reserva {
 	private : 
         int cantGrupoHues;
-        std::map<std::string, Huesped *> grupHuespedes;
+        map<std::string, Huesped *> grupHuespedes;
 	public :
 		~ReservaGrupal();
-		ReservaGrupal(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, int cantGrupoHues, Habitacion* hab, Huesped* hues, Huesped * grupHuespedes); 
+		ReservaGrupal(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, int cantGrupoHues,int cantH , Habitacion* hab, Huesped* hues, Huesped * grupHuespedes); 
 		setearValoresGrupal(float precio,int cantH);
-        Huesped * getGrupoHues();
+        map<std::string, Huesped *> getGrupHuespedes();
+		map<std::string, Huesped *> setGrupHuespedes(map<std::string, Huesped *> grupHuespedes);
         int getCantH();
 };
 #endif

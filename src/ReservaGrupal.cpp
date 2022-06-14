@@ -7,21 +7,25 @@
 
 ReservaGrupal::~ReservaGrupal(){}
 
-ReservaGrupal::ReservaGrupal(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues, Huesped * grupHuespedes){
+ReservaGrupal::ReservaGrupal(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo,int cantH , Habitacion* hab, Huesped* hues, Huesped * grupHuespedes){
 	checkIn = checkIn ;
 	checkOut = checkOut ;
 	fechaRealizada = fechaRealizada ;
 	estado = estado ;
 	costo = costo ;
-	cantH = catH;
+	cantH = cantH;
 } 
 ReservaGrupal::setearValoresGrupal(float precio,int cantH){
 	precio = precio;
-	cantH = catH;
+	cantH = cantH;
 }
 
-Huesped * ReservaGrupal::getGrupoHues(){
-	
+map<std::string, Huesped *> ReservaGrupal::getGrupoHues(){
+	return this->grupHuespedes;
+}
+
+map<std::string, Huesped *> ReservaGrupal::setGrupHuespedes(map<std::string, Huesped *>){
+	grupHuespedes = grupHuespedes;
 }
 
 int ReservaGrupal::getCantH(){
