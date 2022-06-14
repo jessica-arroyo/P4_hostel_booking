@@ -1,7 +1,7 @@
 #ifndef DTESTADIA_HPP
 #define DTESTADIA_HPP
 
-#include "../include/DtFechaHora.hpp"
+#include "DtFechaHora.hpp"
 
 #include <map>
 #include <set>

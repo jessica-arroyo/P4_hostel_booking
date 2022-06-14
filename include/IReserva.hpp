@@ -28,7 +28,7 @@ public:
     virtual std::map<int,DtReserva> listarReservas() = 0;
     virtual std::map<int,DtCalificacion> listarCalificaciones() = 0;
     virtual void ingresarComentario(string comentario,string respuesta) = 0; 
-    virtual std::map<string,string>listarComentariosSinR(string emailEmpleado) = 0; //pongo asi string string en map o solo un map<string> basta
+    virtual std::map<string,string>listarComentariosSinR(string emailEmpleado) = 0; //pongo asi string string en map o solo un map<string> basta. Ahí sería un set no un map que precisás.
     virtual void insertarCalificacion(string comentario, int puntaje, DtEstadia estadia) = 0;
     virtual void confirmarBaja() = 0;
     virtual void cancelarBaja() = 0;

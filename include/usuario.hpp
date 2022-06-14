@@ -16,13 +16,15 @@ class Usuario  {
     public:
     Usuario();
     ~Usuario();
-    Usuario(string , string, string) ;
+    Usuario(string nombre, string email, string password) ;
     string getNombre() ;
     string getEmail() ;
-    string getCargo() ;
-    void setNombre(string );
-    void setEmail(string);
-    void setCargo(string);
-    DtUsuario *getDataUs(); 
+    string getPassword() ;
+    void setNombre(string nombre);
+    void setEmail(string email);
+    void setPassword(string password);
+    DtUsuario getDataUs(); //por lo que vi, cuando difiere la info que tenés que mandar según 
+                            //si sea de una subclase o de otra, se pone la operación en la clase genérica como virtual y =0.
+                            //y creo que en ese caso, el destructor de usuario va también virtual con =0.
 };
 #endif

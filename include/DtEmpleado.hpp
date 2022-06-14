@@ -13,7 +13,7 @@ class DtEmpleado: public DtUsuario {
     public:
     DtEmpleado();
     ~DtEmpleado();
-    DtEmpleado(string , string ,string , TipoCargo, string) ;
+    DtEmpleado(string nombre, string email ,string password , TipoCargo cargo, string nombreHostal) ;
     TipoCargo getCargo() ;
     string getNombreHostal() ;
 };

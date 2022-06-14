@@ -11,4 +11,4 @@ DtHuesped::DtHuesped(string nombre, string email, string password, bool esFinger
 }
 
 DtHuesped::~DtHuesped(){}
-DtHuesped::DtHuesped(){} // va esto?
+DtHuesped::DtHuesped(){} // va esto? El constructor por defecto a veces lo he visto y a veces no.

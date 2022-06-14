@@ -12,4 +12,4 @@ DtEmpleado::DtEmpleado(string nombre, string email, string password, TipoCargo c
 }
 
 DtEmpleado::~DtEmpleado(){}
-DtEmpleado::~DtEmpleado(){}
+

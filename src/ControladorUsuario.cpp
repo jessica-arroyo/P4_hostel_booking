@@ -64,7 +64,7 @@ map<string, Usuario *> ControladorUsuario::listarUsuarios()
 	{
 		e = i->second;
 		res.insert(make_pair(i->first, e.getDtUsuario()));
-	}
+	
 		i++;
 	}
 	std::map<string , Huesped*>::iterator i = huespedes.begin();
@@ -73,9 +73,10 @@ map<string, Usuario *> ControladorUsuario::listarUsuarios()
 	{
 		h = i->second;
 		res.insert(make_pair(i->first, h.getDtUsuario()));
-	}
+	
 		i++;
 	}
+	
 	return res;
 }
 
@@ -84,21 +85,21 @@ DtEmpleado ControladorUsuario::mostrarEmpleado(string emailEmpleado)
     return empleados.find(emailEmpleado)->second->getDtEmpleado();
 } 
 
-DtHuesped ControladorUsuario::mostrarUsuario(string emailHuesped)
+DtHuesped ControladorUsuario::mostrarHuesped(string emailHuesped)
 {
     return huespedes.find(emailHuesped)->second->getDtHuesped();
 } 
 
-    map<string, Empleado *> ControladorUsuario::listarEmpleadosNoAsignados(string nombreHostal){}
-    void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo){}
-    void ControladorUsuario::cancelarAsignarEmpleado(){}
-    map<string, Huesped *> ControladorUsuario::listarHuespedes(int codigoHabitacion){}
-    void ControladorUsuario::confirmarHuesped(string emailHuespedReserva){}
-    void ControladorUsuario::agregarHuesped(string emailHuesped){}
-    DtEmpleado ControladorUsuario::mostrarEmpleado(DtEmpleado empleado){} 
-    DtHuesped ControladorUsuario::mostrarHuesped(DtHuesped huesped){}
-    void ControladorUsuario::encontrarHuesped(string emailHuespedReserva){}
+    //map<string, Empleado *> ControladorUsuario::listarEmpleadosNoAsignados(string nombreHostal){}
+    //void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo){}
+    //void ControladorUsuario::cancelarAsignarEmpleado(){}
+    //map<string, Huesped *> ControladorUsuario::listarHuespedes(int codigoHabitacion){}
+    //void ControladorUsuario::confirmarHuesped(string emailHuespedReserva){}
+    //void ControladorUsuario::agregarHuesped(string emailHuesped){}
+    //DtEmpleado ControladorUsuario::mostrarEmpleado(DtEmpleado empleado){} 
+    //DtHuesped ControladorUsuario::mostrarHuesped(DtHuesped huesped){}
+    //void ControladorUsuario::encontrarHuesped(string emailHuespedReserva){}
     
-    map<string, Reserva *> ControladorUsuario::listarReservas(string nombreHostal, string email){}
+    //map<string, Reserva *> ControladorUsuario::listarReservas(string nombreHostal, string email){}
 
 

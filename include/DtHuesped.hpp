@@ -11,7 +11,7 @@ class DtHuesped: public DtUsuario {
     public:
     DtHuesped();
     ~DtHuesped();
-    DtHuesped(string , string , string, bool) ;
+    DtHuesped(string nombre, string email, string password, bool esFinger) ;
     bool getEsFinger() ;
 };
 

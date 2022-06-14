@@ -1,5 +1,5 @@
-#include "../include/usuario.hpp"
-#include "../include/DtUsuario.hpp"
+#include "../include/Usuario.hpp"
+#include "../include/DtUsuario.hpp" //no sé si es necesario volver a incluir al DtUsuario.
 #include <string>
 #include <iostream>
 using namespace std;

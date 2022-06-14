@@ -3,7 +3,9 @@
 #ifndef HABITACION_H
 #define HABITACION_H
 
-#include "Hostal.hpp"
+#include "DtHabitacion.hpp"
+
+class Hostal ;
 
 class Habitacion {
   private:
@@ -29,16 +31,18 @@ class Habitacion {
     //bool estadisponibleHabitacion(DtFechaHora checkin, DtFechaHora checkout) ; ////creo que vamos a hacer la función desde Reserva.
     //int getPrecio(Habitacion hab) ; // No tiene sentido la función.
     //encontrarHabitacion(int codigoHabitacion, string nombreHostal); //Va en el ControladorHostal.
-    Habitacion buscarHab() ; //Sin el nombre del hostal va al objeto Hostal.
+    //Habitacion buscarHab() ; //Sin el nombre del hostal va al objeto Hostal.
     //find(int codigoHabitacion) ; Sin el nombre del hostal debería ir al objeto Hostal.
-    accederHab(int codigoHabitacion) ; // ni idea
-    int encontrarPrecio(Habitacion hab) ; // wtf
+    //accederHab(int codigoHabitacion) ; // ni idea
+    //int encontrarPrecio(Habitacion hab) ; // wtf
     //agregarHabitacion(Habitacion hab) ; //ya está en ControladorHostal.
     
 
     //linkeohab(Hostal hostal) ; está arriba.
     
 }; 
+
+#include "Hostal.hpp"
 
 #endif
 

@@ -64,7 +64,7 @@ void Hostal::agregarReservaAHostal(Reserva *res){
 }
 
 void Hostal::agregarHuespedAHostal(Huesped *hues){
-    this->huespedes[hues.getEmail()] = hues;
+    this->huespedes[hues->getEmail()] = hues;
 }
 
 void Hostal::asignarEmpleadoAHostal(Empleado *emp){
@@ -74,15 +74,14 @@ void Hostal::asignarEmpleadoAHostal(Empleado *emp){
 DtHostal Hostal::getDtHostal(){
     DtHostal h = DtHostal(this->nombre, this->direccion, this->telefono, this->calificacionPromedio) ;
     return h ;
- } //Pau esto es lo mismo que el creador dthostal() en dthostal, borralo y usa el otro en donde lo hayas usado.
- //Yo puse una función que devuelva el Dt, porque en los ejemplos que vi, el objeto tiene una función para autoconvertirse a Dt.
+ } 
 
 void Hostal::setHabitacion(Habitacion *hab){
     this->habitaciones[hab.getNumero()] = hab;
 }
 
- void Hostal::accesoHostal(){}
- void Hostal::entrarRes(){}
- void Hostal::obtenerEstadiasdelHostal(string emailHuesped){} //Debería devolver un map de DtEstadia.
+ //void Hostal::accesoHostal(){}
+ //void Hostal::entrarRes(){}
+ //void Hostal::obtenerEstadiasdelHostal(string emailHuesped){} //Debería devolver un map de DtEstadia.
  //void Hostal::linkeohos(Habitacion hab){} //ya está arriba.
  
