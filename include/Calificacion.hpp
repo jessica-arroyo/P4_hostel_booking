@@ -9,30 +9,33 @@
 #include "../include/DtFechaHora.hpp"
 #include "../include/DtCalificacion.hpp"
 
+using namespace std ;
+
 class Calificacion
 {
 private:
     DtFechaHora fecha;
-    std::string comentario, respuesta;
+    string comentario, respuesta;
     int puntaje;
 public:
     Calificacion();
-    virtual ~Calificacion() = 0;
+    Calificacion(DtFechaHora fecha, string comentario, string respuesta, int puntaje) ;
+    ~Calificacion();
     void setFecha(DtFechaHora fecha) ;
-	void setComentario(std::string comentario);
+	void setComentario(string comentario);
     void setPuntaje(int puntaje) ;
-    void SetRespuesta(std::string respuesta) ;
+    void SetRespuesta(string respuesta) ;
 
-    std::string getComentario() ;
+    string getComentario() ;
 	DtFechaHora getFecha();
 	int getPuntaje() ;
-	std::string getRespuesta() ;
+	string getRespuesta() ;
 
     DtCalificacion getDtCalificacion();
-    create(DtFechaHora fecha, std::string comentario, int puntaje, std::string respuesta);
-    notificarEvento();
-    add(Calificacion cal);
-    Calificacion find(std::string comentario);
+    //create(DtFechaHora fecha, string comentario, int puntaje, string respuesta);
+    //notificarEvento();
+    //add(Calificacion cal);
+    //Calificacion find(string comentario);
 };
 
 #endif
