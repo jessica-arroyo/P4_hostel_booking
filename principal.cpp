@@ -13,8 +13,9 @@
 #include "include/tiempoDeAsistenciaAClase.hpp"
 #include "include/consultaNotificaciones.hpp"
 #include "include/subscribir.hpp" */
-#include "../include/ControladorHostal.hpp"
-#include "../include/Fabrica.hpp"
+
+//#include "../include/ControladorHostal.hpp"
+//#include "../include/Fabrica.hpp"
 #include <iostream>
 #include <limits>
 #include <ios>

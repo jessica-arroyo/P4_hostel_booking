@@ -51,10 +51,10 @@ DtHabitacion Habitacion::getDtHabitacion(){
     return habtdt ;
 }
 
-//bool Habitacion::estadisponibleHabitacion(DtFechaHora checkin, DtFechaHora checkout){} //creo que vamos a hacer la función desde Reserva.
+//bool Habitacion::estadisponibleHabitacion(DtFechaHora checkin, DtFechaHora checkout){} 
 //int Habitacion::getPrecio(Habitacion hab){} // es el mismo de arriba?
 //Habitacion::encontrarHabitacion(int codigoHabitacion, string nombreHostal){}//debería estar en el ControladorHostal.
-Habitacion Habitacion::buscarHab(){} //debería estar en el objeto Hostal ya que no se especifica un hostal.
+//Habitacion Habitacion::buscarHab(){} //debería estar en el objeto Hostal ya que no se especifica un hostal.
 
 //Habitacion::find(int codigoHabitacion){} //en tanto que find, no debería devolver algo? Una Habitacion en este caso.
 //Habitacion::accederHab(int codigoHabitacion){}

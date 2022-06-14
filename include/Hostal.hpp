@@ -2,11 +2,13 @@
 #define HOSTAL_H
 
 #include "DtHostal.hpp"
-#include "Reserva.hpp" //Hay que incluír también las subclases?
-#include "Habitacion.hpp"
-#include "Empleado.hpp"
-#include "Huesped.hpp"
+
 //#include "DtEstadia.hpp" si devolvemos un map de DtEstadia en obtenerEstadiasHostal hay que poner este include,
+
+class Reserva ;
+class Habitacion ;
+class Empleado ;
+class Huesped ;
 
 #include <map>
 #include <iterator>
@@ -49,12 +51,17 @@ class Hostal {
  
     DtHostal getDtHostal() ;
 
-    void accesoHostal() ; //no sé de donde es ni que haría.
-    void entrarRes() ; 
-    void obtenerEstadiasdelHostal(string emailHuesped) ; Debería devolver un conjunto de DtEstadía.
+    //void accesoHostal() ; //no sé de donde es ni que haría.
+    //void entrarRes() ; 
+    //void obtenerEstadiasdelHostal(string emailHuesped) ; Debería devolver un conjunto de DtEstadía.
     //void linkeohos(Habitacion *hab) ; //ya está en setHab.
  
 }; 
+
+#include "Reserva.hpp" 
+#include "Habitacion.hpp"
+#include "Empleado.hpp"
+#include "Huesped.hpp"
 
 #endif
 

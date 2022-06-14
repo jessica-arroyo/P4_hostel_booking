@@ -3,7 +3,7 @@
 
 using namespace std;
 
-DtNotificacion::DtNotificacion(std::string autor, int puntaje, std::string comentario){
+DtNotificacion::DtNotificacion(string autor, int puntaje, string comentario){
 	this->autor = autor;
 	this->puntaje = puntaje;
 	this->comentario = comentario;

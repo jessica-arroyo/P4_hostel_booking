@@ -1,7 +1,7 @@
 #ifndef DTCALIFICACION_HPP
 #define DTCALIFICACION_HPP
 
-#include "../include/DtFechaHora.hpp"
+#include "DtFechaHora.hpp"
 
 #include <map>
 #include <set>

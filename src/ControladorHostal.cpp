@@ -1,6 +1,6 @@
 #include "../include/ControladorHostal.hpp"
 
-#include "Habitacion.hpp" //para agregarHabitacion.
+//#include "Habitacion.hpp" //Ya se incluye porque Hostal incluye a Habitacion.
 
 //usan una biblioteca <cstddef>.
 //tengo que poner lo de include la biblioteca <iostream>?
@@ -78,18 +78,18 @@ void ControladorHostal::agregarHabitacion(numero,precio,capacidad,nombreH){
 }
 
 
-map<int , DtCalificacion> ControladorHostal::listarCalificaciones(string nomhos){ //de un hostal en particular.
+//map<int , DtCalificacion> ControladorHostal::listarCalificaciones(string nomhos){ //de un hostal en particular.
     
-}
+//}
 
 
-std::map<string , DtHostal> ControladorHostal::top3hostales(){}
+//std::map<string , DtHostal> ControladorHostal::top3hostales(){}
 
-map<int , DtHabitacion> ControladorHostal::listarHabitaciones(){}
+//map<int , DtHabitacion> ControladorHostal::listarHabitaciones(){}
 
-Hostal* ControladorHostal::encontrarHostal(string nombreHostal){} //originalmente era el objeto Hostal. Debería devolver un puntero a un Hostal.
+//Hostal* ControladorHostal::encontrarHostal(string nombreHostal){} //originalmente era el objeto Hostal. Debería devolver un puntero a un Hostal.
 
-map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal){}
+//map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal){}
 
 
 

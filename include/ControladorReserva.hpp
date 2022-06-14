@@ -5,6 +5,9 @@
 #include "Calificacion.hpp"
 #include "Estadia.hpp"
 #include "IReserva.hpp"
+#include "Huesped.hpp"
+#include "ControladorHostal.hpp"
+#include "ControladorUsuario.hpp"
 #include <map>
 #include <set>
 #include <iterator>
@@ -19,6 +22,9 @@ private:
     std::map<int,Reserva*> SetReservas;
     std::map<int,Estadia*> SetEstadias;
     std::map<int,Calificacion*> SetCalificaciones;
+
+    //no era que no íbamos a tener una colección genérica ni para Estadias ni para Calificaciones?
+
 public:
     ~ControladorReserva();
     static ControladorReserva *getInstancia() ;
