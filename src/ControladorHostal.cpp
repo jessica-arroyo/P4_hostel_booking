@@ -1,5 +1,7 @@
 #include "../include/ControladorHostal.hpp"
 
+#include "Habitacion.hpp" //para agregarHabitacion.
+
 //usan una biblioteca <cstddef>.
 //tengo que poner lo de include la biblioteca <iostream>?
 
@@ -27,19 +29,19 @@ ControladorHostal *ControladorHostal::getInstancia(){
 
 void ControladorHostal::altaHostal(string nombre, string direccion, int telefono, int calificacionProm){
     
-    this->hostalCreado = new Hostal(nombre, direccion, telefono, calificacionProm) ;
+    Hostal hos = new Hostal(nombre, direccion, telefono, calificacionProm) ;
     this->SetHostales.insert(make_pair(hostalCreado->getNombre(), hostalCreado));
-	this->hostalCreado = NULL;
     
 }
 
 bool ControladorHostal::existeHostal(string nombre){
     
-    return (SetHostales.find(nomh) != SetHostales.end()) ;
+    return (SetHostales.find(nombre) != SetHostales.end()) ; // ver el end funca
 }
 
 bool existeHabitacion(int numero, string nombreHostal){
-	//se chequeó desde afuera que le ingresen un hostal válido. Se tiene que chequear de nuevo?
+	 Hostal* hostal = setHostales.find(nombreHostal);
+     return (hostal->getHabitaciones().find(numero) != hostal->getHabitaciones().end());
 }
 
 std::map<string, DtHostal> ControladorHostal::listarHostales(){
@@ -67,22 +69,27 @@ DtHostal ControladorHostal::infoHostal(string nombreHostal){
     return h ;
 }
 
-/*map<int , DtCalificacion> ControladorHostal::listarCalificaciones(){
+void ControladorHostal::agregarHabitacion(numero,precio,capacidad,nombreH){
+    Habitacion *hab = new Habitacion(numero,precio,capacidad,nombreH);
+    map<string,Hostal*>::iterator i;
+    i = this->SetHostales.find(nombreH)->second;
+    i.setHabitacion(hab);
+    hab.setHostal(i);
+}
+
+
+map<int , DtCalificacion> ControladorHostal::listarCalificaciones(string nomhos){ //de un hostal en particular.
     
 }
 
 
-map<int , DtHabitacion> ControladorHostal::listarHabitacionesDisp(DtFechaHora checkIn, DtFechaHora checkOut, bool esGrupal, string nombreHostal){}
-void ControladorHostal::ingresarDatos(string nombreHostal, DtHabitacion habitacion){}
-void ControladorHostal::agregarHabitacion(){}
-void ControladorHostal::cancelarHabitacion(){}
 std::map<string , DtHostal> ControladorHostal::top3hostales(){}
 
 map<int , DtHabitacion> ControladorHostal::listarHabitaciones(){}
-DtHostal ControladorHostal::encontrarHostal(string nombreHostal){} //acá puse que se devuelva el DtHostal. Porque no se devuelven objetos.
-map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout){}
-*/
-        
+
+Hostal* ControladorHostal::encontrarHostal(string nombreHostal){} //originalmente era el objeto Hostal. Debería devolver un puntero a un Hostal.
+
+map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal){}
 
 
 

@@ -1214,18 +1214,179 @@ int main()
         					j++;
     					}
 
-						cout<<"Ingrese el nombre del hostal del que desea ver la información." ;
+						cout<<"Ingrese el nombre del hostal del que desea ver la información. /n" ;
 						string nomhos ;
 						cin>> nomhos ;
 						while(!iHostal->existeHostal(nomhos)){
-							cout<< "El nombre ingresado no corresponde a un hostal del sistema." ;
-							cout<<"Ingrese un nombre correspondiente a un hostal del sistema." ;
-							cin<<nomhos ;
+							cout<< "El nombre ingresado no corresponde a un hostal del sistema./n" ;
+							cout<<"Ingrese un nombre correspondiente a un hostal del sistema./n" ;
+							cin>>nomhos ;
+						}
+						int dia, anio,mes, hora;
+						cout<<"Ingrese fecha de entrada. /n";
+						cout<<"Ingrese dia de entrada. /n";
+						cin>>dia;
+						cout<<"Ingrese mes de entrada. /n";
+						cin>>mes;
+						cout<<"Ingrese anio de entrada. /n";
+						cin>>anio;
+						cout<<"Ingrese hora de entrada. /n";
+						cin>>hora;
+						DtFechaHora fechaCheckIn = new  DtFechaHora(hora, dia,mes,anio);
+						cout<<"Ingrese fecha de salida. /n";
+						cout<<"Ingrese dia de salida. /n";
+						cin>>dia;
+						cout<<"Ingrese mes de salida. /n";
+						cin>>mes;
+						cout<<"Ingrese anio de salida. /n";
+						cin>>anio;
+						cout<<"Ingrese hora de salida. /n";
+						cin>>hora;
+						DtFechaHora fechaCheckOut = new  DtFechaHora(hora, dia,mes,anio);
+						int j ; 
+						bool esGrupal;
+                        cout << "Ingrese 0 si la reserva sera individual o 1 si sera grupal. /n";
+                        cin>> j ;
+                        if(!cin.good())
+                            {
+                            cout << "ERROR\n";
+                            cin.clear();
+                            cin.ignore(1000,'\n');
+                            j = 2;
+                            }
+                        while (j != 0 && j != 1){
+                            cout << "Ingrese '0' o '1'\n";
+                            cin >> j;
+                            if(!cin.good())
+                            {
+                            cout << "ERROR\n";
+                            cin.clear();
+                            cin.ignore(1000,'\n');
+                            j = 2;
+                            }
+                        }
+						if (j==0) esGrupal = false;
+						else esGrupal = true;
+
+						 map<int , DtHabitacion> setHabitOp = IHostal->devolverHabitacionesDisponibles(fechaCheckIn, fechaCheckOut, nomhos);
+
+					map<int , DtHabitacion> :: iterator iR2;
+					if(setHabitOp.empty())
+					{
+						throw invalid_argument ("No hay habitaciones registradas") ;
+					}
+					else 
+					{
+    					int y = 1;
+    					cout<< "Lista de Habitaciones disponibles /n" ;
+    					for(iR2=setHabitOp.begin(); iR2 != setHabitOp.end(); iR2++){
+        					cout<< y <<"Numero: " << iR2->second.getNumero() << "/n";
+							y++;
 						}
 					}
+					int numhab;
+					cout<<"Ingrese el numero  de la habitacion que desea seleccionar. /n" ;
+						cin>> numhab ;
+						while(!cin.good())
+                            {
+                            cout << "ERROR NO ES UN NUMERO VALIDO\n";
+                            cin.clear();
+                            cin.ignore(1000,'\n');
+							cout<<"Ingrese el numero  de la habitacion que desea seleccionar. /n" ;
+							cin>> numhab;
+                            }
+						while(!iHostal->existeHabitacion(numhab,nomhos)){
+							cout<< "El numero ingresado no corresponde a una habitacion del sistema." ;
+							cout<<"Ingrese un numero correspondiente a una habitacion del sistema." ;
+							cin>>numhab;
+						}
+						map<string , DtHuesped> conjuntoHuespedes = IUsuario->listarHuespedes();
 
-            	}
-            	break;
+						map<string , DtHuesped> :: iterator iR3;
+						if(conjuntoHuespedes.empty())
+						{
+							throw invalid_argument ("No hay huespedes registrados. /n") ;
+						}
+						else 
+						{
+    						int y = 1;
+    						cout<< "Lista de Huespedes registrados. /n" ;
+    						for(iR3=conjuntoHuespedes.begin(); iR3 != conjuntoHuespedes.end(); iR3++){
+        						cout<< y <<"Email: " << iR3->second.getEmail() << "/n";
+								y++;
+							}
+						}
+							cout<<"Ingrese el email del huesped el cual realiza la reserva. /n" ;
+							string mailHuesped ;
+							cin>> mailHuesped ;
+							while(!iUsuario->existeHuesped(mailHuesped)){
+								cout<< "El email ingresado no corresponde a un huesped del sistema." ;
+								cout<<"Ingrese un email correspondiente a un huesped del sistema." ;
+								cin>>mailHuesped;
+							}
+							if (esGrupal) {
+								bool deseaHuespedes = true;
+								std::map<std::string, Huesped> grupoHues;
+								while (deseaHuespedes) {
+								cout<<"Ingrese el email del huesped al cual desea agregar a la reserva. /n" ;
+								string otroHuesped ;
+								cin>> otroHuesped ;
+								while(!iUsuario->existeHuesped(otroHuesped)){
+									cout<< "El email ingresado no corresponde a un huesped del sistema." ;
+									cout<<"Ingrese un email correspondiente a un huesped del sistema." ;
+									cin>>otroHuesped;
+								}
+								// meter pa q vaya agregar al map los huespedes
+									int j ; 
+                        			cout << "Si desea agregar otro huesped a la reserva, ingrese '1', de lo contrario ingrese '0'.\n";
+                        			cin>> j ;
+                        			if(!cin.good())
+                            		{
+                            		cout << "ERROR\n";
+                            		cin.clear();
+                            		cin.ignore(1000,'\n');
+                            		j = 2;
+                            		}
+                        			while (j != 0 && j != 1){
+                            		cout << "Ingrese '0' o '1'\n";
+                            		cin >> j;
+                            		if(!cin.good())
+                            		{
+                            		cout << "ERROR\n";
+                            		cin.clear();
+                            		cin.ignore(1000,'\n');
+                            		j = 2;
+                            		}
+                        			}
+									if (j == 0) {deseaHuespedes = false;}
+									}
+								}
+								int j ; 
+                        		cout << "Si desea confirmar la reserva, ingrese '1', si desea cancelar ingrese '0'.\n";
+                        		cin>> j ;
+                        		if(!cin.good())
+                            	{
+                            	cout << "ERROR\n";
+                            	cin.clear();
+                            	cin.ignore(1000,'\n');
+                            	j = 2;
+                            	}
+                        		while (j != 0 && j != 1){
+                            	cout << "Ingrese '0' o '1'\n";
+                            	cin >> j;
+                            	if(!cin.good())
+                            	{
+                            	cout << "ERROR\n";
+                            	cin.clear();
+                            	cin.ignore(1000,'\n');
+                            	j = 2;
+                            	}
+							}
+							if (j == 1) IReserva->confirmarReserva();
+							else IReserva->cancelarReserva();
+
+            		}
+            		break;
 
 				case 6:
            		{
@@ -1289,7 +1450,7 @@ int main()
 						while(!iHostal->existeHostal(nomhos)){
 							cout<< "El nombre ingresado no corresponde a un hostal del sistema." ;
 							cout<<"Ingrese un nombre correspondiente a un hostal del sistema." ;
-							cin<<nomhos ;
+							cin>>nomhos ;
 						}
 						DtHostal infoh = iHostal->infoHostal(nomhos) ;
 

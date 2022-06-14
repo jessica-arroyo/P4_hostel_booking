@@ -1,9 +1,5 @@
 
 
-// Puse las operaciones que estaban en el DCD, pero capaz que hay más.
-//A las operaciones que no aparecía como que devolvieran algo, les puse void.
-//Vamos a usar -> o . (dinámico o estático)?
-
 #ifndef HABITACION_H
 #define HABITACION_H
 
@@ -21,23 +17,26 @@ class Habitacion {
     int getNumero() ;
     int getPrecio() ;
     int getCapacidad() ;
+    Hostal* getHostal() ;
     void setNumero(int numero) ;
     void setPrecio(int precio) ;
     void setCapacidad(int capacidad) ;
+    void setHostal(Hostal* hostal);
     
-    //create(DtHabitacion habitacion); //el constructor sería este, el de arriba, o ambos?
-    add(Habitacion hab) ;
-    linkeohab(Hostal hostal) ;
+  
+    
     DtHabitacion getDtHabitacion() ;
-    bool estadisponibleHabitacion(DtFechaHora checkin, DtFechaHora checkout) ;
-    int getPrecio(Habitacion hab) ; // es el mismo de arriba?
-    //encontrarHabitacion(int codigoHabitacion, string nombreHostal); //verificar que esta efectivamente no devuelva nada (por lo de encontrar pero no devuelve nada).
-    Habitacion buscarHab() ;
-    //find(int codigoHabitacion) ; //en tanto que find, no debería devolver algo? Una Habitacion en este caso.
-    accederHab(int codigoHabitacion) ;
-    int encontrarPrecio(Habitacion hab) ;
-    agregarHabitacion(Habitacion hab) ;
-    //int getCodigoHab() ; // es el mismo de arriba?
+    //bool estadisponibleHabitacion(DtFechaHora checkin, DtFechaHora checkout) ; ////creo que vamos a hacer la función desde Reserva.
+    //int getPrecio(Habitacion hab) ; // No tiene sentido la función.
+    //encontrarHabitacion(int codigoHabitacion, string nombreHostal); //Va en el ControladorHostal.
+    Habitacion buscarHab() ; //Sin el nombre del hostal va al objeto Hostal.
+    //find(int codigoHabitacion) ; Sin el nombre del hostal debería ir al objeto Hostal.
+    accederHab(int codigoHabitacion) ; // ni idea
+    int encontrarPrecio(Habitacion hab) ; // wtf
+    //agregarHabitacion(Habitacion hab) ; //ya está en ControladorHostal.
+    
+
+    //linkeohab(Hostal hostal) ; está arriba.
     
 }; 
 

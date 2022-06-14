@@ -1,7 +1,7 @@
 #ifndef DTRESERVAGRUPAL_HPP
 #define DTRESERVAGRUPAL_HPP
 
-#include "../include/DtReserva.hpp"
+#include "DtReserva.hpp"
 
 #include <map>
 #include <set>

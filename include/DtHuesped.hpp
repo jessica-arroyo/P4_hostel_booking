@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-class DtHuesped: DtHuesped {
+class DtHuesped: public DtUsuario {
     private:
     bool esFinger;
 

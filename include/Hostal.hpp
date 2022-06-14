@@ -1,7 +1,12 @@
 #ifndef HOSTAL_H
 #define HOSTAL_H
 
-#include "../include/DtHostal.hpp"
+#include "DtHostal.hpp"
+#include "Reserva.hpp" //Hay que incluír también las subclases?
+#include "Habitacion.hpp"
+#include "Empleado.hpp"
+#include "Huesped.hpp"
+//#include "DtEstadia.hpp" si devolvemos un map de DtEstadia en obtenerEstadiasHostal hay que poner este include,
 
 #include <map>
 #include <iterator>
@@ -36,19 +41,19 @@ class Hostal {
     void setDireccion(string direc) ;
     void setTelefono(int tel) ;
     void setCalPromedio(int calProm) ;
+    void setHabitacion(Habitacion *hab); //agregar habitación al Hostal.
+    void agregarReservaAHostal(Reserva *res);
+    void agregarHuespedAHostal(Huesped *hues) ;
+    void asignarEmpleadoAHostal(Empleado *emp) ; //añade el empleado a la colección de Empleados del Hostal.
  
  
     DtHostal getDtHostal() ;
-    /*
-    void linkeohos(Habitacion *hab) ; puntero a la habitación no sería?
-    void asignarEmpleadoAHostal(Empleado *emp) ;
-    void accesoHostal() ;
-    void agregarReservaAlHostal(Reserva *res) ;
-    void entrarRes() ;
-    void obtenerReservas() ; es un void? No debería devolver un conjunto o un map más bien de Reserva?
-    void obtenerEstadiasdelHostal(string emailHuesped) ; verificar que esta efectivamente no devuelva nada (por lo de obtener pero no devuelve nada).
+
+    void accesoHostal() ; //no sé de donde es ni que haría.
+    void entrarRes() ; 
+    void obtenerEstadiasdelHostal(string emailHuesped) ; Debería devolver un conjunto de DtEstadía.
+    //void linkeohos(Habitacion *hab) ; //ya está en setHab.
  
- */
 }; 
 
 #endif
