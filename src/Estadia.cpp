@@ -5,8 +5,17 @@
 #include <iterator>
 #include <iostream>
 
+using namespace std ;
+
     Estadia::Estadia() {}; 
     Estadia::~Estadia(){};
+
+    Estadia::Estadia(DtFechaHora checkIn, DtFechaHora checkOut, string promo){
+        this->checkIn = checkIn ;
+        this->checkOut = checkOut ;
+        this->promo = promo ;
+    }
+
     void Estadia::setCheckIn (DtFechaHora checkIn){
         this->checkIn = checkIn;
     };
@@ -15,7 +24,7 @@
         this->checkOut = checkOut;
     };
 
-    void Estadia::setPromo (std::string promo){
+    void Estadia::setPromo (string promo){
         this->promo = promo;
     } ;
 
@@ -23,11 +32,11 @@
         this->calificacion = cal;
     };
 
-    void Estadia::agregarHabitacion(Habitacion *hab) {
+    void Estadia::agregarHabitacionAEstadia(Habitacion *hab) {
         this->habitacion = hab;
     };
 
-    std::string Estadia::getPromo () {
+    string Estadia::getPromo () {
         return this->promo;
     };
 
@@ -47,10 +56,10 @@
         return this->habitacion;
     };
 
-    Estadia::create(DtFechaHora checkin,DtFechaHora checkout,std::string promo,Calificacion *cal,Habitacion *hab){};  
-    Estadia::setearValoresIniciales(DtFechaHora checkin,DtFechaHora checkout,std::string promo,Calificacion *cal,Habitacion *hab){};
-    Estadia::add(Estadia esta){}; //va aca o controlador??
-    Estadia::entrarCal(){};
-    Estadia::linkeoHab(){};  //en el dcd dice linkeo habitacion pero faltaria entrarHab no???
-    Estadia Estadia::find(DtEstadia estadia){};
-    Estadia::aniadirCalificacionAEstadia(Calificacion cal){};
+    //Estadia::create(DtFechaHora checkin,DtFechaHora checkout,std::string promo,Calificacion *cal,Habitacion *hab){};  
+    //Estadia::setearValoresIniciales(DtFechaHora checkin,DtFechaHora checkout,std::string promo,Calificacion *cal,Habitacion *hab){};
+    //Estadia::add(Estadia esta){}; //va aca o controlador??
+    //Estadia::entrarCal(){};
+    //Estadia::linkeoHab(){};  //en el dcd dice linkeo habitacion pero faltaria entrarHab no???
+    //Estadia Estadia::find(DtEstadia estadia){};
+    //Estadia::aniadirCalificacionAEstadia(Calificacion cal){};

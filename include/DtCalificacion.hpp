@@ -8,18 +8,22 @@
 #include <iterator>
 #include <iostream>
 
+using namespace std ;
+
 class DtCalificacion
 {
 private:
     DtFechaHora fecha;
-    std::string comentario, respuesta;
+    string comentario, respuesta;
     int puntaje;
 public:
     DtCalificacion();
+    DtCalificacion(DtFechaHora fecha, string comentario, string respuesta);
     ~DtCalificacion();
-    std::string getComentario() ;
+    string getComentario() ;
 	DtFechaHora getFecha();
 	int getPuntaje() ;
-	std::string getRespuesta() ;
+	string getRespuesta() ;
 };
 #endif
+

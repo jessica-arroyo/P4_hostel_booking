@@ -1,14 +1,23 @@
 #include "../include/Calificacion.hpp"
 
+ using namespace std ;   
+
     Calificacion::Calificacion(){};
 
+    Calificacion::Calificacion(DtFechaHora fecha, string comentario, string respuesta, int puntaje){
+        this->fecha = fecha ;
+        this->comentario = comentario ;
+        this->respuesta = respuesta ;
+        this->puntaje = puntaje ;
+    }
+
     Calificacion::~Calificacion(){};
-    
+
     void Calificacion::setFecha(DtFechaHora fecha) {
         this->fecha = fecha;
     };
 
-	void Calificacion::setComentario(std::string comentario){
+	void Calificacion::setComentario(string comentario){
         this->comentario = comentario;
     };
 
@@ -16,7 +25,7 @@
         this->puntaje = puntaje;
     };
 
-    void Calificacion::SetRespuesta(std::string respuesta) {
+    void Calificacion::SetRespuesta(string respuesta) {
         this->respuesta = respuesta;
     };
 
@@ -37,8 +46,11 @@
     };
     
 
-    DtCalificacion Calificacion::getDtCalificacion(){};
-    Calificacion::create(DtFechaHora fecha, std::string comentario, int puntaje, std::string respuesta){};
-    Calificacion::notificarEvento(){};
-    Calificacion::add(Calificacion cal){};
-    Calificacion Calificacion::find(std::string comentario){};
+    DtCalificacion Calificacion::getDtCalificacion(){
+        DtCalificacion c = DtCalificacion(this->fecha,this->comentario,this->respuesta,this->puntaje) ;
+    };
+
+    //Calificacion::create(DtFechaHora fecha, string comentario, int puntaje, string respuesta){};
+    //Calificacion::notificarEvento(){};
+    //Calificacion::add(Calificacion cal){};
+    //Calificacion Calificacion::find(string comentario){};
