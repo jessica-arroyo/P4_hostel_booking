@@ -1,3 +1,4 @@
+
 #include "../include/DtCalificacion.hpp"
     
 using namespace std ;
@@ -28,5 +29,4 @@ using namespace std ;
 	int DtCalificacion::getPuntaje() {
 			return this->puntaje;
 		}
-
-#endif        
+      

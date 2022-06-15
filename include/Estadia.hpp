@@ -44,7 +44,7 @@ public:
     //linkeoHab();  //en el dcd dice linkeo habitacion
     //Estadia find(DtEstadia estadia);
     //aniadirCalificacionAEstadia(Calificacion *cal);
-}
+};
 
 #include "Habitacion.hpp"
 #include "Calificacion.hpp"

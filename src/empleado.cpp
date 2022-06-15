@@ -14,7 +14,7 @@ Empleado::Empleado(string nombre, string email, string password, TipoCargo cargo
 
 
 TipoCargo Empleado::getCargo(){
-    return this->cargo
+    return this->cargo;
 }
 
 void Empleado::setCargo(TipoCargo cargo){
@@ -37,7 +37,7 @@ DtEmpleado Empleado::getDtEmpleado(){
     return dte;
 }
 
-void Empleado::asignarHostalAEmpleado(Hostal *nuevohostal){
+void Empleado::setHostal(Hostal *nuevohostal){
     this->hostal = nuevohostal;
 }
 

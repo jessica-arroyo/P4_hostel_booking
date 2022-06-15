@@ -16,11 +16,11 @@
 
 using namespace std ;
 
-class ControladorHostal: public: IHostal {
+class ControladorHostal: public IHostal {
     private:
         ControladorHostal() ;
         static ControladorHostal *_instancia ;
-        map<std::string,Hostal*> SetHostales ;
+        map<string,Hostal*> SetHostales ;
 
     public:
         ~ControladorHostal() ;
@@ -28,7 +28,7 @@ class ControladorHostal: public: IHostal {
 
         bool existeHostal(string nombre) ; 
         bool existeHabitacion(int numero, string nombreHostal) ; 
-        void agregarHabitacion(numero,precio,capacidad,nombreH) ; 
+        void agregarHabitacion(int numero,int precio,int capacidad,string nombreH) ; 
         void altaHostal(string nombre, string direccion, int telefono, int calificacionProm) ; 
         map<string , DtHostal> listarHostales() ; 
         DtHostal infoHostal(string nombreHostal) ; 
@@ -36,7 +36,7 @@ class ControladorHostal: public: IHostal {
         //void map<string , DtHostal> top3hostales() ; 
         //map<int , DtHabitacion> listarHabitaciones() ; 
         //Hostal* encontrarHostal(string nombreHostal) ;  
-        //map<int , DtHabitacion> devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal) ; 
+        map<int , DtHabitacion> devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal) ; 
         
 
        //La colección de Hostales va a ser un map o un set (porque podríamos querer tener ordenados 

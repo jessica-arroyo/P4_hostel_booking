@@ -4,7 +4,8 @@
 		
 		DtReservaGrupal::~DtReservaGrupal(){}
 		
-		DtReservaGrupal::DtReservaGrupal(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, int cantGrupHuespedes){
+		DtReservaGrupal::DtReservaGrupal(int codigo,DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, std::string estado, float costo, int cantGrupHuespedes){
+			codigo = codigo ;
 			checkIn = checkIn ;
 			checkOut = checkOut ;
 			fechaRealizada = fechaRealizada ;
@@ -16,5 +17,3 @@
         int DtReservaGrupal::getCantGrupHuespedes(){
 			return this->cantGrupHuespedes;
 		}
-
-#endif

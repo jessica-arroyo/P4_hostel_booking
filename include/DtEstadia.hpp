@@ -17,7 +17,7 @@ private:
     string promo;
 public:
     DtEstadia();
-    DtEstadia(DtFechaHora checkIn, DtFecha checkOut, string promo);
+    DtEstadia(DtFechaHora checkIn, DtFechaHora checkOut, string promo);
     ~DtEstadia();
     string getPromo();
 	DtFechaHora getCheckIn();

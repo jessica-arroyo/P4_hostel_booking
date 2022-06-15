@@ -16,8 +16,8 @@ class IReserva
 public:
     IReserva();
     virtual ~IReserva() = 0;
-    //virtual void confirmarReserva() = 0;
-    //virtual void cancelarReserva() = 0;
+    virtual void confirmarReserva() = 0;
+    virtual void cancelarReserva() = 0;
     //virtual set<DtCalificacion> chequearCalificacion(string nombreHostal) = 0;
     //virtual map<int,DtReserva> listarReservas(string nombreHostal, string emailHuesped) = 0;
     //virtual void inscribirEstadia(DtReserva reserva) = 0;
