@@ -7,7 +7,8 @@
 
 ReservaIndividual::~ReservaIndividual(){}
 
-ReservaIndividual::ReservaIndividual(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues){
+ReservaIndividual::ReservaIndividual(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues){
+	codigo = codigo ;
 	checkIn = checkIn ;
 	checkOut = checkOut ;
 	fechaRealizada = fechaRealizada ;

@@ -12,18 +12,21 @@ class DtReserva {
 	protected : 
         int codigo;
         DtFechaHora checkIn, checkOut, fechaRealizada;
-		std::string estado;
+		TipoEstado estado;
 		float costo;
+		string emailHuesped ;
 	public :
 		DtReserva();
-		DtReserva(int codigo,DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, std::string estado, float costo);
+		DtReserva(int codigo,DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, string emailHuesped);
 		~DtReserva();
 		
 		int getCodigo () ;
 		DtFechaHora getCheckIn () ;
 		DtFechaHora getCheckOut () ;
 		DtFechaHora getFechaRealizada () ;
-		std::string getEstado () ;
+		TipoEstado getEstado () ;
 		float getCosto ();
+		string getEmailHuesped() ;
+		
 };
 #endif

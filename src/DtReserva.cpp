@@ -2,13 +2,14 @@
 
 		DtReserva::DtReserva(){}
 		
-		DtReserva::DtReserva(int codigo,DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, std::string estado, float costo){
+		DtReserva::DtReserva(int codigo,DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, string emailHuesped){
 			codigo = codigo ;
 			checkIn = checkIn ;
 			checkOut = checkOut ;
 			fechaRealizada = fechaRealizada ;
 			estado = estado ;
 			costo = costo ;
+			emailHuesped = emailHuesped ;
 		}
 		
 		DtReserva::~DtReserva(){}
@@ -29,11 +30,16 @@
 			return this->fechaRealizada;
 		}
 		
-		std::string DtReserva::getEstado () {
+		TipoEstado DtReserva::getEstado () {
 			return this->estado;
 		}
 		
 		float DtReserva::getCosto (){
 			return this->costo;
 		}
+		
+		string DtReserva::getEmailHuesped (){
+			return this->emailHuesped;
+		}
+		
 		
