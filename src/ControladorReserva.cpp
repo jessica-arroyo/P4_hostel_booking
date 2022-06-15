@@ -39,7 +39,7 @@ map<int,DtReserva> ControladorReserva::obtenerReservas(string nombreHostal)
 	for(i = hostal->reservas.begin(); i != hostal->reservas.end(); i++)
 	{
 		if (dynamic_cast<DtReservaGrupal *>(i->second)!=NULL)){
-			DtReservaGrupal r = DtReserva(i->second->getCodigo(), i->second->getCheckIn(), i->second->getCheckOut(), i->second->getFechaRealizada(), i->second->getEstado(),i->second->getCosto());
+			DtReservaGrupal r = DtReserva(i->second->getCodigo(), i->second->getCheckIn(), i->second->getCheckOut(), i->second->getFechaRealizada(), i->second->getEstado(),i->second->getCosto(), i->second->getNombresHuespedes());
 		}
 		if (dynamic_cast<DtReservaIndividual *>(i->second)!=NULL)){
 			DtReservaIndividual r = DtReserva(i->second->getCodigo(), i->second->getCheckIn(), i->second->getCheckOut(), i->second->getFechaRealizada(), i->second->getEstado(),i->second->getCosto());
