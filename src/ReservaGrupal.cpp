@@ -21,7 +21,7 @@ ReservaGrupal::setearValoresGrupal(float precio,int cantH){
 	cantH = cantH;
 }
 
-map<std::string, Huesped *> ReservaGrupal::getGrupoHues(){
+map<std::string, Huesped *> ReservaGrupal::getGrupHuespedes(){
 	return this->grupHuespedes;
 }
 

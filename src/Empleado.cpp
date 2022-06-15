@@ -21,7 +21,7 @@ void Empleado::setCargo(TipoCargo cargo){
     this->cargo = cargo;
 }
 
-bool estaAsignado(string nombreHostal)
+bool Empleado::estaAsignado(string nombreHostal)
 {
     if (nombreHostal == hostal->getNombre())
         {

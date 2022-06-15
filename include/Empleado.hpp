@@ -28,7 +28,7 @@ class Empleado: public Usuario  {
     Empleado();
     ~Empleado();
     Empleado(string nombre , string email, string password, TipoCargo cargo) ;
-    bool getCargo() ;
+    TipoCargo getCargo() ;
     void setCargo(TipoCargo cargo);
     bool estaAsignado(string nombreHostal);
     DtEmpleado getDtEmpleado(); //va sin puntero creo. 
