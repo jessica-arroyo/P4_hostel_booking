@@ -2,12 +2,12 @@
 #define DTHUESPED_H
 #include <string>
 #include <iostream>
+#include "../include/DtUsuario.hpp"
 using namespace std;
 
 class DtHuesped: public DtUsuario {
     private:
     bool esFinger;
-
     public:
     DtHuesped();
     ~DtHuesped();

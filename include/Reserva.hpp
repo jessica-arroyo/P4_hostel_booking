@@ -2,7 +2,6 @@
 #define RESERVA_HPP
 
 #include "../include/DtFechaHora.hpp"
-#include "../include/TipoEstado.hpp"
 #include "../include/DtReserva.hpp"
 
 #include <map>
@@ -13,6 +12,14 @@
 class Habitacion;
 class Estadia;
 class Huesped;
+
+enum TipoEstado
+{
+  ABIERTA,
+  CERRADA,
+  CANCELADA
+};
+
 
 class Reserva {
 	protected : 
@@ -28,13 +35,13 @@ class Reserva {
 		virtual ~Reserva() = 0;
 		void setCodigo (int codigo) ;
 		void setCheckIn (DtFechaHora checkIn) ;
-		void setCheckOut (DtFechaHora checkOut);
+		void setCheckOut (DtFechaHora checkOut);	
 		void setFechaRealizada (DtFechaHora fechaRealizada) ;
 		void setEstado (TipoEstado estado);
 		void setCosto (float costo);
-		void agregarEstadia(Estadia * est) ;
-		void agregarHabitacion(Habitacion *hab);
-		void agregarHuesped(Huesped* hues);
+		void setEstadia(Estadia * est) ;
+		void setHabitacion(Habitacion *hab);
+		void setHuesped(Huesped* hues);
 		
 		int getCodigo () ;
 		DtFechaHora getCheckIn () ;
@@ -45,10 +52,10 @@ class Reserva {
 		Estadia* getEstadia ();
 		Habitacion* getHabitacion() ;
 		Huesped* getHuesped() ;
-		std::string getEmailHuesped ();
-		float getNumeroHabitacion ();
-
 		DtReserva getDtReserva();
+		
+		/*std::string getEmailHuesped ();
+		float getNumeroHabitacion ();
 		obtenerReserva();
 		DtFechaHora getFecha(); 
 		create(DtFechaHora checkin,DtFechaHora checkout,DtFechaHora fechaRealizacionReserva);
@@ -65,7 +72,7 @@ class Reserva {
 		//obtenerEstadiaAsociada();
 		//obtenerHuespedAsociado();
 		//obtenerCodigoHabitacion();
-		remove(Reserva r);
+		remove(Reserva r);*/
 		
 };
 #include "../include/Habitacion.hpp"

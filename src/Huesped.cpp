@@ -34,7 +34,7 @@ void Huesped::setEstadia(Estadia *estadia){
     this->estadia = estadia ;
 }
 
-map<string , Hostales *> Huesped::getHostalesHuesped(){
+map<string , Hostal *> Huesped::getHostalesHuesped(){
     return hostalesHuesped ;
 } 
 

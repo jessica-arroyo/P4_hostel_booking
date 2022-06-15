@@ -14,11 +14,13 @@
 #include "include/consultaNotificaciones.hpp"
 #include "include/subscribir.hpp" */
 
-//#include "../include/ControladorHostal.hpp"
-//#include "../include/Fabrica.hpp"
+#include "include/Fabrica.hpp"
 #include <iostream>
+#include <istream>
 #include <limits>
 #include <ios>
+#include <map>
+#include <set>
 
 using namespace std;
 
@@ -215,9 +217,9 @@ int main()
 	f = Fabrica::getInstancia();
 	IHostal *iHostal = f->getIHostal();
 	IUsuario *iUsuario = f->getIUsuario();
-	IReserva *iReserca = f->getIReserva();
+	IReserva *iReserva = f->getIReserva();
 	IFecha *iFecha = f->getIFecha();
-	DtFechaHora horaActual = DtFechaHora(0, 0, 1, 1, 2022);
+	DtFechaHora horaActual = DtFechaHora(0, 1, 1, 2022);
 	iFecha->setFechaHora(horaActual);
 
 
@@ -413,7 +415,7 @@ int main()
 
 										if(j==1)
 										{
-											iUsuario->confirmarEmpleado(nombre,email,password,ADMINISTRACION) ;
+											iUsuario->confirmarAltaEmpleado(nombre,email,password,ADMINISTRACION) ;
 										}
 										else
 										{
@@ -456,7 +458,7 @@ int main()
                         		}
 								if(j==1) 
 								{
-								iUsuario->confirmarEmpleado(nombre,email,password, ADMINISTRACION) ;
+								iUsuario->confirmarAltaEmpleado(nombre,email,password, ADMINISTRACION) ;
 								}
 								else
 								{
@@ -558,7 +560,7 @@ int main()
 
 										if(j==1)
 										{
-											iUsuario->confirmarEmpleado(nombre,email,password,LIMPIEZA) ;
+											iUsuario->confirmarAltaEmpleado(nombre,email,password,LIMPIEZA) ;
 										}
 										else
 										{
@@ -601,7 +603,7 @@ int main()
                         		}
 								if(j==1) 
 								{
-									iUsuario->confirmarEmpleado(nombre,email,password, LIMPIEZA) ;
+									iUsuario->confirmarAltaEmpleado(nombre,email,password, LIMPIEZA) ;
 								}
 								else
 								{
@@ -704,7 +706,7 @@ int main()
 
 										if(j==1)
 										{
-											iUsuario->confirmarEmpleado(nombre,email,password,RECEPCION) ;
+											iUsuario->confirmarAltaEmpleado(nombre,email,password,RECEPCION) ;
 										}
 										else
 										{
@@ -747,7 +749,7 @@ int main()
                         		}
 								if(j==1) 
 								{
-									iUsuario->confirmarEmpleado(nombre,email,password, RECEPCION) ;
+									iUsuario->confirmarAltaEmpleado(nombre,email,password, RECEPCION) ;
 								}
 								else
 								{
@@ -849,7 +851,7 @@ int main()
 
 										if(j==1)
 										{
-											iUsuario->confirmarEmpleado(nombre,email,password,INFRAESTRUCTURA) ;
+											iUsuario->confirmarAltaEmpleado(nombre,email,password,INFRAESTRUCTURA) ;
 										}
 										else
 										{
@@ -892,7 +894,7 @@ int main()
                         		}
 								if(j==1) 
 								{
-									iUsuario->confirmarEmpleado(nombre,email,password, INFRAESTRUCTURA) ;
+									iUsuario->confirmarAltaEmpleado(nombre,email,password, INFRAESTRUCTURA) ;
 								}
 								else
 								{
@@ -942,7 +944,7 @@ int main()
 					}
 					//ponemos lo de try y catch?
 					
-					esta = iUsuario->existeUsuario(email) ; //devuelve true si está registrado el email.
+					esta = iUsuario->existeHuesped(email) ; //devuelve true si está registrado el email.
 							if(esta) //Si el email ya está registrado.
 							{
 								int i ;
@@ -973,7 +975,7 @@ int main()
 									cout << "\nEmail ya registrado\n";
 									cout << "Ingrese un email que no esté registrado:\n";
 									cin >> email;
-									esta = iUsuario->existeUsuario(email) ;
+									esta = iUsuario->existeHuesped(email) ;
 
 									while(i==1 && esta) //Mientras quiera reingresar y el email ya esté registrado.
 									{
@@ -1002,7 +1004,7 @@ int main()
 										{
 											cout << "Ingrese un email que no esté registrado:\n";
 											cin >> email;
-											esta = iUsuario->existeUsuario(email) ;
+											esta = iUsuario->existeHuesped(email) ;
 										}
 										//Sino va a la próxima iteración del while (el while de i==1 && esta) y sale.
 										
@@ -1034,7 +1036,7 @@ int main()
 
 										if(j==1)
 										{
-											iUsuario->confirmarUsuario(nombre,email,password,esFinger) ;
+											iUsuario->confirmarAltaHuesped(nombre,email,password,esFinger);
 										}
 										else
 										{
@@ -1077,7 +1079,7 @@ int main()
                         		}
 								if(j==1) 
 								{
-									iUsuario->confirmarUsuario(nombre,email,password, esFinger) ;
+									iUsuario->confirmarAltaHuesped(nombre,email,password, esFinger) ;
 								}
 								else
 								{
@@ -1107,14 +1109,14 @@ int main()
 					cout<< "Ingrese la dirección\n" ;
 					getline(cin,direccion) ;
 					cout<< "Ingrese el teléfono\n" ;
-					getline(cin,telefono) ;
-					iHostal->altadeHostal(nombreHostal,direccion,telefono,0) ; //se crea el Hostal con calificacionPromedio=0.
+					cin>> telefono;
+					iHostal->altaHostal(nombreHostal,direccion,telefono,0) ; //se crea el Hostal con calificacionPromedio=0.
 				}
 				break ;  
 
 				case 3: //Alta de Habitación
 				{
-					map<string, DtHostal> hostales = IHostal->listarHostales();
+					map<string, DtHostal> hostales = iHostal->listarHostales();
     				map<string , DtHostal> :: iterator i;
 					if(hostales.empty())
 					{
@@ -1141,7 +1143,7 @@ int main()
 						cin>> precio ;
 						cout<< "Ingrese la capacidad\n" ;
 						cin>> capacidad ;
-						while(iHostal->existeHostal(nombreHostal) == false){
+						while(iHostal->existeHostal(nombreH) == false){
 							cout<< "Hostal no registrado\n" ;
 							cout<< "Ingrese nuevamente el nombre" ;
 							cin>> nombreH ;
@@ -1153,7 +1155,6 @@ int main()
 							cin>> numero ;
 						}
 
-						int j ; 
                         cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
                         cin>> j ;
                         if(!cin.good())
@@ -1191,13 +1192,14 @@ int main()
 
 				case 4:
            		{
+					cout << "Hasta luego.\n";
                 	//Asignar Empleado a Hostal
             	}
             	break;
 
 				case 5:
            		{
-					map<string, DtHostal> hostales = IHostal->listarHostales();
+					map<string, DtHostal> hostales = iHostal->listarHostales();
     				map<string , DtHostal> :: iterator i;
 					if(hostales.empty())
 					{
@@ -1233,7 +1235,7 @@ int main()
 						cin>>anio;
 						cout<<"Ingrese hora de entrada. /n";
 						cin>>hora;
-						DtFechaHora fechaCheckIn = new  DtFechaHora(hora, dia,mes,anio);
+						DtFechaHora fechaCheckIn = DtFechaHora(hora, dia,mes,anio);
 						cout<<"Ingrese fecha de salida. /n";
 						cout<<"Ingrese dia de salida. /n";
 						cin>>dia;
@@ -1243,8 +1245,7 @@ int main()
 						cin>>anio;
 						cout<<"Ingrese hora de salida. /n";
 						cin>>hora;
-						DtFechaHora fechaCheckOut = new  DtFechaHora(hora, dia,mes,anio);
-						int j ; 
+						DtFechaHora fechaCheckOut = DtFechaHora(hora, dia,mes,anio);
 						bool esGrupal;
                         cout << "Ingrese 0 si la reserva sera individual o 1 si sera grupal. /n";
                         cin>> j ;
@@ -1269,7 +1270,7 @@ int main()
 						if (j==0) esGrupal = false;
 						else esGrupal = true;
 
-						 map<int , DtHabitacion> setHabitOp = IHostal->devolverHabitacionesDisponibles(fechaCheckIn, fechaCheckOut, nomhos);
+						 map<int , DtHabitacion> setHabitOp = iHostal->devolverHabitacionesDisponibles(fechaCheckIn, fechaCheckOut, nomhos);
 
 					map<int , DtHabitacion> :: iterator iR2;
 					if(setHabitOp.empty())
@@ -1301,7 +1302,7 @@ int main()
 							cout<<"Ingrese un numero correspondiente a una habitacion del sistema." ;
 							cin>>numhab;
 						}
-						map<string , DtHuesped> conjuntoHuespedes = IUsuario->listarHuespedes();
+						map<string , DtHuesped> conjuntoHuespedes = iUsuario->listarHuespedes();
 
 						map<string , DtHuesped> :: iterator iR3;
 						if(conjuntoHuespedes.empty())
@@ -1362,7 +1363,6 @@ int main()
 									if (j == 0) {deseaHuespedes = false;}
 									}
 								}
-								int j ; 
                         		cout << "Si desea confirmar la reserva, ingrese '1', si desea cancelar ingrese '0'.\n";
                         		cin>> j ;
                         		if(!cin.good())
@@ -1383,51 +1383,58 @@ int main()
                             	j = 2;
                             	}
 							}
-							if (j == 1) IReserva->confirmarReserva();
-							else IReserva->cancelarReserva();
+							if (j == 1) iReserva->confirmarReserva();
+							else iReserva->cancelarReserva();
 
             		}
-            		break;
-
+				}
+            	break;
 				case 6:
            		{
+					cout << "Hasta luego.\n";
                 	//Consulta de Top 3 Hostales.
             	}
             	break;
 
 				case 7:
            		{
+					cout << "Hasta luego.\n";
                 	//Registrar Estadía
             	}
             	break;
 
 				case 8:
            		{
+					cout << "Hasta luego.\n";
                 	//Finalizar Estadía
             	}
             	break;
 
 				case 9:
            		{
+					cout << "Hasta luego.\n";
                 	//Calificar Estadía
             	}
             	break;
 
 				case 10:
            		{
+					cout << "Hasta luego.\n";
                 	//Comentar Calificación
             	}
             	break;
 
 				case 11:
            		{
+					cout << "Hasta luego.\n";
                 	//Consulta de Usuario
             	}
             	break;
 
 				case 12 : //Consulta de Hostal
 				{
-					map<string, DtHostal> hostales = IHostal->listarHostales();
+					cout << "Hasta luego.\n";
+					/*map<string, DtHostal> hostales = IHostal->listarHostales();
     				map<string , DtHostal> :: iterator i;
 					if(hostales.empty())
 					{
@@ -1480,10 +1487,62 @@ int main()
     						}
 						
 						} 
-					}
+					}*/
 				}
 				break ; 
-
+				case 13:
+           		{
+					cout << "Hasta luego.\n";
+            	}
+				break ; 
+				case 14:
+           		{
+					cout << "Hasta luego.\n";
+            	}
+				break ; 
+				case 15:
+           		{
+					cout << "Hasta luego.\n";
+            	}
+				break ;
+				case 16:
+           		{
+					cout << "Hasta luego.\n";
+            	}
+				break ;
+				case 17:
+           		{
+					cout << "Hasta luego.\n";
+            	}
+				break ;
+				case 18:
+           		{
+					cout << "Hasta luego.\n";
+            	}
+				break ;
+				case 19:
+				{
+					int hora;
+					int dia;
+					int mes;
+					int anio;
+					cout << "Ingrese fecha y hora: \n";
+					cout << "Hora: ";
+					cin >> hora;
+					cout << "Dia: ";
+					cin >> dia;
+					cout << "Mes: ";
+					cin >> mes;
+					cout << "Año[aaaa]: ";
+					cin >> anio;
+					try{
+					DtFechaHora horaActual = DtFechaHora(hora, dia, mes, anio);
+					iFecha->setFechaHora(horaActual);
+					}catch (const invalid_argument& ia){
+						cout << "\nError: " << ia.what() << "\n";
+					}
+				}
+				break;
 				case 0:
            		{
                 	cout << "Hasta luego.\n";

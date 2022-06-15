@@ -13,6 +13,6 @@ class DtReservaIndividual : public DtReserva {
 	public :
 		DtReservaIndividual();
 		~DtReservaIndividual();
-		DtReservaIndividual(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo); 
+		DtReservaIndividual(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, std::string estado, float costo); 
 };
 #endif

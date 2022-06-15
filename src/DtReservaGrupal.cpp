@@ -1,20 +1,19 @@
 #include "../include/DtReservaGrupal.hpp"
 
-		ReservaGrupal::DtReservaGrupal(){}
+		DtReservaGrupal::DtReservaGrupal(){}
 		
-		ReservaGrupal::~DtReservaGrupal(){}
+		DtReservaGrupal::~DtReservaGrupal(){}
 		
-		ReservaGrupal::DtReservaGrupal(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, int cantGrupoHues){
+		DtReservaGrupal::DtReservaGrupal(int codigo,DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, std::string estado, float costo, int cantGrupHuespedes){
+			codigo = codigo ;
 			checkIn = checkIn ;
 			checkOut = checkOut ;
 			fechaRealizada = fechaRealizada ;
 			estado = estado ;
 			costo = costo ;
-			cantGrupoHues = cantGrupoHues;
+			cantGrupHuespedes = cantGrupHuespedes;
 		} 
 		
-        int ReservaGrupal::getCantH(){
-			return this->cantH;
+        int DtReservaGrupal::getCantGrupHuespedes(){
+			return this->cantGrupHuespedes;
 		}
-
-#endif

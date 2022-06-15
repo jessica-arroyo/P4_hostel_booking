@@ -13,17 +13,17 @@
 #include <iostream>
 using namespace std;
 
-class ControladorUsuario: public: IUsuario {
+class ControladorUsuario: public IUsuario {
   private:
     ControladorUsuario() ;
     static ControladorUsuario *instancia ;
 
-    std::map<std::string , Empleado*> empleados;
-    std::map<std::string , Huesped*> huespedes;
+    map<string , Empleado*> empleados;
+    map<string , Huesped*> huespedes;
   
   public:
     ~ControladorUsuario() ;
-    static ControladoUsuario *getInstancia();
+    static ControladorUsuario *getInstancia();
     
     bool existeEmpleado(string emailUser) ;
     bool existeHuesped(string emailUser) ;
@@ -31,8 +31,10 @@ class ControladorUsuario: public: IUsuario {
     void confirmarAltaEmpleado(string nombre, string email, string password, TipoCargo cargo) ;
     void confirmarAltaHuesped(string nombre, string email, string password, bool esFinger) ;
     
-    DtEmpleado mostrarEmpleado(DtEmpleado emailEmpleado);  
-    DtHuesped mostrarHuesped(DtHuesped emailHuesped); 
+    //consulta de usuario
+
+    DtEmpleado mostrarEmpleado(string emailEmpleado);  
+    DtHuesped mostrarHuesped(string emailHuesped); 
 
 
     //las siguientes 5 no van más.
@@ -45,12 +47,15 @@ class ControladorUsuario: public: IUsuario {
     
     //las que comenté de acá abajo son para que compile sin que estén hechas aun.
     //map<string, Empleado *> listarEmpleadosNoAsignados(string nombreHostal);
-    //void asignarEmpleado(string emailEmpleado, TipoCargo cargo);
+    //void asignarEmpleado(string emailEmpleado, TipoCargo cargo); //el TipoCargo se pasó al crear el usuario.
     //void cancelarAsignarEmpleado();  
+    map<string, DtHuesped> listarHuespedes();
+	map<string, DtEmpleado> listarEmpleados();
+	//a
     //map<string, Huesped *> listarHuespedes(int codigoHabitacion);
     //void confirmarHuesped(string emailHuespedReserva);
     //void agregarHuesped(string emailHuesped);
-    //map<string, Usuario *> listarUsuarios();
+    
     
     //void encontrarHuesped(string emailHuespedReserva);
     

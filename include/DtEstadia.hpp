@@ -8,18 +8,23 @@
 #include <iterator>
 #include <iostream>
 
+using namespace std ;
+
 class DtEstadia
 {
 private:
-    DtFechaHora checkIn, checkout;
-    std::string promo;
+    DtFechaHora checkIn, checkOut;
+    string promo;
 public:
     DtEstadia();
+    DtEstadia(DtFechaHora checkIn, DtFechaHora checkOut, string promo);
     ~DtEstadia();
-    std::string getPromo ();
-	DtFechaHora getCheckIn ();
-	DtFechaHora getCheckOut ();
+    string getPromo();
+	DtFechaHora getCheckIn();
+	DtFechaHora getCheckOut();
 };
 
 
 #endif
+
+

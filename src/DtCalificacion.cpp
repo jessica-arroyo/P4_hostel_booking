@@ -1,11 +1,20 @@
+
 #include "../include/DtCalificacion.hpp"
     
-    
+using namespace std ;
+
     DtCalificacion::DtCalificacion(){}
-		
+	
+	DtCalificacion::DtCalificacion(DtFechaHora fecha, string comentario, string respuesta, int puntaje){
+		this->fecha = fecha ;
+		this->comentario = comentario ;
+		this->respuesta = respuesta ;
+		this->puntaje = puntaje ;
+	}
+
 	DtCalificacion::~DtCalificacion(){}
 		
-	std::string DtCalificacion::getRespuesta() {
+	string DtCalificacion::getRespuesta() {
 			return this->respuesta;
 		}
 		
@@ -13,12 +22,11 @@
 			return this->fecha;
 		}
 		
-	std::string DtCalificacion::getComentario () {
+	string DtCalificacion::getComentario () {
 			return this->comentario;
 		}
 		
 	int DtCalificacion::getPuntaje() {
 			return this->puntaje;
 		}
-
-#endif        
+      

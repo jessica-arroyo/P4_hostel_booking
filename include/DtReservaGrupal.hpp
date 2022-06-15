@@ -10,11 +10,11 @@
 
 class DtReservaGrupal : public DtReserva {
 	private : 
-        int cantGrupoHues;
+        int cantGrupHuespedes;
 	public :
 		DtReservaGrupal();
 		~DtReservaGrupal();
-		DtReservaGrupal(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, int cantGrupoHues); 
-        int getCantH();
+		DtReservaGrupal(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, std::string estado, float costo, int cantGrupHuespedes); 
+        int getCantGrupHuespedes();
 };
 #endif

@@ -1,31 +1,35 @@
 #include "../include/ControladorUsuario.hpp"
 
+using namespace std;
 
-ControladorUsuario::ControladorUsuario() {
-}
+
 
 ControladorUsuario::~ControladorUsuario() 
 {
-	map<std::string , Empleado*>::iterator i = empleados.begin();
+	/*map<string , Empleado*>::iterator i = empleados.begin();
 	while (i != empleados.end())
 	{
 		delete i->second;
 		i++;
 	}
-	map<std::string , Huesped*>::iterator i = huespedes.begin();
+	map<string , Huesped*>::iterator i = huespedes.begin();
 	while (i != huespedes.end())
 	{
 		delete i->second;
 		i++;
-	}
+	}*/
 }
 
 ControladorUsuario *ControladorUsuario::instancia = NULL;
 
+ControladorUsuario::ControladorUsuario() {
+}
+
 ControladorUsuario *ControladorUsuario::getInstancia()
 {
-    if (instancia == NULL)
+    if (instancia == NULL){
         instancia = new ControladorUsuario();
+	}
     return instancia;
 }
 
@@ -44,7 +48,7 @@ void ControladorUsuario::confirmarAltaEmpleado(string nombre, string email, stri
 {     
 	Empleado *e = new Empleado(nombre,email,password,cargo);
         this->empleados[email] = e;
-	e->hostal=NULL;
+	e->setHostal(NULL);
 }
 void ControladorUsuario::confirmarAltaHuesped(string nombre, string email, string password, bool esFinger)
 {     
@@ -55,26 +59,31 @@ void ControladorUsuario::confirmarAltaHuesped(string nombre, string email, strin
 
 // consulta de Usuario 
 
-map<string, Usuario *> ControladorUsuario::listarUsuarios() 
+map<string, DtEmpleado> ControladorUsuario::listarEmpleados() 
 {
-	std::map<string, DtUsuario> res;
-	std::map<string , Empleado*>::iterator i = empleados.begin();
+	map<string, DtEmpleado> res;
+	map<string , Empleado*>::iterator i = empleados.begin();
 	Empleado *e;
 	while(i != empleados.end())
 	{
 		e = i->second;
-		res.insert(make_pair(i->first, e.getDtUsuario()));
+		res.insert(make_pair(i->first, e->getDtEmpleado()));
 	
 		i++;
 	}
-	std::map<string , Huesped*>::iterator i = huespedes.begin();
+	return res;
+}
+map<string, DtHuesped> ControladorUsuario::listarHuespedes() 
+{
+	map<string, DtHuesped> res;
+	map<string , Huesped*>::iterator m = huespedes.begin();
 	Huesped *h;
-	while(i != huespedes.end())
+	while(m != huespedes.end())
 	{
-		h = i->second;
-		res.insert(make_pair(i->first, h.getDtUsuario()));
+		h = m->second;
+		res.insert(make_pair(m->first, h->getDtHuesped()));
 	
-		i++;
+		m++;
 	}
 	
 	return res;
@@ -89,9 +98,9 @@ DtHuesped ControladorUsuario::mostrarHuesped(string emailHuesped)
 {
     return huespedes.find(emailHuesped)->second->getDtHuesped();
 } 
-
+//map<string, DtHuesped> ControladorUsuario::listarHuespedes(){}
     //map<string, Empleado *> ControladorUsuario::listarEmpleadosNoAsignados(string nombreHostal){}
-    //void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo){}
+    //void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo){} //el TipoCargo se pasó al crear el usuario.
     //void ControladorUsuario::cancelarAsignarEmpleado(){}
     //map<string, Huesped *> ControladorUsuario::listarHuespedes(int codigoHabitacion){}
     //void ControladorUsuario::confirmarHuesped(string emailHuespedReserva){}

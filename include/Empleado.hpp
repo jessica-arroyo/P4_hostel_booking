@@ -32,7 +32,7 @@ class Empleado: public Usuario  {
     void setCargo(TipoCargo cargo);
     bool estaAsignado(string nombreHostal);
     DtEmpleado getDtEmpleado(); //va sin puntero creo. 
-    void asignarHostalAEmpleado(Hostal *nuevohostal);
+    void setHostal(Hostal *nuevohostal);
     //void entrarHostal();
   
     

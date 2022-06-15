@@ -12,7 +12,7 @@ class ReservaIndividual : public Reserva {
 	private : 
 	public :
 		~ReservaIndividual();
-		ReservaIndividual(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues); 
+		ReservaIndividual(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues); 
 		setearValoresIndividual(float precio);
 };
 #endif

@@ -10,20 +10,16 @@ CCFLAGS = -Wall -g -lstdc++
 HDIR    = include
 CPPDIR  = src
 ODIR    = obj
-TESTDIR = test
+#TESTDIR = test
 
 PRINCIPAL=principal
-TESTER=tester
+#TESTER=tester
 FABRICA=Fabrica
 
-MODULOS = $(FABRICA) Asignatura Asistencia Clase ControladorAsignatura ControladorClase \
-		  ControladorUsuario Docente DtAsignatura DtClase DtDocente DtEstudiante DtFechaHora \
-		  DtMensaje DtModalidad DtNotificacion DtSuscripcion DtUsuario Estudiante IAsignatura \
-		  IClase IObserver IReloj IUsuario Mensaje Modalidad Monitoreo Practico Reloj Reproduccion \
-		  SujetoObservado Teorico Usuario altaAsignatura altaUsuario asignarDocenteAAsignatura \
-		  asistenciaAClaseEnVivo consultaNotificaciones eliminacionAsignatura envioDeMensaje \
-		  finalizacionDeAsistenciaAClaseEnVivo finalizacionDeClase inicioDeClase inscripcionAAsignatura \
-		  subscribir tiempoDeAsistenciaAClase tiempoDeDictadoDeClases
+MODULOS = $(FABRICA) Calificacion ControladorHostal ControladorReserva ControladorUsuario DtCalificacion \
+		  DtEmpleado DtEstadia DtFechaHora DtHabitacion DtHostal DtHuesped DtNotificacion DtReserva DtReservaGrupal \
+		  DtReservaIndividual DtUsuario Empleado Estadia Fecha Habitacion Hostal Huesped IFecha IHostal \
+		  IReserva IUsuario Reserva ReservaGrupal ReservaIndividual Usuario
 
 HPPS = $(MODULOS:%=$(HDIR)/%.hpp)
 CPPS = $(MODULOS:%=$(CPPDIR)/%.cpp)
@@ -36,9 +32,10 @@ compilar: $(OS)
 ejecutar: $(PRINCIPAL)
 	./$(PRINCIPAL)
 
-clean: @-rm $(ODIR)/*.o 2>/dev/null || : ;\
+clean: 
+	@-rm $(ODIR)/*.o 2>/dev/null || : ;\
 	rm $(PRINCIPAL) 2>/dev/null || : ;\
-	rm test/*.sal 2>/dev/null || : ;\
+	#rm test/*.sal 2>/dev/null || : ;\
 	echo Limpio.
 	
 

@@ -2,7 +2,7 @@
 
 using namespace std ;
 
-Hostal::Hostal(string nombre, string direccion, int telefono,0){
+Hostal::Hostal(string nombre, string direccion, int telefono, float calificacionPromedio){
     this->nombre = nombre ;
     this->direccion = direccion ;
     this->telefono = telefono ;
