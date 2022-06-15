@@ -21,7 +21,7 @@ class ControladorHostal: public IHostal {
         ControladorHostal() ;
         static ControladorHostal *_instancia ;
         map<string,Hostal*> SetHostales ;
-        map<string,Reserva*> SetReservas ;
+    
 
     public:
         ~ControladorHostal() ;
