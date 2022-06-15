@@ -6,7 +6,7 @@ DtEstadia::DtEstadia() {}
 
 DtEstadia::~DtEstadia() {} 
 
-DtEstadia::DtEstadia(DtFechaHora checkIn, DtFecha checkOut, string promo){
+DtEstadia::DtEstadia(DtFechaHora checkIn, DtFechaHora checkOut, string promo){
     this->checkIn = checkIn ;
     this->checkOut = checkOut ;
     this->promo = promo ;

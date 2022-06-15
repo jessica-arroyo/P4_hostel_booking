@@ -4,12 +4,11 @@
 		
 		DtReservaIndividual::~DtReservaIndividual(){}
 		
-		DtReservaIndividual::DtReservaIndividual(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo){
+		DtReservaIndividual::DtReservaIndividual(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, std::string estado, float costo){
+			codigo = codigo ;
 			checkIn = checkIn ;
 			checkOut = checkOut ;
 			fechaRealizada = fechaRealizada ;
 			estado = estado ;
 			costo = costo ;
 		} 
-
-#endif

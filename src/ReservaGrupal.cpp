@@ -7,7 +7,8 @@
 
 ReservaGrupal::~ReservaGrupal(){}
 
-ReservaGrupal::ReservaGrupal(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo,int cantH , Habitacion* hab, Huesped* hues, Huesped * grupHuespedes){
+ReservaGrupal::ReservaGrupal(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo,int cantH , Habitacion* hab, Huesped* hues, Huesped * grupHuespedes){
+	codigo = codigo ;
 	checkIn = checkIn ;
 	checkOut = checkOut ;
 	fechaRealizada = fechaRealizada ;

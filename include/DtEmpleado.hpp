@@ -7,14 +7,14 @@ using namespace std;
 
 class DtEmpleado: public DtUsuario {
     private:
-    TipoCargo cargo;
+    string cargo;
     string nombreHostal;
 
     public:
     DtEmpleado();
     ~DtEmpleado();
-    DtEmpleado(string nombre, string email ,string password , TipoCargo cargo, string nombreHostal) ;
-    TipoCargo getCargo() ;
+    DtEmpleado(string nombre, string email ,string password , string cargo, string nombreHostal) ;
+    string getCargo() ;
     string getNombreHostal() ;
 };
 

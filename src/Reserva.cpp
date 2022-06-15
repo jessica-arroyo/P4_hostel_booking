@@ -82,12 +82,16 @@ Habitacion* Reserva::getHabitacion(){
 Huesped* Reserva::getHuesped(){
 	return this->hues;
 }
+
+DtReserva Reserva::getDtReserva(){
+	DtReserva dtr = DtReserva(this->codigo, this->checkIn, this->checkOut, this->fechaRealizada, this->estado, this->costo);
+    return dtr;
+}
+
 /*
 std::string Reserva::getEmailHuesped (){}
 
 float Reserva::getNumeroHabitacion (){}
-
-DtReserva Reserva::getDtReserva(){}
 
 Reserva::obtenerReserva(){}
 

@@ -21,7 +21,7 @@ int DtFechaHora::getAnio() {
 
 DtFechaHora::DtFechaHora(){}
 
-DtFechaHora::DtFechaHora(int dia, int mes, int anio) {
+DtFechaHora::DtFechaHora(int hora, int dia, int mes, int anio) {
     if (hora >= 24 && dia >= 1 && dia <=31 && mes >= 1 && mes <=12 && anio >= 1900 ) { //no es hora<=24 ?
         this->hora = hora ;
         this->dia = dia;

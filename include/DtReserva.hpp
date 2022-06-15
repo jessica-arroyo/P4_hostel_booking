@@ -2,7 +2,6 @@
 #define DTRESERVA_HPP
 
 #include "../include/DtFechaHora.hpp"
-#include "../include/TipoEstado.hpp"
 
 #include <map>
 #include <set>
@@ -13,17 +12,18 @@ class DtReserva {
 	protected : 
         int codigo;
         DtFechaHora checkIn, checkOut, fechaRealizada;
-		TipoEstado estado;
+		std::string estado;
 		float costo;
 	public :
-		Reserva();
-		~Reserva();
+		DtReserva();
+		DtReserva(int codigo,DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, std::string estado, float costo);
+		~DtReserva();
 		
 		int getCodigo () ;
 		DtFechaHora getCheckIn () ;
 		DtFechaHora getCheckOut () ;
 		DtFechaHora getFechaRealizada () ;
-		TipoEstado getEstado () ;
+		std::string getEstado () ;
 		float getCosto ();
 };
 #endif

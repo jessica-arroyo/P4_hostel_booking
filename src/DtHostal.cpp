@@ -1,15 +1,16 @@
 #include "../include/DtHostal.hpp"
 
 
-DtHostal::DtHostal(string nom, string direc, int tel, string calProm){
+DtHostal::DtHostal(string nom, string direc, int tel, float calificacionPromedio){
     this->nombre = nom ;
     this->direccion = direc ;
     this->telefono = tel ;
-    this->calificacionPromedio = calProm ;
+    this->calificacionPromedio = calificacionPromedio ;
 }
 
 DtHostal::~DtHostal() {} 
 
+DtHostal::DtHostal() {} 
 
 string DtHostal::getNombre(){
     return nombre ;
@@ -23,6 +24,6 @@ int DtHostal::getTelefono(){
     return telefono ;
 }
 
-int DtHostal::getCalPromedio(){
+float DtHostal::getCalificacionPromedio(){
     return calificacionPromedio ;
 }

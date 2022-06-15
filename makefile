@@ -17,7 +17,7 @@ PRINCIPAL=principal
 FABRICA=Fabrica
 
 MODULOS = $(FABRICA) Calificacion ControladorHostal ControladorReserva ControladorUsuario DtCalificacion \
-		  DtEmpleado DtEstadia DtFechaHora DtHabitacion DtHostal DtHuesped DtNotificaion DtReserva DtReservaGrupal \
+		  DtEmpleado DtEstadia DtFechaHora DtHabitacion DtHostal DtHuesped DtNotificacion DtReserva DtReservaGrupal \
 		  DtReservaIndividual DtUsuario Empleado Estadia Fecha Habitacion Hostal Huesped IFecha IHostal \
 		  IReserva IUsuario Reserva ReservaGrupal ReservaIndividual Usuario
 
@@ -32,9 +32,10 @@ compilar: $(OS)
 ejecutar: $(PRINCIPAL)
 	./$(PRINCIPAL)
 
-clean: @-rm $(ODIR)/*.o 2>/dev/null || : ;\
+clean: 
+	@-rm $(ODIR)/*.o 2>/dev/null || : ;\
 	rm $(PRINCIPAL) 2>/dev/null || : ;\
-	rm test/*.sal 2>/dev/null || : ;\
+	#rm test/*.sal 2>/dev/null || : ;\
 	echo Limpio.
 	
 

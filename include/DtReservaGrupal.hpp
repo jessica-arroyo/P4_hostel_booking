@@ -14,7 +14,7 @@ class DtReservaGrupal : public DtReserva {
 	public :
 		DtReservaGrupal();
 		~DtReservaGrupal();
-		DtReservaGrupal(DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, int cantGrupHuespedes); 
+		DtReservaGrupal(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, std::string estado, float costo, int cantGrupHuespedes); 
         int getCantGrupHuespedes();
 };
 #endif

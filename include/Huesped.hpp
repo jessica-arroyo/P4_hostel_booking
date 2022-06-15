@@ -19,7 +19,7 @@ class Huesped: public Usuario  {
     private:
     bool esFinger;
     Estadia *estadia ;
-    map<string , Hostales *> hostalesHuesped; //hostales con los que está relacionado el huesped
+    map<string , Hostal *> hostalesHuesped; //hostales con los que está relacionado el huesped
 
     //la estadia es una sola por huesped. Dos estadías creo que no se solapan.
     public:
@@ -30,7 +30,7 @@ class Huesped: public Usuario  {
     void setEsFinger(bool esFinger);
     Estadia* getEstadia() ;
     void setEstadia(Estadia *estadia) ;
-    map<string , Hostales *> getHostalesHuesped() ;
+    map<string , Hostal *> getHostalesHuesped() ;
     void anadirHostalAlHuesped(Hostal *hostal) ; 
     DtHuesped getDtHuesped();
     //void accesoHuesped(string);

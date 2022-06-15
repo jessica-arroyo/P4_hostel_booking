@@ -1,31 +1,39 @@
 #include "../include/DtReserva.hpp"
 
-		Reserva::Reserva(){}
+		DtReserva::DtReserva(){}
 		
-		Reserva::~Reserva(){}
+		DtReserva::DtReserva(int codigo,DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, std::string estado, float costo){
+			codigo = codigo ;
+			checkIn = checkIn ;
+			checkOut = checkOut ;
+			fechaRealizada = fechaRealizada ;
+			estado = estado ;
+			costo = costo ;
+		}
 		
-		int Reserva::getCodigo () {
+		DtReserva::~DtReserva(){}
+		
+		int DtReserva::getCodigo () {
 			return this->codigo;
 		}
 		
-		DtFechaHora Reserva::getCheckIn () {
+		DtFechaHora DtReserva::getCheckIn () {
 			return this->checkIn;
 		}
 		
-		DtFechaHora Reserva::getCheckOut () {
+		DtFechaHora DtReserva::getCheckOut () {
 			return this->checkOut;
 		}
 		
-		DtFechaHora Reserva::getFechaRealizada () {
+		DtFechaHora DtReserva::getFechaRealizada () {
 			return this->fechaRealizada;
 		}
 		
-		TipoEstado Reserva::getEstado () {
+		std::string DtReserva::getEstado () {
 			return this->estado;
 		}
 		
-		float Reserva::getCosto (){
+		float DtReserva::getCosto (){
 			return this->costo;
 		}
 		
-#endif

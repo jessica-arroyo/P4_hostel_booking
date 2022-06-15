@@ -7,8 +7,8 @@
 
 using namespace std ;
 
-    Estadia::Estadia() {}; 
-    Estadia::~Estadia(){};
+    Estadia::Estadia() {} 
+    Estadia::~Estadia(){}
 
     Estadia::Estadia(DtFechaHora checkIn, DtFechaHora checkOut, string promo){
         this->checkIn = checkIn ;
@@ -18,43 +18,43 @@ using namespace std ;
 
     void Estadia::setCheckIn (DtFechaHora checkIn){
         this->checkIn = checkIn;
-    };
+    }
 
 	void Estadia::setCheckOut (DtFechaHora checkOut){
         this->checkOut = checkOut;
-    };
+    }
 
     void Estadia::setPromo (string promo){
         this->promo = promo;
-    } ;
+    } 
 
     void Estadia::agregarCalificacion(Calificacion *cal) {
         this->calificacion = cal;
-    };
+    }
 
     void Estadia::agregarHabitacionAEstadia(Habitacion *hab) {
         this->habitacion = hab;
-    };
+    }
 
     string Estadia::getPromo () {
         return this->promo;
-    };
+    }
 
 	DtFechaHora Estadia::getCheckIn () {
         return this->checkIn;
-    };
+    }
 
 	DtFechaHora Estadia::getCheckOut () {
         return this->checkOut;
-    };
+    }
 
 	Estadia* Estadia::getCalificacion (){
         return this->calificacion;
-    };
+    }
 
 	Habitacion* Estadia::getHabitacion(){
         return this->habitacion;
-    };
+    }
 
     //Estadia::create(DtFechaHora checkin,DtFechaHora checkout,std::string promo,Calificacion *cal,Habitacion *hab){};  
     //Estadia::setearValoresIniciales(DtFechaHora checkin,DtFechaHora checkout,std::string promo,Calificacion *cal,Habitacion *hab){};

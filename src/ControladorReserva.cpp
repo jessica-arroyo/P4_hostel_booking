@@ -24,13 +24,13 @@ ControladorReserva *ControladorReserva::_instancia = NULL;
 
 ControladorReserva *ControladorReserva::getInstancia()
 {
-    if (instancia == NULL)
-        instancia = new ControladorReserva();
-    return instancia;
+    if (_instancia == NULL)
+        _instancia = new ControladorReserva();
+    return _instancia;
 }
 
-//void ControladorReserva::confirmarReserva(){}
-//void ControladorReserva::cancelarReserva(){}
+void ControladorReserva::confirmarReserva(){}
+void ControladorReserva::cancelarReserva(){}
 //set<DtCalificacion> ControladorReserva::chequearCalificacion(string nombreHostal){}
 //map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, string emailHuesped){}
 //void ControladorReserva::inscribirEstadia(DtReserva reserva){}

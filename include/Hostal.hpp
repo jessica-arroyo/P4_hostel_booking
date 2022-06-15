@@ -28,7 +28,7 @@ class Hostal {
     
   
   public:
-    Hostal(string nombre, string direccion, int telefono,0) ; //empieza con calificacionPromedio=0.
+    Hostal(string nombre, string direccion, int telefono, float calificacionPromedio) ; //empieza con calificacionPromedio=0.
     ~Hostal() ;
     string getNombre() ;
     string getDireccion() ;

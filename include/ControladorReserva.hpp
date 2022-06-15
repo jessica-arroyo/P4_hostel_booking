@@ -29,8 +29,8 @@ private:
 public:
     ~ControladorReserva();
     static ControladorReserva *getInstancia() ;
-    //void confirmarReserva();
-    //void cancelarReserva();
+    void confirmarReserva();
+    void cancelarReserva();
     //set<DtCalificacion> chequearCalificacion(string nombreHostal);
     //map<int,DtReserva> listarReservas(string nombreHostal, string emailHuesped);
     //void inscribirEstadia(DtReserva reserva);

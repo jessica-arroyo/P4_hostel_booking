@@ -13,17 +13,17 @@
 #include <iostream>
 using namespace std;
 
-class ControladorUsuario: public: IUsuario {
+class ControladorUsuario: public IUsuario {
   private:
     ControladorUsuario() ;
-    static ControladorUsuario *_instancia ;
+    static ControladorUsuario *instancia ;
 
     map<string , Empleado*> empleados;
     map<string , Huesped*> huespedes;
   
   public:
     ~ControladorUsuario() ;
-    static ControladoUsuario *getInstancia();
+    static ControladorUsuario *getInstancia();
     
     bool existeEmpleado(string emailUser) ;
     bool existeHuesped(string emailUser) ;
@@ -32,7 +32,6 @@ class ControladorUsuario: public: IUsuario {
     void confirmarAltaHuesped(string nombre, string email, string password, bool esFinger) ;
     
     //consulta de usuario
-    map<string, Usuario *> listarUsuarios();
 
     DtEmpleado mostrarEmpleado(string emailEmpleado);  
     DtHuesped mostrarHuesped(string emailHuesped); 
@@ -50,7 +49,9 @@ class ControladorUsuario: public: IUsuario {
     //map<string, Empleado *> listarEmpleadosNoAsignados(string nombreHostal);
     //void asignarEmpleado(string emailEmpleado, TipoCargo cargo); //el TipoCargo se pasó al crear el usuario.
     //void cancelarAsignarEmpleado();  
-    //map<string, Huesped *> listarHuespedes(); //a
+    map<string, DtHuesped> listarHuespedes();
+	map<string, DtEmpleado> listarEmpleados();
+	//a
     //map<string, Huesped *> listarHuespedes(int codigoHabitacion);
     //void confirmarHuesped(string emailHuespedReserva);
     //void agregarHuesped(string emailHuesped);
