@@ -1275,7 +1275,7 @@ int main()
 					map<int , DtHabitacion> :: iterator iR2;
 					if(setHabitOp.empty())
 					{
-						throw invalid_argument ("No hay habitaciones registradas") ;
+						throw invalid_argument ("No hay habitaciones disponibles") ;
 					}
 					else 
 					{
