@@ -1435,7 +1435,7 @@ int main()
 				{
 					cout << "Hasta luego.\n";
 					/*map<string, DtHostal> hostales = IHostal->listarHostales();
-    				map<string , DtHostal> :: iterator i;
+    					map<string , DtHostal> :: iterator i;
 					if(hostales.empty())
 					{
 						throw invalid_argument ("No hay hostales registrados") ;
@@ -1491,7 +1491,67 @@ int main()
 				}
 				break ; 
 				case 13:
-           		{
+           			{	/*map<string, DtHostal> hostales = iHostal->listarHostales();
+    					map<string , DtHostal> :: iterator i;
+					if(hostales.empty())
+					{
+						throw invalid_argument ("No hay hostales registrados") ;
+					}
+					else 
+					{
+    					int j = 1;
+    					cout<< "Lista de Hostales /n" ;
+    					for(i=hostales.begin(); i != hostales.end(); i++){
+        					cout<< j <<"Nombre: " << i->second.getNombre() << "/n";
+							cout<< "Dirección:" << i->second.getDireccion() << "/n";
+							cout<< "Teléfono:" << i->second.getTelefono() << "/n";
+							cout<< "Calificación Promedio:" << i->second.getCalificacionPromedio() << "/n";
+        					j++;
+    					}
+
+						cout<<"Ingrese el nombre del hostal del que desea ver las reservas." ;
+						string nomhos ;
+						cin>> nomhos ;
+						while(!iHostal->existeHostal(nomhos)){
+							cout<< "El nombre ingresado no corresponde a un hostal del sistema." ;
+							cout<<"Ingrese un nombre correspondiente a un hostal del sistema." ;
+							cin>>nomhos ;
+						}
+						map<string, DtReserva> reservas = iReserva->obtenerReservas(nomhos) ;
+    					        map<string, DtReserva>::iterator i; 
+						if(reservas.empty())
+						{
+							throw invalid_argument ("No hay reservas en ese hostal") ;
+						}
+						else 
+						{
+    						int j = 1;
+    						cout<< "Lista de Reservas /n" ;
+    						for(i=reservas.begin(); i != reservas.end(); i++){
+        							cout<< j <<"Código: " << i->second.getCodigo() << "/n";
+								cout<< "CheckIn:" << i->second.getCheckIn() << "/n";
+								cout<< "CheckOut:" << i->second.getCheckOut() << "/n";
+								cout<< "Fecha realizada:" << i->second.getFechaRealizada() << "/n";
+								cout<< "Estado:" << i->second.getEstado() << "/n";
+								cout<< "Costo:" << i->second.getCosto() << "/n";
+							if (dynamic_cast<DtReservaGrupal *>(i->second)!=NULL))
+							{	
+								set<string>::iterator it; 
+								cout<< "Huespedes /n" ;
+								int k = 1;
+								for(it=i->second.begin(); it != i->second.end(); i++)
+								{
+									cout<< "Nombre:" << i->second << "/n";
+									k++;
+								}
+							}
+        						j++;
+    						}
+						
+						} 
+					}*/
+				
+				
 					cout << "Hasta luego.\n";
             	}
 				break ; 
