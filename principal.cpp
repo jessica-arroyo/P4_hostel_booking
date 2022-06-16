@@ -1459,8 +1459,180 @@ int main()
             	break;
 
 				case 12 : //Consulta de Hostal
-				{
-					cout << "Hasta luego.\n";
+				{	
+					map<string, DtHostal> loshostales = iHostal->listarHostales();
+
+					if(loshostales.empty())
+					{
+						throw invalid_argument ("No hay hostales registrados") ;
+					}
+					else 
+					{
+						map<string , DtHostal> :: iterator ih;
+    					int j = 1;
+    					cout<< "\nLista de Hostales\n" ;
+    					for(ih=loshostales.begin(); ih != loshostales.end(); ih++){
+							cout<< j <<"Nombre: " << ih->second->getNombre() << "\n";
+							cout<< "Dirección: " << ih->second->getDireccion() << "\n";
+							cout<< "Teléfono: " << ih->second->getTelefono() << "\n";
+							cout<< "Calificación Promedio: " << ih->second->getCalificacionPromedio() << "\n";
+        					j++;
+    					}
+
+						cin.clear(); 
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+						cout<<"\nIngrese el nombre del hostal del que desea ver la información.\n" ;
+						string nomhos ;
+						getline(cin,nomhos) ;
+						while(!iHostal->existeHostal(nomhos)){
+							cout<< "\nEl nombre ingresado no corresponde a un hostal del sistema.\n" ;
+							cout<<"\nIngrese un nombre correspondiente a un hostal del sistema.\n" ;
+							getline(cin,nomhos) ;
+						}
+	
+						DtHostal infoh = iHostal->infoHostal(nomhos) ;
+						cout<< "\nInformación básica del hostal seleccionado:\n" ;
+						cout<<"Nombre: " << infohos->getNombre() << "\n";
+						cout<< "Dirección: " << infohos->getDireccion() << "\n";
+						cout<< "Teléfono: " << infohos->getTelefono() << "\n";
+						cout<< "Calificación Promedio: " << infohos->getCalificacionPromedio() << "\n";
+
+
+						map<int, DtHabitacion> lashabitaciones = iHostal->listarHabitaciones(nomhos); //corregir el parametro en el Controlador.
+
+						if(lashabitaciones.empty()){ 
+							cout<<"\nNo hay calificaciones registradas\n" ; 
+							cout<<"\nNo hay habitaciones registradas\n" ; //acá hacerlo con excepcion?
+							cout<<"\nNo hay reservas registradas\n" ;
+						}
+						else{
+							map<int , DtHabitacion> :: iterator ihab; // Sabiendo que hay habitaciones, se define ihab.
+							map<int, DtReserva> lasreservas = iHostal->listarReservas(nomhos); //corregir el parametro en el Controlador.
+																		
+						if(lasreservas.empty()){
+							cout<<"\nNo hay calificaciones registradas\n" ; 
+							//Si no hay calificaciones ni reservas, pero sí habitaciones.
+							int k = 1;
+							cout<< "\nLista de Habitaciones del Hostal\n" ;
+							for(ihab=lashabitaciones.begin(); ihab != lashabitaciones.end(); ihab++){
+								cout<< k <<"Numero: " << ihab->second->getNumero() << "\n";
+								cout<< "Precio:" << ihab->second->getPrecio() << "\n";
+								cout<< "Capacidad:" << ihab->second->getCapacidad() << "\n";
+								k++;
+							}
+							cout<<"No hay reservas registradas\n" ;  
+						}
+						else {
+							map<int , DtReserva> :: iterator ires; //Sabiendo que hay reservas, se define ires. 
+							set<DtCalificacion> calificaciones = iHostal->listarCalificaciones(nomhos); //corregir el parametro en el Controlador.
+		
+							if(calificaciones.empty()){
+								cout<<"\nNo hay calificaciones registradas\n" ; 
+								//Si no hay calificaciones, pero sí reservas y habitaciones.
+								map<int , DtHabitacion> :: iterator rhab;
+								int l = 1;
+								cout<< "\nLista de Habitaciones del Hostal\n" ;
+								for(rhab=lashabitaciones.begin(); rhab != lashabitaciones.end(); rhab++){
+									cout<< l <<"Numero: " << rhab->second->getNumero() << "\n";
+									cout<< "Precio:" << rhab->second->getPrecio() << "\n";
+									cout<< "Capacidad:" << rhab->second->getCapacidad() << "\n";
+									l++;
+								}
+		
+								int mr = 1 ;
+								DtReserva dr ;
+								DtReservaGrupal drgrupo ;
+								cout<< "\nLista de Reservas del Hostal\n" ;
+								for(ires=lasreservas.begin(); ires != lasreservas.end(); ires++){
+									cout<< mr <<"Codigo: " << ires->second->getCodigo() << "\n";
+					
+									DtFecha DeCheckIn = ires->second->getCheckIn() ;
+									cout << "CheckIn: " << DeCheckIn->hora << " del " << DeCheckIn->dia << "/" << DeCheckIn->mes << "/" << DeCheckIn->anio << "\n";
+									DtFecha DeCheckOut = ires->second->getCheckOut() ;
+									cout<< "CheckOut: " << DeCheckOut->hora << " del " << DeCheckOut->dia << "/" << DeCheckOut->mes << "/" << DeCheckOut->anio << "\n";
+					
+									DtFecha DeRealizada = ires->second->getFechaRealizada() ;
+									cout<< "Realizada a las: " << DeRealizada->hora << " del " << DeRealizada->dia << "/" << DeRealizada->mes << "/" << DeRealizada->anio << "\n";
+					
+									cout<<"Estado de la Reserva: " << ires->second->getEstado() << "\n";
+									cout<<"Costo de la Reserva: " << ires->second->getCosto() << "\n";
+					
+									dr = ires->second ;
+					
+									if(dynamic_cast <DtReservaGrupal> (dr)){ 
+						
+										drgrupo = dynamic_cast <DtReservaGrupal> (dr) ;
+						 
+										cout<<"Cantidad de Huespedes de la Reserva: " << drgrupo->getCantGrupHuespedes() << "\n";
+									}
+									mr++;
+								}	
+				
+							}
+			else {
+				int lc = 1;
+				cout<< "\nLista de Calificaciones del Hostal\n" ;
+				for(set<DtCalificacion> :: iterator ical=calificaciones.begin(); ical!=calificaciones.end(); ++ical){ //Nota:puse ++ical para ver la diferencia,
+					DtCalificacion c = *ical ; //lo que está current en ical.
+					DtFecha cfecha = c->getFecha() ;
+					cout<< lc << "Fecha: " << cfecha->hora << " del " << cfecha->dia << "/" << cfecha->mes << "/" << cfecha->anio << "\n";
+					cout<<"Puntaje: " << c->puntaje << "\n" ;
+					cout<<"Comentario:" << c->comentario << "\n" ;
+					if(c->respuesta != "vacio"){ //tengo que poner strcompare o así se compara bien? Aparte puedo hacer c->respuesta != NULL ?
+						cout<<"Respuesta:" << c->respuesta << "\n" ;
+					}
+					lc++ ;
+				}
+			
+				map<int , DtHabitacion> :: iterator rchab;
+				int lh = 1;
+				cout<< "\nLista de Habitaciones del Hostal\n" ;
+				for(rchab=lashabitaciones.begin(); rchab != lashabitaciones.end(); rchab++){
+					cout<< lh <<"Numero: " << rchab->second->getNumero() << "\n";
+					cout<< "Precio:" << rchab->second->getPrecio() << "\n";
+					cout<< "Capacidad:" << rchab->second->getCapacidad() << "\n";
+					lh++;
+				}
+			
+				map<int , DtReserva> :: iterator cres;
+				int  = 1r ; 
+				DtReserva dres ;
+				DtReservaGrupal dresgrupo ;
+				cout<< "\nLista de Reservas del Hostal\n" ;
+				for(cres=lasreservas.begin(); cres != lasreservas.end(); cres++){
+					cout<< lr <<"Codigo: " << cres->second->getCodigo() << "\n";
+					
+					DtFecha DeCheckIn = cres->second->getCheckIn() ;
+					cout << "CheckIn: " << DeCheckIn->hora << " del " << DeCheckIn->dia << "/" << DeCheckIn->mes << "/" << DeCheckIn->anio << "\n";
+					DtFecha DeCheckOut = cres->second->getCheckOut() ;
+					cout<< "CheckOut: " << DeCheckOut->hora << " del " << DeCheckOut->dia << "/" << DeCheckOut->mes << "/" << DeCheckOut->anio << "\n";
+					
+					DtFecha DeRealizada = cres->second->getFechaRealizada() ;
+					cout<< "Realizada a las: " << DeRealizada->hora << " del " << DeRealizada->dia << "/" << DeRealizada->mes << "/" << DeRealizada->anio << "\n";
+					
+					cout<<"Estado de la Reserva: " << cres->second->getEstado() << "\n";
+					cout<<"Costo de la Reserva: " << cres->second->getCosto() << "\n";
+					
+					dres = cres->second ;
+					
+					if(dynamic_cast <DtReservaGrupal> (dres)){ 
+						
+						dresgrupo = dynamic_cast <DtReservaGrupal> (dres) ;
+						 
+						cout<<"Cantidad de Huespedes de la Reserva: " << dresgrupo->getCantGrupHuespedes() << "\n";
+					}
+					lr++;
+				}
+				
+				
+			}
+		}	
+	} 
+
+}
+					
+					//cout << "Hasta luego.\n";
 					/*map<string, DtHostal> hostales = IHostal->listarHostales();
     					map<string , DtHostal> :: iterator i;
 					if(hostales.empty())
