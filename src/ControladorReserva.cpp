@@ -78,6 +78,13 @@ map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, strin
 	return SetReservas;
 }
 
+bool ControladorReserva::existeReserva(string codigo){
+    return (SetReservas.find(codigo) != SetReservas.end()) ; // ver el end funca
+}
+
+void ControladorReserva::inscribirEstadia(DtReserva reserva){}
+
+
 void ControladorReserva::confirmarReserva(){}
 void ControladorReserva::cancelarReserva(){}
 //set<DtCalificacion> ControladorReserva::chequearCalificacion(string nombreHostal){}
