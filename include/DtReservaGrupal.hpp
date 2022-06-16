@@ -8,6 +8,8 @@
 #include <iterator>
 #include <iostream>
 
+using namespace std;
+
 class DtReservaGrupal : public DtReserva {
 	private : 
         int cantGrupHuespedes;

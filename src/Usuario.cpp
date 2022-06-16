@@ -29,11 +29,11 @@ void Usuario::setPassword(string password){
     this->password = password;
 }
 
-void Huesped::setNombre(string nombre){
+void Usuario::setNombre(string nombre){
     this->nombre = nombre;
 }
-
-void Huesped::setEmail(string email){
+ 
+void Usuario::setEmail(string email){
     this->email = email;
 }
 

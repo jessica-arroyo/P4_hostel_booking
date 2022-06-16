@@ -3,8 +3,14 @@
 
 #include "Reserva.hpp"
 #include "DtReserva.hpp"
+#include "DtReservaGrupal.hpp"
+#include "DtReservaIndividual.hpp"
+#include "ReservaGrupal.hpp"
+#include "ReservaIndividual.hpp"
 #include "DtCalificacion.hpp"
 #include "DtEstadia.hpp"
+#include "Calificacion.hpp"
+#include "Estadia.hpp"
 #include "IReserva.hpp"
 #include "Huesped.hpp"
 #include "ControladorHostal.hpp"
@@ -40,7 +46,7 @@ public:
     //DtCalificacion obtenerCalificacion(string nombreEstadia); //la estadia no tiene atributo nombre.
     //DtEstadia obtenerEstadia(string nombreEstadia); //la estadia no tiene atributo nombre.
     //set<DtEstadia> listarEstadias(string nombreHostal);
-    //map<int,DtReserva> obtenerReservas(string nombreHostal);
+    map<int,DtReserva> obtenerReservas(string nombreHostal);
     //map<int,DtReserva> listarReservas();
     //set<DtCalificacion> listarCalificaciones();
     //void ingresarComentario(string comentario,string respuesta);

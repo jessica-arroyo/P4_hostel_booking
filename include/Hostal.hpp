@@ -3,7 +3,7 @@
 
 #include "DtHostal.hpp"
 
-//#include "DtEstadia.hpp" si devolvemos un map de DtEstadia en obtenerEstadiasHostal hay que poner este include,
+#include "DtEstadia.hpp" 
 
 class Reserva ;
 class Habitacion ;
@@ -36,8 +36,8 @@ class Hostal {
     int getCalificacionPromedio() ;
     map<int , Habitacion *> getHabitaciones() ;
     map<int , Reserva *> getReservas() ;
-    map<int , Empleado *> getEmpleados() ;
-    map<int , Huesped *> getHuespedes() ;
+    map<string , Empleado *> getEmpleados() ;
+    map<string , Huesped *> getHuespedes() ;
 
     void setNombre(string nom) ;
     void setDireccion(string direc) ;
@@ -64,4 +64,3 @@ class Hostal {
 #include "Huesped.hpp"
 
 #endif
-

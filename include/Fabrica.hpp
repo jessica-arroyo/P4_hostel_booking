@@ -5,6 +5,9 @@
 #include "../include/IHostal.hpp"
 #include "../include/IReserva.hpp"
 #include "../include/IFecha.hpp"
+#include "ControladorHostal.hpp"
+#include "ControladorReserva.hpp"
+#include "ControladorUsuario.hpp"
 #include <cstddef>
 
 class ControladorUsuario;

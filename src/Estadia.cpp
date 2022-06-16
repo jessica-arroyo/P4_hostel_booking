@@ -48,7 +48,7 @@ using namespace std ;
         return this->checkOut;
     }
 
-	Estadia* Estadia::getCalificacion (){
+	Calificacion* Estadia::getCalificacion (){
         return this->calificacion;
     }
 

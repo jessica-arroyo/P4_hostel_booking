@@ -4,6 +4,9 @@
 #include "DtReserva.hpp"
 #include "DtEstadia.hpp"
 #include "DtCalificacion.hpp"
+#include "Reserva.hpp"
+#include "Estadia.hpp"
+#include "Calificacion.hpp"
 
 using namespace std ;
 

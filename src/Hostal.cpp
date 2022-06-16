@@ -35,11 +35,11 @@ map<int , Reserva *> Hostal::getReservas(){
     return reservas ;
 }
 
-map<int , Empleado *> Hostal::getEmpleados(){
+map<string , Empleado *> Hostal::getEmpleados(){
     return empleados ;
 }
 
-map<int , Huesped *> Hostal::getHuespedes(){
+map<string , Huesped *> Hostal::getHuespedes(){
     return huespedes ;
 }
 
@@ -60,15 +60,15 @@ void Hostal::setCalPromedio(int calProm){
 }
 
 void Hostal::agregarReservaAHostal(Reserva *res){
-    this->reservas[res.getCodigo()] = res;
+    this->reservas.insert(make_pair(res->getCodigo(),res));
 }
 
 void Hostal::agregarHuespedAHostal(Huesped *hues){
-    this->huespedes[hues->getEmail()] = hues;
+    this->huespedes.insert(make_pair(hues->getEmail(),hues));
 }
 
 void Hostal::asignarEmpleadoAHostal(Empleado *emp){
-    this->empleados[emp.getEmail()] = emp;
+    this->empleados.insert(make_pair(emp->getEmail(),emp));
 } 
 
 DtHostal Hostal::getDtHostal(){
@@ -77,7 +77,7 @@ DtHostal Hostal::getDtHostal(){
  } 
 
 void Hostal::setHabitacion(Habitacion *hab){
-    this->habitaciones[hab.getNumero()] = hab;
+    this->habitaciones.insert(make_pair(hab->getNumero(),hab));
 }
 
  //void Hostal::accesoHostal(){}

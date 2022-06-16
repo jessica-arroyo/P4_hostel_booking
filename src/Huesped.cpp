@@ -7,9 +7,9 @@
 #include <iostream>
 #include <map> 
 
-Huesped::Huesped() {}
+Huesped::Huesped() {} 
 Huesped::~Huesped() {}
-Huesped::Huesped(string nombre, string email, string password, bool esFinger) : DtUsuario(nombre, email, password) {
+Huesped::Huesped(string nombre, string email, string password, bool esFinger) : Usuario(nombre, email, password) {
     this->esFinger = esFinger ;
 }
 

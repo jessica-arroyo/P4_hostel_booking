@@ -10,6 +10,12 @@ Empleado::Empleado() {}
 Empleado::~Empleado() {}
 Empleado::Empleado(string nombre, string email, string password, TipoCargo cargo) : Usuario(nombre, email, password) {
     this->cargo = cargo;
+    this->nombre = nombre;
+    this->email = email;
+    this->password = password;
+    this->cargo = cargo;
+    
+    
 }
 
 
@@ -33,7 +39,7 @@ bool Empleado::estaAsignado(string nombreHostal)
 }
 
 DtEmpleado Empleado::getDtEmpleado(){
-    DtEmpleado dte = DtEmpleado(this->nombre, this->email, this->password, this->cargo, this->hostal->getNombre());
+    DtEmpleado dte = DtEmpleado(this->getNombre(), this->getEmail(), this->getPassword(), this->cargo, this->hostal->getNombre());
     return dte;
 }
 

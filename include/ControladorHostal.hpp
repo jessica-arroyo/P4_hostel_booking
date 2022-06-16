@@ -8,6 +8,10 @@
 #include "Huesped.hpp"
 #include "DtHabitacion.hpp" 
 #include "DtCalificacion.hpp"
+#include "DtEmpleado.hpp"
+#include "DtHuesped.hpp"
+#include "Habitacion.hpp" 
+#include "Calificacion.hpp"
 
 #include <map>
 #include <set>

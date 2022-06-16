@@ -3,10 +3,9 @@
 #include <string>
 #include <iostream>
 #include "Usuario.hpp"
+#include "DtUsuario.hpp"
 #include "DtEmpleado.hpp"
 #include "Hostal.hpp"
-
-class Hostal ;
 
 using namespace std;
 
@@ -38,6 +37,5 @@ class Empleado: public Usuario  {
     
 };
 
-#include "Hostal.hpp"
 
 #endif
