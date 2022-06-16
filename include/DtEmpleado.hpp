@@ -3,7 +3,8 @@
 #include <string>
 #include <iostream>
 #include "DtUsuario.hpp"
-#include "Empleado.hpp"
+
+class Empleado ;
 
 using namespace std;
 
@@ -19,6 +20,8 @@ class DtEmpleado: public DtUsuario {
     TipoCargo getCargo() ;
     string getNombreHostal() ;
 };
+
+#include "Empleado.hpp"
 
 #endif
 

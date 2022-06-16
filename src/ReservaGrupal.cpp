@@ -19,10 +19,10 @@ ReservaGrupal::ReservaGrupal(int codigo, DtFechaHora checkIn, DtFechaHora checkO
 	hues = hues;
 	grupHuespedes = grupHuespedes;
 } 
-ReservaGrupal::setearValoresGrupal(float precio,int cantH){
-	precio = precio;
-	cantH = cantH;
-}
+//ReservaGrupal::setearValoresGrupal(float precio,int cantH){
+	//precio = precio;
+	//cantH = cantH;
+//}
 
 map<std::string, Huesped *> ReservaGrupal::getGrupHuespedes(){
 	return this->grupHuespedes;

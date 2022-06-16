@@ -1,11 +1,14 @@
 #ifndef EMPLEADO_H
 #define EMPLEADO_H
-#include <string>
-#include <iostream>
+
 #include "Usuario.hpp"
 #include "DtUsuario.hpp"
-#include "DtEmpleado.hpp"
 #include "Hostal.hpp"
+
+#include <string>
+#include <iostream>
+
+class DtEmpleado ;
 
 using namespace std;
 
@@ -30,12 +33,15 @@ class Empleado: public Usuario  {
     TipoCargo getCargo() ;
     void setCargo(TipoCargo cargo);
     bool estaAsignado(string nombreHostal);
-    DtEmpleado getDtEmpleado(); //va sin puntero creo. 
+    DtEmpleado getDtEmpleado();
     void setHostal(Hostal *nuevohostal);
     //void entrarHostal();
   
     
 };
 
+#include "DtEmpleado.hpp"
 
 #endif
+
+
