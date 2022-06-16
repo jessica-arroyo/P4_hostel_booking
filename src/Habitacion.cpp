@@ -43,12 +43,11 @@ void Habitacion::setHostal(Hostal* hostal){
     this->hostal = hostal ;
 }
 
-/
 
 
 DtHabitacion Habitacion::getDtHabitacion(){
     DtHabitacion habdt = DtHabitacion(this->numero,this->precio,this->capacidad) ;
-    return habtdt ;
+    return habdt ;
 }
 
 //bool Habitacion::estadisponibleHabitacion(DtFechaHora checkin, DtFechaHora checkout){} 

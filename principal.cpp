@@ -1246,6 +1246,33 @@ int main()
 						cout<<"Ingrese hora de salida. /n";
 						cin>>hora;
 						DtFechaHora fechaCheckOut = DtFechaHora(hora, dia,mes,anio);
+						long int f1 = fechaCheckIn.getHora() + fechaCheckIn.getDia()*24 + fechaCheckIn.getMes()*24*30 + fechaCheckIn.getAnio()*24*12*30;
+						long int f2 = fechaCheckOut.getHora() + fechaCheckOut.getDia()*24 + fechaCheckOut.getMes()*24*30 + fechaCheckOut.getAnio()*24*12*30;
+					    while ((f2 - f1) < 0) {
+							cout<<"Fecha invalida.Fecha de salida debe ser mayor a la fecha de entrada./n";
+							cout<<"Ingrese fecha de entrada. /n";
+							cout<<"Ingrese dia de entrada. /n";
+							cin>>dia;
+							cout<<"Ingrese mes de entrada. /n";
+							cin>>mes;
+							cout<<"Ingrese anio de entrada. /n";
+							cin>>anio;
+							cout<<"Ingrese hora de entrada. /n";
+							cin>>hora;
+							fechaCheckIn = DtFechaHora(hora, dia,mes,anio);
+							cout<<"Ingrese fecha de salida. /n";
+							cout<<"Ingrese dia de salida. /n";
+							cin>>dia;
+							cout<<"Ingrese mes de salida. /n";
+							cin>>mes;
+							cout<<"Ingrese anio de salida. /n";
+							cin>>anio;
+							cout<<"Ingrese hora de salida. /n";
+							cin>>hora;
+							fechaCheckOut = DtFechaHora(hora, dia,mes,anio);
+							 f1 = fechaCheckIn.getHora() + fechaCheckIn.getDia()*24 + fechaCheckIn.getMes()*24*30 + fechaCheckIn.getAnio()*24*12*30;
+							 f2 = fechaCheckOut.getHora() + fechaCheckOut.getDia()*24 + fechaCheckOut.getMes()*24*30 + fechaCheckOut.getAnio()*24*12*30;
+						}
 						bool esGrupal;
                         cout << "Ingrese 0 si la reserva sera individual o 1 si sera grupal. /n";
                         cin>> j ;
