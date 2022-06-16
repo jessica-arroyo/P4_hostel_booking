@@ -1487,10 +1487,18 @@ int main()
 									k++;
 								}
 							}
-        						j++;
-    						}		
+        						j++;		
 						} 
-						Aca tengo que registrar la estadia
+						cout<<"Ingrese el código de la reserva que desea registrar la estadía." ;
+						string codres ;
+						cin>> cosred ;
+						while(!iReserva->existeReserva(codres)){
+							cout<< "El código ingresado no corresponde a una reserva del sistema." ;
+							cout<<"Ingrese un código correspondiente a una reserva del sistema." ;
+							cin>>codres ;
+						}
+						iReserva->inscribirEstadia(codres);
+						}
 					}*/
 				
 					cout << "Hasta luego.\n";
