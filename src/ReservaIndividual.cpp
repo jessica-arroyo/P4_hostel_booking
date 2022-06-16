@@ -17,7 +17,7 @@ ReservaIndividual::ReservaIndividual(int codigo, DtFechaHora checkIn, DtFechaHor
 	
 } 
 
-ReservaIndividual::setearValoresIndividual(float precio){
-	precio = precio;
-}
+//ReservaIndividual::setearValoresIndividual(float precio){
+	//precio = precio;
+//}
 
