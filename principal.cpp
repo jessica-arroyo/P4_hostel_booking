@@ -1459,11 +1459,11 @@ int main()
 							cout<<"Ingrese un email correspondiente a un huesped del sistema." ;
 							cin>>nomus ;
 						}
-						map<string, DtReserva> reservas = iReserva->obtenerReservas(nomhos) ;
+						map<string, DtReserva> reservas = iReserva->listarReservas(nomhos,nomus) ;
     					        map<string, DtReserva>::iterator i; 
 						if(reservas.empty())
 						{
-							throw invalid_argument ("No hay reservas en ese hostal") ;
+							throw invalid_argument ("No hay reservas no canceladas en ese hostal para ese huesped ") ;
 						}
 						else 
 						{
@@ -1488,15 +1488,11 @@ int main()
 								}
 							}
         						j++;
-    						}
-						
+    						}		
 						} 
+						Aca tengo que registrar la estadia
 					}*/
-				while(iHostal->existeHostal(nombreH) == false){
-							cout<< "Hostal no registrado\n" ;
-							cout<< "Ingrese nuevamente el nombre" ;
-							cin>> nombreH ;
-						}
+				
 					cout << "Hasta luego.\n";
                 	//Registrar Estadía
             	}
