@@ -1,4 +1,4 @@
-#include ../include/Habitacion.hpp
+#include "../include/Habitacion.hpp"
 //en el .hpp está incluído en el hostal.hpp.
 
 Habitacion::Habitacion(int numero, int precio, int capacidad){
