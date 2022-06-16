@@ -35,7 +35,7 @@ class ControladorHostal: public IHostal {
         //set<DtCalificacion> listarCalificaciones(string nomhos) ; 
         //void map<string , DtHostal> top3hostales() ; 
         //map<int , DtHabitacion> listarHabitaciones() ; 
-        //Hostal* encontrarHostal(string nombreHostal) ;  
+        Hostal* encontrarHostal(string nombreHostal) ;  
         map<int , DtHabitacion> devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal) ; 
         
 
