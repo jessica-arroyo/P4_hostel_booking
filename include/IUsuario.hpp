@@ -6,6 +6,7 @@
 #include "Empleado.hpp"
 #include "Huesped.hpp"
 #include "Usuario.hpp"
+#include "DtUsuario.hpp"
 
 
 #include <map>

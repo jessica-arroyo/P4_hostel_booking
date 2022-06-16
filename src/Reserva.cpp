@@ -72,19 +72,19 @@ float Reserva::getCosto (){
 }
 
 Estadia* Reserva::getEstadia (){
-	return this->est;
+	return this->estadia;
 }
 
 Habitacion* Reserva::getHabitacion(){
-	return this->hab;
+	return this->habitacion;
 }
 
 Huesped* Reserva::getHuesped(){
-	return this->hues;
+	return this->huesped;
 }
 
 DtReserva Reserva::getDtReserva(){
-	DtReserva dtr = DtReserva(this->codigo, this->checkIn, this->checkOut, this->fechaRealizada, this->estado, this->costo);
+	DtReserva dtr = DtReserva(this->codigo, this->checkIn, this->checkOut, this->fechaRealizada, this->estado, this->costo, this->huesped->getEmail());
     return dtr;
 }
 
@@ -127,4 +127,3 @@ Reserva::encontrarhab(){}
 
 Reserva::remove(Reserva r){}*/
 
-#endif

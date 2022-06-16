@@ -8,6 +8,15 @@
 #include <iterator>
 #include <iostream>
 
+using namespace std;
+
+enum TipoEstado
+{
+  ABIERTA,
+  CERRADA,
+  CANCELADA
+};
+
 class DtReserva {
 	protected : 
         int codigo;

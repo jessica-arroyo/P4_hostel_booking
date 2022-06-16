@@ -3,6 +3,9 @@
 
 #include "../include/DtFechaHora.hpp"
 #include "../include/DtReserva.hpp"
+#include "../include/Habitacion.hpp"
+#include "../include/Huesped.hpp"
+#include "../include/Estadia.hpp"
 
 #include <map>
 #include <set>
@@ -13,12 +16,6 @@ class Habitacion;
 class Estadia;
 class Huesped;
 
-enum TipoEstado
-{
-  ABIERTA,
-  CERRADA,
-  CANCELADA
-};
 
 
 class Reserva {

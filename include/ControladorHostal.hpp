@@ -8,6 +8,10 @@
 #include "Huesped.hpp"
 #include "DtHabitacion.hpp" 
 #include "DtCalificacion.hpp"
+#include "DtEmpleado.hpp"
+#include "DtHuesped.hpp"
+#include "Habitacion.hpp" 
+#include "Calificacion.hpp"
 
 #include <map>
 #include <set>
@@ -36,7 +40,7 @@ class ControladorHostal: public IHostal {
         //set<DtCalificacion> listarCalificaciones(string nomhos) ; 
         //void map<string , DtHostal> top3hostales() ; 
         //map<int , DtHabitacion> listarHabitaciones() ; 
-        //Hostal* encontrarHostal(string nombreHostal) ;  
+        Hostal* encontrarHostal(string nombreHostal) ;  
         map<int , DtHabitacion> devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal) ; 
         
 

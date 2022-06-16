@@ -1,6 +1,12 @@
 #ifndef ESTADIA_HPP
 #define ESTADIA_HPP
 
+#include "DtEstadia.hpp"
+#include "DtCalificacion.hpp"
+#include "Calificacion.hpp"
+#include "Reserva.hpp"
+
+
 #include <map>
 //#include <set> si usamos.
 #include <iterator>
@@ -34,7 +40,7 @@ public:
     string getPromo () ;
 	DtFechaHora getCheckIn () ;
 	DtFechaHora getCheckOut () ;
-	Estadia* getCalificacion ();
+	Calificacion* getCalificacion ();
 	Habitacion* getHabitacion();
 
     //create(DtFechaHora checkin,DtFechaHora checkout,std::string promo,Calificacion *cal,Habitacion *hab);  
