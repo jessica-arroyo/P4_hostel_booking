@@ -91,7 +91,8 @@ void ControladorHostal::agregarHabitacion(int numero,int precio,int capacidad,st
 //Hostal* ControladorHostal::encontrarHostal(string nombreHostal){} //originalmente era el objeto Hostal. Debería devolver un puntero a un Hostal.
 
 map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal){
-    Hostal* pHostal = encontrarHostal(nombreHostal);
+    //Hostal* pHostal = encontrarHostal(nombreHostal)
+    Hostal* pHostal = this->SetHostales.find(nombreHostal)->second;
     map<int , Habitacion *> jaque = pHostal->getHabitaciones(); // aca al copiar si borro algo de la copia se borra en el original???
     map<int , Reserva *>  loqhay = pHostal->getReservas();
     map<int , DtHabitacion> res; 
@@ -100,7 +101,7 @@ map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFec
     {
         if (jaque.empty()) {return res;}
         else {for(w = jaque.begin(); w != jaque.end(); w++)  {
-            res.insert(w->second->getNumero(), w->second->getDtHabitacion()); //asi funciona el insert??
+            res.insert(make_pair(w->second->getNumero(), w->second->getDtHabitacion()));
         }
         return res;
         }
@@ -118,7 +119,7 @@ map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFec
             }
         } 
         for(w = jaque.begin(); w != jaque.end(); w++)  {
-            res.insert(w->second->getNumero(), w->second->getDtHabitacion()); //asi funciona el insert??
+            res.insert(make_pair(w->second->getNumero(), w->second->getDtHabitacion()));
         }
         return res;
         }
