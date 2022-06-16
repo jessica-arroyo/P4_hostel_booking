@@ -8,18 +8,18 @@ using namespace std;
 
 class Usuario  {
     
-    private:
+    protected:
     string nombre;
     string email;
     string password;
     
     public:
     Usuario();
-    ~Usuario();
+    virtual ~Usuario();
     Usuario(string nombre, string email, string password) ;
-    string getNombre() ;
-    string getEmail() ;
-    string getPassword() ;
+    virtual string getNombre() ;
+    virtual string getEmail() ;
+    virtual string getPassword() ;
     void setNombre(string nombre);
     void setEmail(string email);
     void setPassword(string password);

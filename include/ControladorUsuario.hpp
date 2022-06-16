@@ -9,6 +9,8 @@
 #include "Usuario.hpp"
 #include "IUsuario.hpp"
 #include "ControladorHostal.hpp"
+#include "ControladorReserva.hpp"
+#include "DtUsuario.hpp"
 #include <map>
 #include <iostream>
 using namespace std;

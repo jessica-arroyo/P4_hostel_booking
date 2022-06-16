@@ -21,4 +21,3 @@ ReservaIndividual::setearValoresIndividual(float precio){
 	precio = precio;
 }
 
-#endif

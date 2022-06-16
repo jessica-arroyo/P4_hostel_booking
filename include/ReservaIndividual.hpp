@@ -2,6 +2,7 @@
 #define RESERVAINDIVIDUAL_HPP
 
 #include "../include/Reserva.hpp"
+#include "../include/DtReservaIndividual.hpp"
 
 #include <map>
 #include <set>

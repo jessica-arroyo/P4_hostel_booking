@@ -8,6 +8,7 @@
 
 #include "../include/DtFechaHora.hpp"
 #include "../include/DtCalificacion.hpp"
+#include "../include/DtEstadia.hpp"
 
 using namespace std ;
 

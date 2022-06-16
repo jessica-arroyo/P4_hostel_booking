@@ -2,7 +2,9 @@
 #define HUESPED_H
 
 #include "Usuario.hpp"
+#include "DtUsuario.hpp"
 #include "DtHuesped.hpp"
+#include "Huesped.hpp"
 #include "DtEstadia.hpp"
 
 #include <string>
