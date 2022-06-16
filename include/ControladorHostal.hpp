@@ -37,10 +37,11 @@ class ControladorHostal: public IHostal {
         void altaHostal(string nombre, string direccion, int telefono, int calificacionProm) ; 
         map<string , DtHostal> listarHostales() ; 
         DtHostal infoHostal(string nombreHostal) ; 
-        //set<DtCalificacion> listarCalificaciones(string nomhos) ; 
+        set<DtCalificacion> listarCalificaciones(string nombreHostal) ; 
         //void map<string , DtHostal> top3hostales() ; 
-        //map<int , DtHabitacion> listarHabitaciones() ; 
-        Hostal* encontrarHostal(string nombreHostal) ;  
+        map<int , DtHabitacion> listarHabitaciones(string nombreHostal) ;
+        map<int , DtReserva> listarReservas(string nombreHostal) ; 
+        //Hostal* encontrarHostal(string nombreHostal) ;  
         map<int , DtHabitacion> devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal) ; 
         
 

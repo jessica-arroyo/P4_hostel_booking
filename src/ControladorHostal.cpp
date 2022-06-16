@@ -78,15 +78,49 @@ void ControladorHostal::agregarHabitacion(int numero,int precio,int capacidad,st
     hab->setHostal(i->second);
 }
 
+map<int,DtHabitacion> ControladorHostal::listarHabitaciones(string nombreHostal){
+	Hostal *hos = SetHostales.find(nombreHostal)->second ;
+	map<int,Habitacion*> habs = hos->getHabitaciones() ;
+	map<int,Habitacion*>iterator:: habhos ;
+	map<int,DtHabitacion> res ;
+	for(habhos=habs.begin(); habhos!=habs.end(); habhos++){
+		DtHabitacion a = habhos->second->getDtHabitacion ;
+		res.insert(make_pair(a->getNumero(),a)) ;
+	}
+	return res ;
+}
 
-//set<DtCalificacion> ControladorHostal::listarCalificaciones(string nomhos){ //de un hostal en particular.
-    
-//}
+map<int,DtReserva> ControladorHostal::listarReservas(string nombreHostal){
+	Hostal *hos = SetHostales.find(nombreHostal)->second ;
+	map<int,Reserva*> reser = hos->getReservas() ;
+	map<int,Reserva*>iterator:: reshos ;
+	map<int,DtReserva> resdehos ;
+	for(reshos=reser.begin(); reshos!=reser.end(); reshos++){
+		DtReserva a = reshos->second->getDtReserva ;
+		resdehos.insert(make_pair(a->getCodigo(),a)) ;
+	}
+	return resdehos ;
+}
 
+set<DtCalificacion> ControladorHostal::listarCalificaciones(string nombreHostal){
+	Hostal *hos = SetHostales.find(nombreHostal)->second ;
+	map<int,Reserva*> reser = hos->getReservas() ;
+	map<int,Reserva*>iterator:: reshos ;
+	set<DtCalificacion> caldehos ;
+	for(reshos=reser.begin(); reshos!=reser.end(); reshos++){
+		if(reshos->second->getEstadia != NULL){
+			Estadia *est = reshos->second->getEstadia ;
+			if(est->getCalificacion != NULL){
+				DtCalificacion cal = est->getCalificacion->getDtCalificacion ;
+				caldehos.insert(cal) ;
+			}	
+		}
+		
+	}
+	return caldehos ;
+}
 
 //map<string , DtHostal> ControladorHostal::top3hostales(){}
-
-//map<int , DtHabitacion> ControladorHostal::listarHabitaciones(){}
 
 //Hostal* ControladorHostal::encontrarHostal(string nombreHostal){} //originalmente era el objeto Hostal. Debería devolver un puntero a un Hostal.
 
