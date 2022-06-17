@@ -10,10 +10,12 @@ using namespace std ;
     Estadia::Estadia() {} 
     Estadia::~Estadia(){}
 
-    Estadia::Estadia(DtFechaHora checkIn, DtFechaHora checkOut, string promo){
+    Estadia::Estadia(DtFechaHora checkIn, DtFechaHora checkOut, string promo, Calificacion *cal, Habitacion *hab){
         this->checkIn = checkIn ;
         this->checkOut = checkOut ;
         this->promo = promo ;
+		this->calificacion = cal;
+		this->habitacion = hab;
     }
 
     void Estadia::setCheckIn (DtFechaHora checkIn){

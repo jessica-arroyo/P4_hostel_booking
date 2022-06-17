@@ -2,9 +2,7 @@
 #define ESTADIA_HPP
 
 #include "DtEstadia.hpp"
-#include "DtCalificacion.hpp"
-#include "Calificacion.hpp"
-#include "Reserva.hpp"
+#include "DtFechaHora.hpp"
 
 
 #include <map>
@@ -14,9 +12,6 @@
 
 class Habitacion ;
 class Calificacion ;
-
-#include "DtFechaHora.hpp"
-#include "DtEstadia.hpp"
 
 using namespace std ;
 
@@ -30,7 +25,7 @@ private:
 public:
     Estadia();
     ~Estadia();
-    Estadia(DtFechaHora checkIn, DtFechaHora checkOut, string promo) ;
+    Estadia(DtFechaHora checkIn, DtFechaHora checkOut, string promo, Calificacion *cal, Habitacion *hab) ;
     void setCheckIn (DtFechaHora checkIn) ;
 	void setCheckOut (DtFechaHora checkOut);
     void setPromo (string promo) ;

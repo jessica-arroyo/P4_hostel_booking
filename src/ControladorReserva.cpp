@@ -33,19 +33,15 @@ ControladorReserva *ControladorReserva::getInstancia()
 map<int,DtReserva> ControladorReserva::obtenerReservas(string nombreHostal)
 {
 	IHostal *inshostal =  ControladorHostal::getInstancia();
-	Hostal *hostal=	inshostal->listarHostales().find(nombreHostal)->second;
-	map<string, DtReserva> SetReservas;
-	map<string, Reserva*>::iterator i; 
-	for(i->second = hostal->getReservas().begin(); i->second != hostal->getReservas().end(); i++)
+	Hostal *hostal=	inshostal->getSetHostales().find(nombreHostal)->second;
+	map<int, DtReserva> reservas;
+	map<int, Reserva*>::iterator i; 
+	for(i->second = hostal->getReservas().begin()->second; i->second != hostal->getReservas().end()->second; i++)
 	{
-		if (dynamic_cast<DtReservaGrupal *>(i->second)!=NULL){ //ver como era el dynamic cast 
-			DtReservaGrupal r = DtReserva(i->second->getCodigo(), i->second->getCheckIn(), i->second->getCheckOut(), i->second->getFechaRealizada(), i->second->getEstado(),i->second->getCosto(), i->second->getNombresHuespedes());
-		}
-		if (dynamic_cast<DtReservaIndividual *>(i->second)!=NULL){
-			DtReservaIndividual r = DtReserva(i->second->getCodigo(), i->second->getCheckIn(), i->second->getCheckOut(), i->second->getFechaRealizada(), i->second->getEstado(),i->second->getCosto());
-		}
-		SetReservas.insert(make_pair(i->second->getCodigo(),r));
+		DtReserva r = i->second->getDtReserva();
+		reservas.insert(make_pair(r.getCodigo(),r));
 	}
+	return reservas;
 }
 
 

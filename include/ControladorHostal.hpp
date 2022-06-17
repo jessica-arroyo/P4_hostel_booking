@@ -1,17 +1,7 @@
 #ifndef CONTROLADORHOSTAL_H
 #define CONTROLADORHOSTAL_H
 
-#include "Hostal.hpp"
-#include "DtHostal.hpp"
 #include "IHostal.hpp"
-#include "Empleado.hpp"
-#include "Huesped.hpp"
-#include "DtHabitacion.hpp" 
-#include "DtCalificacion.hpp"
-#include "DtEmpleado.hpp"
-#include "DtHuesped.hpp"
-#include "Habitacion.hpp" 
-#include "Calificacion.hpp"
 
 #include <map>
 #include <set>
@@ -24,7 +14,7 @@ class ControladorHostal: public IHostal {
     private:
         ControladorHostal() ;
         static ControladorHostal *_instancia ;
-        map<string,Hostal*> SetHostales ;
+        map<string, Hostal*> SetHostales ;
     
 
     public:
@@ -35,12 +25,14 @@ class ControladorHostal: public IHostal {
         bool existeHabitacion(int numero, string nombreHostal) ; 
         void agregarHabitacion(int numero,int precio,int capacidad,string nombreH) ; 
         void altaHostal(string nombre, string direccion, int telefono, int calificacionProm) ; 
-        map<string , DtHostal> listarHostales() ; 
+        map<string , Hostal*> getSetHostales() ; 
+		map<string , DtHostal> listarHostales() ; 
         DtHostal infoHostal(string nombreHostal) ; 
-        set<DtCalificacion> listarCalificaciones(string nombreHostal) ; 
+        map<int, DtCalificacion> listarCalificaciones(string nombreHostal) ; 
         //void map<string , DtHostal> top3hostales() ; 
         map<int , DtHabitacion> listarHabitaciones(string nombreHostal) ;
-        map<int , DtReserva> listarReservas(string nombreHostal) ; 
+        map<int , DtReservaGrupal> listarReservasGrupal(string nombreHostal) ; 
+		map<int , DtReservaIndividual> listarReservasIndividual(string nombreHostal) ;  
         //Hostal* encontrarHostal(string nombreHostal) ;  
         map<int , DtHabitacion> devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal) ; 
         
