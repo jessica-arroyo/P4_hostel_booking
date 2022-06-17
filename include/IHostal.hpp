@@ -35,11 +35,11 @@ class IHostal {
     virtual void agregarHabitacion(int numero,int precio,int capacidad,string nombreH)=0 ;
     virtual bool existeHostal(string nombre)=0 ; 
     virtual bool existeHabitacion(int numero, string nombreHostal)=0 ; 
-    virtual map<string, Hostal*> getSetHostales() ;
-	virtual map<int , DtHabitacion> listarHabitaciones(string nombreHostal) ;
-    virtual map<int , DtReservaGrupal> listarReservasGrupal(string nombreHostal) ; 
-	virtual map<int , DtReservaIndividual> listarReservasIndividual(string nombreHostal) ; 
-	virtual map<int, DtCalificacion> listarCalificaciones(string nombreHostal) ; 
+    virtual map<string, Hostal*> getSetHostales()=0 ;
+	virtual map<int , DtHabitacion> listarHabitaciones(string nombreHostal)=0 ;
+    virtual map<int , DtReservaGrupal> listarReservasGrupal(string nombreHostal)=0 ; 
+	virtual map<int , DtReservaIndividual> listarReservasIndividual(string nombreHostal)=0 ; 
+	virtual map<int, DtCalificacion> listarCalificaciones(string nombreHostal)=0 ; 
     
     //virtual map<string , DtHostal> top3hostales()=0 ;
     //virtual map<int , DtHabitacion> listarHabitaciones()=0 ;
