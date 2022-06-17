@@ -2,3 +2,5 @@
 
 IHostal::IHostal(){}
 
+IHostal::~IHostal(){}
+

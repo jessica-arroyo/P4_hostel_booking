@@ -1,8 +1,5 @@
 #include "../include/ControladorHostal.hpp"
 
-#include "../include/Hostal.hpp"
-
-#include "../include/Habitacion.hpp" 
 
 //usan una biblioteca <cstddef>.
 //tengo que poner lo de include la biblioteca <iostream>?
@@ -47,6 +44,10 @@ bool ControladorHostal::existeHabitacion(int numero, string nombreHostal){
      return (hostal->getHabitaciones().find(numero) != hostal->getHabitaciones().end());
 }
 
+map<string, Hostal*> ControladorHostal::getSetHostales(){
+	return this->SetHostales;
+}
+
 map<string, DtHostal> ControladorHostal::listarHostales(){
     
 	map<string, DtHostal> hostales;
@@ -78,15 +79,66 @@ void ControladorHostal::agregarHabitacion(int numero,int precio,int capacidad,st
     hab->setHostal(i->second);
 }
 
+map<int,DtHabitacion> ControladorHostal::listarHabitaciones(string nombreHostal){
+	Hostal *hos = SetHostales.find(nombreHostal)->second ;
+	map<int,Habitacion*> habs = hos->getHabitaciones() ;
+	map<int,Habitacion*>::iterator habhos ;
+	map<int,DtHabitacion> res ;
+	for(habhos=habs.begin(); habhos!=habs.end(); habhos++){
+		DtHabitacion a = habhos->second->getDtHabitacion() ;
+		res.insert(make_pair(a.getNumero(),a));
+	}
+	return res ;
+}
 
-//set<DtCalificacion> ControladorHostal::listarCalificaciones(string nomhos){ //de un hostal en particular.
-    
-//}
+map<int,DtReservaGrupal> ControladorHostal::listarReservasGrupal(string nombreHostal){
+	Hostal *hos = SetHostales.find(nombreHostal)->second ;
+	map<int,Reserva*> reser = hos->getReservas() ;
+	map<int,Reserva*>::iterator reshos ;
+	map<int,DtReservaGrupal> resdehos ;
+	for(reshos=reser.begin(); reshos!=reser.end(); reshos++){
+		if(dynamic_cast <ReservaGrupal*> (reshos->second) != NULL){
+			
+			DtReservaGrupal a = dynamic_cast <ReservaGrupal*> (reshos->second)->getDtReservaGrupal() ;
+			resdehos.insert(make_pair(a.getCodigo(),a)) ;
+		}
+	}
+	return resdehos ;
+}
 
+map<int,DtReservaIndividual> ControladorHostal::listarReservasIndividual(string nombreHostal){
+	Hostal *hos = SetHostales.find(nombreHostal)->second ;
+	map<int,Reserva*> reser = hos->getReservas() ;
+	map<int,Reserva*>::iterator reshos ;
+	map<int,DtReservaIndividual> resdehos ;
+	for(reshos=reser.begin(); reshos!=reser.end(); reshos++){
+		if(dynamic_cast <ReservaIndividual*> (reshos->second) != NULL){
+			DtReservaIndividual a = dynamic_cast <ReservaIndividual*> (reshos->second)->getDtReservaIndividual() ;
+			resdehos.insert(make_pair(a.getCodigo(),a)) ;
+		}
+	}
+	return resdehos ;
+}
+
+map<int, DtCalificacion> ControladorHostal::listarCalificaciones(string nombreHostal){
+	Hostal *hos = SetHostales.find(nombreHostal)->second ;
+	map<int,Reserva*> reser = hos->getReservas() ;
+	map<int,Reserva*>::iterator reshos ;
+	map<int, DtCalificacion> caldehos ;
+	for(reshos=reser.begin(); reshos!=reser.end(); reshos++){
+		if(reshos->second->getEstadia() != NULL){
+			Estadia *est = reshos->second->getEstadia() ;
+			if(est->getCalificacion() != NULL){
+				DtCalificacion cal = est->getCalificacion()->getDtCalificacion() ;
+				caldehos.insert(make_pair(reshos->first,cal)) ;
+			}	
+		}
+		
+	}
+	return caldehos ;
+}
 
 //map<string , DtHostal> ControladorHostal::top3hostales(){}
-
-//map<int , DtHabitacion> ControladorHostal::listarHabitaciones(){}
 
 //Hostal* ControladorHostal::encontrarHostal(string nombreHostal){} //originalmente era el objeto Hostal. Debería devolver un puntero a un Hostal.
 
@@ -96,7 +148,7 @@ map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFec
     map<int , Habitacion *> jaque = pHostal->getHabitaciones(); // aca al copiar si borro algo de la copia se borra en el original???
     map<int , Reserva *>  loqhay = pHostal->getReservas();
     map<int , DtHabitacion> res; 
-    map<int , Habitacion*> :: iterator w;
+    map<int , Habitacion*>:: iterator w;
     if(loqhay.empty())
     {
         if (jaque.empty()) {return res;}

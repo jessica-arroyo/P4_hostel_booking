@@ -8,6 +8,17 @@
 Reserva::Reserva() {
 }
 
+Reserva::Reserva(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues){
+	codigo = codigo ;
+	checkIn = checkIn ;
+	checkOut = checkOut ;
+	fechaRealizada = fechaRealizada ;
+	estado = estado ;
+	costo = costo ;
+	hab = hab;
+	hues = hues;
+} 
+
 Reserva::~Reserva() {
 }
 

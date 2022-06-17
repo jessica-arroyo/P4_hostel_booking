@@ -16,7 +16,7 @@
 
 class IUsuario {
   public:
-    IUsuario(){}
+    IUsuario();
     virtual ~IUsuario()=0 ;
     
     virtual bool existeEmpleado(string emailUser)=0 ;

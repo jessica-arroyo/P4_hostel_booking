@@ -2,7 +2,6 @@
 #define RESERVA_HPP
 
 #include "../include/DtFechaHora.hpp"
-#include "../include/DtReserva.hpp"
 #include "../include/Habitacion.hpp"
 #include "../include/Huesped.hpp"
 #include "../include/Estadia.hpp"
@@ -12,11 +11,17 @@
 #include <iterator>
 #include <iostream>
 
+enum TipoEstado
+{
+  ABIERTA,
+  CERRADA,
+  CANCELADA
+};
+
+class DtReserva;
 class Habitacion;
 class Estadia;
 class Huesped;
-
-
 
 class Reserva {
 	protected : 
@@ -29,6 +34,7 @@ class Reserva {
 		Huesped * huesped;
 	public :
 		Reserva();
+		Reserva(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues);
 		virtual ~Reserva() = 0;
 		void setCodigo (int codigo) ;
 		void setCheckIn (DtFechaHora checkIn) ;
@@ -72,6 +78,7 @@ class Reserva {
 		remove(Reserva r);*/
 		
 };
+#include "../include/DtReserva.hpp"
 #include "../include/Habitacion.hpp"
 #include "../include/Estadia.hpp"
 #include "../include/Huesped.hpp"

@@ -1,7 +1,8 @@
 #ifndef DTRESERVA_HPP
 #define DTRESERVA_HPP
 
-#include "../include/DtFechaHora.hpp"
+#include "DtFechaHora.hpp"
+#include "Reserva.hpp"
 
 #include <map>
 #include <set>
@@ -9,13 +10,6 @@
 #include <iostream>
 
 using namespace std;
-
-enum TipoEstado
-{
-  ABIERTA,
-  CERRADA,
-  CANCELADA
-};
 
 class DtReserva {
 	protected : 
@@ -38,4 +32,5 @@ class DtReserva {
 		string getEmailHuesped() ;
 		
 };
+
 #endif

@@ -21,7 +21,8 @@ class ReservaGrupal : public Reserva {
 		ReservaGrupal(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, int cantGrupoHues, Habitacion* hab, Huesped* hues, map<std::string, Huesped *> grupHuespedes); 
 		//setearValoresGrupal(float precio,int cantH);
         map<std::string, Huesped *> getGrupHuespedes();
-		map<std::string, Huesped *> setGrupHuespedes(map<std::string, Huesped *> grupHuespedes);
+		void setGrupHuespedes(map<std::string, Huesped *> grupHuespedes);
         int getCantH();
+		DtReservaGrupal getDtReservaGrupal();
 };
 #endif
