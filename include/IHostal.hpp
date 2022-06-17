@@ -3,8 +3,20 @@
 
 #include "Hostal.hpp"
 #include "DtHostal.hpp"
-#include "DtHabitacion.hpp"
+#include "Empleado.hpp"
+#include "Huesped.hpp"
+#include "DtHabitacion.hpp" 
 #include "DtCalificacion.hpp"
+#include "DtEmpleado.hpp"
+#include "DtHuesped.hpp"
+#include "Habitacion.hpp" 
+#include "Calificacion.hpp"
+#include "Reserva.hpp"
+#include "DtReserva.hpp"
+#include "ReservaGrupal.hpp"
+#include "ReservaIndividual.hpp"
+#include "DtReservaGrupal.hpp"
+#include "DtReservaIndividual.hpp"
 
 #include <map>
 #include <set>
@@ -14,7 +26,7 @@ using namespace std ;
 
 class IHostal {
   public:
-    IHostal(){}
+    IHostal();
     virtual ~IHostal()=0 ;
     virtual void altaHostal(string nombre, string direccion, int telefono, int calificacionProm)=0 ;
     virtual map<string , DtHostal> listarHostales()=0 ; //La colección de Hostales va a ser un map o un set (porque podríamos querer tener ordenados 
@@ -23,7 +35,11 @@ class IHostal {
     virtual void agregarHabitacion(int numero,int precio,int capacidad,string nombreH)=0 ;
     virtual bool existeHostal(string nombre)=0 ; 
     virtual bool existeHabitacion(int numero, string nombreHostal)=0 ; 
-    
+    virtual map<string, Hostal*> getSetHostales() ;
+	virtual map<int , DtHabitacion> listarHabitaciones(string nombreHostal) ;
+    virtual map<int , DtReservaGrupal> listarReservasGrupal(string nombreHostal) ; 
+	virtual map<int , DtReservaIndividual> listarReservasIndividual(string nombreHostal) ; 
+	virtual map<int, DtCalificacion> listarCalificaciones(string nombreHostal) ; 
     
     //virtual map<string , DtHostal> top3hostales()=0 ;
     //virtual map<int , DtHabitacion> listarHabitaciones()=0 ;

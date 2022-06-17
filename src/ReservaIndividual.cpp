@@ -7,16 +7,12 @@
 
 ReservaIndividual::~ReservaIndividual(){}
 
-ReservaIndividual::ReservaIndividual(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues){
-	codigo = codigo ;
-	checkIn = checkIn ;
-	checkOut = checkOut ;
-	fechaRealizada = fechaRealizada ;
-	estado = estado ;
-	costo = costo ;
-	
-} 
+ReservaIndividual::ReservaIndividual(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues) : Reserva(codigo, checkIn, checkOut, fechaRealizada, estado, costo, hab, hues){} 
 
+DtReservaIndividual ReservaIndividual::getDtReservaIndividual(){
+	DtReservaIndividual dtr = DtReservaIndividual(this->codigo, this->checkIn, this->checkOut, this->fechaRealizada, this->estado, this->costo, this->huesped->getEmail());
+    return dtr;
+}
 //ReservaIndividual::setearValoresIndividual(float precio){
 	//precio = precio;
 //}

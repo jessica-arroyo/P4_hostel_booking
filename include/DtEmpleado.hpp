@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include "DtUsuario.hpp"
+#include "Empleado.hpp"
 
 class Empleado ;
 

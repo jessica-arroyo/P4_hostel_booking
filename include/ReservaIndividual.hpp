@@ -15,5 +15,6 @@ class ReservaIndividual : public Reserva {
 		~ReservaIndividual();
 		ReservaIndividual(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues); 
 		//setearValoresIndividual(float precio);
+		DtReservaIndividual getDtReservaIndividual();
 };
 #endif
