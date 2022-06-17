@@ -37,55 +37,53 @@ using namespace std;
 	return iClase->registrarMensaje(texto) ; 
 }
 */
-/*
-void cargarDatosPrueba(IAsignatura *iAsignatura, IClase *iClase, IUsuario *iUsuario, IReloj *iReloj)
+
+
+void cargarDatosPrueba(IHostal *iHostal, IUsuario *iUsuario, IReserva *iReserva,IFecha *iFecha)
 {
-	//Docentes
-	string emailDocente[3] = {"juan@mail.com", "maria@mail.com", "jorge@mail.com"};
-	string nombreDocente[3] = {"Juan Perez", "Maria Pires", "Jorge Chacho"};
-	string institutoDocente[3] = {"INCO", "INCO", "INCO"};
-	for (int i = 0; i < 3; i++)
+	//Empleados
+	string emailEmpleado[4] = {"emilia@mail.com", "leo@mail.com", "alina@mail.com","barli@mail.com"};
+	string nombreEmpleado[4] = {"Emilia", "Leonardo", "Alina", "Barliman"};
+	TipoCargo cargo[4] = {"3", "3", "1", "3"};
+	for (int i = 0; i < 4; i++)
 	{
-		iUsuario->crearDocente (nombreDocente[i], emailDocente[i], "", "", DtSuscripcion::ninguna, institutoDocente[i]);
-		iUsuario->agregarUsuario();
+		iUsuario->confirmarAltaEmpleado (nombreEmpleado[i],emailEmpleado[i], "123", cargo[i]);
 	}
+	
+	
+	//Huespedes
+	string emailHuespedes[6] = {"sofia@mail.com", "frodo@mail.com", "sam@mail.com","merry@mail.com","pippin@mail.com","seba@mail.com"};
+	string nombreHuespedes[6] = {"Sofia","Frodo", "Sam", "Merry", "Pippin", "Seba"};
+	bool esFinger[6] = {true, true, false,false,false,true};
+	for (int i = 0; i < 6; i++)
+	{
+		iUsuario->confirmarAltaHuesped(nombreHuespedes[i],emailHuespedes[i], "123", esFinger[i]);
+	}
+	
 
 	
-	//Estudiantes
-	string emailEstudiante[3] = {"roberto@mail.com", "ana@mail.com", "ramon@mail.com"};
-	string nombreEstudiante[3] = {"Roberto Parra", "Ana Rodriguez", "Ramon Valdez"};
-	std::string ciEstudiante[3] = {"12345678", "23456789", "34567890"};
-	for (int i = 0; i < 3; i++)
-	{
-		iUsuario->crearEstudiante (nombreEstudiante[i], emailEstudiante[i], "", "", DtSuscripcion::ninguna, ciEstudiante[i]);
-		iUsuario->agregarUsuario();
-	}
+	//Hostels
+	string nombresHostales[5] = {"La posada del finger", "Mochileros", "El Pony Pisador","Altos de Fing","Caverna Lujosa"};
+	string direccionesHostales[5] = {"Av de la playa 123, Maldonado", "Rambla Costanera 333, Rocha", "Bree (preguntar por Gandalf)","Av del Toro 1424","Amaya 2515"};
+	int telefonosHostales[5]={099111111, 42579512, 000, 099892992, 233233235};
 	
-	//Asignaturas
-	string codAsignatura[3] = {"P1", "P2", "P3"};
-	string nombreAsignatura[3] = {"Programacion 1", "Programacion 2", "Programacion 3"};
-	bool instanciasAsignatura[3][3] = {{1,1,1}, {1,1,1}, {1,1,0}};
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 5; i++)
     {
-		iAsignatura->crearAsignatura(nombreAsignatura[i], codAsignatura[i]);
-		iAsignatura->getAsignaturaCreada()->setTeo(instanciasAsignatura[i][0]);
-		iAsignatura->getAsignaturaCreada()->setPrac(instanciasAsignatura[i][1]);
-		iAsignatura->getAsignaturaCreada()->setMoni(instanciasAsignatura[i][2]);
-        iAsignatura->agregarAsignatura(); 
+		iHostal->altaHostal(nombresHostales[i],direccionesHostales[i],telefonosHostales[i],0) ;
     }
 	
-	//Asignacion de docentes a asignaturas
-	iAsignatura->asignarDocente("P1", "juan@mail.com", DtModalidad::teorico);
-	iAsignatura->asignarDocente("P1", "maria@mail.com", DtModalidad::practico);
-	iAsignatura->asignarDocente("P1", "jorge@mail.com", DtModalidad::monitoreo);
+	//Habitaciones
+	int numerosHabitaciones[6] = {1, 2, 3, 4, 1,1};
+	int preciosHabitaciones[6] = {40, 10, 30, 5, 3,9};
+	int capacidadHabitaciones[6] = {2, 7, 3, 12, 2,5};
+	string nombresHostales[6]= {"La posada del finger", "La posada del finger", "La posada del finger","La posada del finger","Caverna Lujosa","El Pony Pisador"};
+	for (int i = 0; i < 6; i++)
+    {
+		iHostal->agregarHabitacion(numerosHabitaciones[i],preciosHabitaciones[i],capacidadHabitaciones[i],nombresHostales[i]) ;
+    }
 	
-	//Inscripcion de estudiantes a asignaturas
-	iAsignatura->inscribirEstudiante("P1", "roberto@mail.com" );
-	iAsignatura->inscribirEstudiante("P1", "ana@mail.com" );
-	iAsignatura->inscribirEstudiante("P2", "ana@mail.com" );
-	iAsignatura->inscribirEstudiante("P1", "ramon@mail.com" );
-	
-	//Clases
+/*	
+	//Asignación de empleados a hostels
 	string nombreClase[6] = {"Intro", "Tema 1 ", "Tema 2", "Pra 1", "Pra 2", "06/01/20" };
 	string tipoClase[6] = {"Teorico", "Teorico", "Teorico", "Practico", "Practico", "Monitoreo"};
 	
