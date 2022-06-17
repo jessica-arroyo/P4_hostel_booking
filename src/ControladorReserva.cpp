@@ -29,31 +29,6 @@ ControladorReserva *ControladorReserva::getInstancia()
     return _instancia;
 }
 
-// consulta de reserva 
-
-
-/* version vieja jess
-map<int,DtReserva> ControladorReserva::obtenerReservas(string nombreHostal)
-{
-	ControladorHostal *inshostal =  ControladorHostal::getInstancia();
-	Hostal *hostal=	inshostal->listarHostales().find(nombreHostal)->second;
-	map<string, DtReserva> SetReservas;
-	map<string, Reserva*>::iterator i; 
-	for(i->second = hostal->getReservas().begin(); i->second != hostal->getReservas().end(); i++)
-	{
-		if (dynamic_cast<ReservaGrupal *>(i->second)!=NULL){ //ver como era el dynamic cast 
-			DtReservaGrupal r = DtReserva(i->second->getCodigo(), i->second->getCheckIn(), i->second->getCheckOut(), i->second->getFechaRealizada(), i->second->getEstado(),i->second->getCosto(), i->second->getNombresHuespedes());
-		}
-		if (dynamic_cast<ReservaIndividual *>(i->second)!=NULL){
-			DtReservaIndividual r = DtReserva(i->second->getCodigo(), i->second->getCheckIn(), i->second->getCheckOut(), i->second->getFechaRealizada(), i->second->getEstado(),i->second->getCosto());
-		}
-		SetReservas.insert(make_pair(i->second->getCodigo(),r));
-	}
-	return SetReservas;
-}
-
-*/
-
 // registrar estadia
 map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, string emailHuesped){
 	ControladorHostal *inshostal =  ControladorHostal::getInstancia();
