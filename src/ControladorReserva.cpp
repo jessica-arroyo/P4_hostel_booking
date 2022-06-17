@@ -32,7 +32,7 @@ ControladorReserva *ControladorReserva::getInstancia()
 // consulta de reserva 
 map<int,DtReserva> ControladorReserva::obtenerReservas(string nombreHostal)
 {
-	IHostal *inshostal =  ControladorHostal::getInstancia();
+	ControladorHostal *inshostal =  ControladorHostal::getInstancia();
 	Hostal *hostal=	inshostal->listarHostales().find(nombreHostal)->second;
 	map<string, DtReserva> SetReservas;
 	map<string, Reserva*>::iterator i; 
@@ -51,7 +51,7 @@ map<int,DtReserva> ControladorReserva::obtenerReservas(string nombreHostal)
 
 // registrar estadia
 map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, string emailHuesped){
-	IHostal *inshostal =  ControladorHostal::getInstancia();
+	ControladorHostal *inshostal =  ControladorHostal::getInstancia();
 	Hostal *hostal=	inshostal->listarHostales().find(nombreHostal)->second;
 	map<string, DtReserva> SetReservas;
 	map<string, Reserva*>::iterator i; 
