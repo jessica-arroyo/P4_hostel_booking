@@ -29,11 +29,26 @@ ControladorReserva *ControladorReserva::getInstancia()
     return _instancia;
 }
 
+// consulta de reserva 
+map<int,DtReserva> ControladorReserva::obtenerReservas(string nombreHostal)
+{
+	IHostal *inshostal =  ControladorHostal::getInstancia();
+	Hostal *hostal=	inshostal->getSetHostales().find(nombreHostal)->second;
+	map<int, DtReserva> reservas;
+	map<int, Reserva*>::iterator i; 
+	for(i->second = hostal->getReservas().begin()->second; i->second != hostal->getReservas().end()->second; i++)
+	{
+		DtReserva r = i->second->getDtReserva();
+		reservas.insert(make_pair(r.getCodigo(),r));
+	}
+	return reservas;
+}
 
 
 void ControladorReserva::confirmarReserva(){}
 void ControladorReserva::cancelarReserva(){}
 //set<DtCalificacion> ControladorReserva::chequearCalificacion(string nombreHostal){}
+//map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, string emailHuesped){}
 //void ControladorReserva::inscribirEstadia(DtReserva reserva){}
 //void ControladorReserva::finalizarEstadia(string nombreHostal, string emailHuesped){}
 //set<DtEstadia> ControladorReserva::obtenerEstadiasFinalizadas(string emailHuesped,string nombreHostal){}
@@ -48,4 +63,3 @@ void ControladorReserva::cancelarReserva(){}
 //void ControladorReserva::insertarCalificacion(string comentario, int puntaje, DtEstadia estadia){}
 //void ControladorReserva::confirmarBaja(){}
 //void cancelarBaja(){}
-
