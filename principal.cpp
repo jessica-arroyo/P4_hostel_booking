@@ -1497,7 +1497,7 @@ int main()
 							cout<<"Ingrese un código correspondiente a una reserva del sistema." ;
 							cin>>codres ;
 						}
-						iReserva->inscribirEstadia(codres);
+						iReserva->inscribirEstadia(codres,nomus);
 						}
 					}*/
 				
