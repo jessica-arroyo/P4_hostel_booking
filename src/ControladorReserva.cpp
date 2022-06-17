@@ -30,6 +30,9 @@ ControladorReserva *ControladorReserva::getInstancia()
 }
 
 // consulta de reserva 
+
+
+/* version vieja jess
 map<int,DtReserva> ControladorReserva::obtenerReservas(string nombreHostal)
 {
 	ControladorHostal *inshostal =  ControladorHostal::getInstancia();
@@ -48,6 +51,8 @@ map<int,DtReserva> ControladorReserva::obtenerReservas(string nombreHostal)
 	}
 	return SetReservas;
 }
+
+*/
 
 // registrar estadia
 map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, string emailHuesped){
