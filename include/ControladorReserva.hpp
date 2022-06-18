@@ -13,6 +13,7 @@
 #include "Estadia.hpp"
 #include "IReserva.hpp"
 #include "Huesped.hpp"
+#include "Fecha.hpp"
 #include "ControladorHostal.hpp"
 #include "ControladorUsuario.hpp"
 #include <map>
@@ -35,6 +36,7 @@ private:
 public:
     ~ControladorReserva();
     static ControladorReserva *getInstancia() ;
+    map<int , Reserva*> getSetReservas() ; 
     void confirmarReservaGrupal(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped, map<string, Huesped*> grupoHues, int cont);
 	void confirmarReservaIndividual(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped);
     //void cancelarReserva();
