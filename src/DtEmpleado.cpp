@@ -13,3 +13,7 @@ DtEmpleado::DtEmpleado(string nombre, string email, string password, TipoCargo c
 
 DtEmpleado::~DtEmpleado(){}
 
+string  DtEmpleado::getNombreHostal() {
+    return nombreHostal;
+}
+

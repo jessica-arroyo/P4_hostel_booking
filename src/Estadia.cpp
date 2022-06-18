@@ -10,12 +10,12 @@ using namespace std ;
     Estadia::Estadia() {} 
     Estadia::~Estadia(){}
 
-    Estadia::Estadia(DtFechaHora checkIn, DtFechaHora checkOut, string promo, Calificacion *cal, Habitacion *hab){
+    Estadia::Estadia(DtFechaHora checkIn, DtFechaHora checkOut, Habitacion *hab, Huesped *hues){
         this->checkIn = checkIn ;
         this->checkOut = checkOut ;
-        this->promo = promo ;
-		this->calificacion = cal;
+		this->calificacion = NULL;
 		this->habitacion = hab;
+		this->huesped = hues ;
     }
 
     void Estadia::setCheckIn (DtFechaHora checkIn){
@@ -26,10 +26,6 @@ using namespace std ;
         this->checkOut = checkOut;
     }
 
-    void Estadia::setPromo (string promo){
-        this->promo = promo;
-    } 
-
     void Estadia::agregarCalificacion(Calificacion *cal) {
         this->calificacion = cal;
     }
@@ -38,9 +34,13 @@ using namespace std ;
         this->habitacion = hab;
     }
 
-    string Estadia::getPromo () {
-        return this->promo;
-    }
+	void Estadia::setHuesped(Huesped *hues){
+		this->huesped = hues ;
+	}
+
+	Huesped* Estadia::getHuesped(){
+		return this->huesped ;
+	}
 
 	DtFechaHora Estadia::getCheckIn () {
         return this->checkIn;
@@ -57,6 +57,11 @@ using namespace std ;
 	Habitacion* Estadia::getHabitacion(){
         return this->habitacion;
     }
+
+	DtEstadia Estadia::getDtEstadia(){
+		DtEstadia dtest = DtEstadia(this->checkIn,this->checkOut,this->huesped->getEmail(), this->habitacion->getNumero()) ;
+		return dtest ;
+	}
 
     //Estadia::create(DtFechaHora checkin,DtFechaHora checkout,std::string promo,Calificacion *cal,Habitacion *hab){};  
     //Estadia::setearValoresIniciales(DtFechaHora checkin,DtFechaHora checkout,std::string promo,Calificacion *cal,Habitacion *hab){};

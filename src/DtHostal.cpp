@@ -1,7 +1,7 @@
 #include "../include/DtHostal.hpp"
 
 
-DtHostal::DtHostal(string nom, string direc, int tel, float calificacionPromedio){
+DtHostal::DtHostal(string nom, string direc, string tel, float calificacionPromedio){
     this->nombre = nom ;
     this->direccion = direc ;
     this->telefono = tel ;
@@ -20,7 +20,7 @@ string DtHostal::getDireccion(){
     return direccion ;
 }
 
-int DtHostal::getTelefono(){
+string DtHostal::getTelefono(){
     return telefono ;
 }
 

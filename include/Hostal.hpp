@@ -19,7 +19,7 @@ class Hostal {
   private:
     string nombre ;
     string direccion ;
-    int telefono ;
+    string telefono ;
     float calificacionPromedio ;
     map<int , Habitacion *> habitaciones; 
     map<int , Reserva *> reservas;
@@ -28,11 +28,11 @@ class Hostal {
     
   
   public:
-    Hostal(string nombre, string direccion, int telefono, float calificacionPromedio) ; //empieza con calificacionPromedio=0.
+    Hostal(string nombre, string direccion, string telefono, float calificacionPromedio) ; //empieza con calificacionPromedio=0.
     ~Hostal() ;
     string getNombre() ;
     string getDireccion() ;
-    int getTelefono() ;
+    string getTelefono() ;
     int getCalificacionPromedio() ;
     map<int , Habitacion *> getHabitaciones() ;
     map<int , Reserva *> getReservas() ;
@@ -41,7 +41,7 @@ class Hostal {
 
     void setNombre(string nom) ;
     void setDireccion(string direc) ;
-    void setTelefono(int tel) ;
+    void setTelefono(string tel) ;
     void setCalPromedio(int calProm) ;
     void setHabitacion(Habitacion *hab); //agregar habitación al Hostal.
     void agregarReservaAHostal(Reserva *res);

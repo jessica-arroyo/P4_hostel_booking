@@ -11,6 +11,7 @@ Huesped::Huesped() {}
 Huesped::~Huesped() {}
 Huesped::Huesped(string nombre, string email, string password, bool esFinger) : Usuario(nombre, email, password) {
     this->esFinger = esFinger ;
+	this->estadia = NULL ;
 }
 
 bool Huesped::getEsFinger() {
@@ -42,7 +43,13 @@ void Huesped::anadirHostalAlHuesped(Hostal *hostal){
     this->hostalesHuesped[hostal->getNombre()] = hostal;
 }
 
+set<Estadia *> Huesped::getEstadiasFinalizadas(){
+	return estadiasFinalizadas ;
+}
 
+void Huesped::setEstadiaFinalizada(Estadia *estadia){
+	estadiasFinalizadas.insert(estadia) ;
+}
 
 //void Huesped::accesoHuesped(string){}
 

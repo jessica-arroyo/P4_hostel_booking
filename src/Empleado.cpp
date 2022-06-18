@@ -14,7 +14,7 @@ Empleado::Empleado(string nombre, string email, string password, TipoCargo cargo
     this->email = email;
     this->password = password;
     this->cargo = cargo;
-    
+    this->hostal = NULL ;
     
 }
 
@@ -29,17 +29,33 @@ void Empleado::setCargo(TipoCargo cargo){
 
 bool Empleado::estaAsignado(string nombreHostal)
 {
-    if (nombreHostal == hostal->getNombre())
-        {
-            return true;
-        }
+	bool asig ;
+    if (this->hostal==NULL){
+           asig = false ;
+    }
+	else if (nombreHostal == hostal->getNombre()) {
+		asig = true ;
+	}
+	else {
+		asig = false ;
+	}
     
-    return false;
+    return asig;
 
 }
 
 DtEmpleado Empleado::getDtEmpleado(){
-    DtEmpleado dte = DtEmpleado(this->getNombre(), this->getEmail(), this->getPassword(), this->cargo, this->hostal->getNombre());
+	string nombrehos ;
+	if(this->hostal != NULL){
+		nombrehos = this->hostal->getNombre() ;
+	}
+	else {
+		nombrehos = "vacio" ; 
+	}
+	
+	DtEmpleado dte = DtEmpleado(this->getNombre(), this->getEmail(), this->getPassword(), this->cargo, nombrehos);
+	
+	
     return dte;
 }
 

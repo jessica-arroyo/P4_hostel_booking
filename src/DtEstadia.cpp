@@ -6,20 +6,28 @@ DtEstadia::DtEstadia() {}
 
 DtEstadia::~DtEstadia() {} 
 
-DtEstadia::DtEstadia(DtFechaHora checkIn, DtFechaHora checkOut, string promo){
+DtEstadia::DtEstadia(DtFechaHora checkIn, DtFechaHora checkOut, string emailHuesped, int numeroHabitacion){
     this->checkIn = checkIn ;
     this->checkOut = checkOut ;
-    this->promo = promo ;
+	this->emailHuesped = emailHuesped ;
+	this->numeroHabitacion = numeroHabitacion ;
 }
 
 DtFechaHora DtEstadia::getCheckIn(){
     return this->checkIn ;
 }
 
-string DtEstadia::getPromo(){
-    return this->promo;
-}
-
 DtFechaHora DtEstadia::getCheckOut(){
     return this->checkOut ;
 }
+
+string DtEstadia::getEmailHuesped(){
+	return this->emailHuesped ;
+}
+
+int DtEstadia::getNumeroHabitacion(){
+	return this->numeroHabitacion ;
+}
+
+
+
