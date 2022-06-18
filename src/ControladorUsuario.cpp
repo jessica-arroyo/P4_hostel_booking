@@ -33,6 +33,13 @@ ControladorUsuario *ControladorUsuario::getInstancia()
     return instancia;
 }
 
+
+map<string , Empleado*>	ControladorUsuario::getEmpleados(){
+	return empleados;
+}
+map<string , Huesped*> ControladorUsuario::getHuespedes(){
+	return huespedes;
+}
 // alta de usuario 
 bool ControladorUsuario::existeEmpleado(string emailUser)
 {

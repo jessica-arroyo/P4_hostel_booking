@@ -19,6 +19,8 @@ class IUsuario {
     IUsuario();
     virtual ~IUsuario()=0 ;
     
+	virtual map<string , Empleado*>	getEmpleados()=0;
+    virtual map<string , Huesped*> getHuespedes()=0;
     virtual bool existeEmpleado(string emailUser)=0 ;
     virtual bool existeHuesped(string emailUser)=0 ;
     // alta de usuario 

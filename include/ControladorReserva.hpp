@@ -35,8 +35,9 @@ private:
 public:
     ~ControladorReserva();
     static ControladorReserva *getInstancia() ;
-    void confirmarReserva();
-    void cancelarReserva();
+    void confirmarReservaGrupal(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped, map<string, Huesped*> grupoHues, int cont);
+	void confirmarReservaIndividual(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped);
+    //void cancelarReserva();
     //set<DtCalificacion> chequearCalificacion(string nombreHostal);
     //map<int,DtReserva> listarReservas(string nombreHostal, string emailHuesped);
     //void inscribirEstadia(DtReserva reserva);
