@@ -1166,7 +1166,7 @@ int main()
     				map<string , DtHostal> :: iterator i;
 					if(hostales.empty())
 					{
-						throw invalid_argument ("No hay hostales registrados") ;
+						cout<< "No hay hostales registrados \n" ;
 					}
 					else 
 					{
@@ -1181,19 +1181,19 @@ int main()
 						int precio ;
 						int capacidad ;
 						string nombreH ; 
-            cin.clear();
-					  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cin.clear();
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
            
 						cout<< "Ingrese el nombre del hostal al que pertenece la habitación\n" ;
 						getline(cin,nombreH) ;
-					while(iHostal->existeHostal(nombreH) == false){
-						cout<< "Hostal no registrado\n" ;
-						cout<< "Ingrese nuevamente el nombre\n" ;
-						getline(cin,nombreH) ;
-					}
-            cout<< "Ingrese el numero\n" ;
+						while(iHostal->existeHostal(nombreH) == false){
+							cout<< "Hostal no registrado\n" ;
+							cout<< "Ingrese nuevamente el nombre\n" ;
+							getline(cin,nombreH) ;
+						}
+						cout<< "Ingrese el numero\n" ;
 						cin>> numero ;
-             while(iHostal->existeHabitacion(numero, nombreH) == true){
+						while(iHostal->existeHabitacion(numero, nombreH) == true){
 							cout<< "Habitacion ya registrada\n" ;
 							cout<< "Ingrese nuevamente el numero\n" ;
 							cin>> numero ;
@@ -1261,86 +1261,87 @@ int main()
     				map<string , DtHostal> :: iterator i;
 					if(hostales.empty())
 					{
-						throw invalid_argument ("No hay hostales registrados") ;
+						cout<< "No hay hostales registrados\n" ;
 					}
 					else 
 					{
     					int j = 1;
-    					cout<< "Lista de Hostales /n" ;
+    					cout<< "Lista de Hostales \n" ;
     					for(i=hostales.begin(); i != hostales.end(); i++){
-        					cout<< j <<"Nombre: " << i->second.getNombre() << "/n";
-							cout<< "Dirección:" << i->second.getDireccion() << "/n";
-							cout<< "Teléfono:" << i->second.getTelefono() << "/n";
-							cout<< "Calificación Promedio:" << i->second.getCalificacionPromedio() << "/n";
+        					cout<< j <<") Nombre: " << i->second.getNombre() << "\n";
+							cout<< "Dirección: " << i->second.getDireccion() << "\n";
+							cout<< "Teléfono: " << i->second.getTelefono() << "\n";
+							cout<< "Calificación Promedio: " << i->second.getCalificacionPromedio() << "\n";
         					j++;
     					}
-
-						cout<<"Ingrese el nombre del hostal del que desea ver la información. /n" ;
+						cin.clear(); 
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout<<"Ingrese el nombre del hostal del que desea ver la información. \n" ;
 						string nomhos ;
-						cin>> nomhos ;
+						getline(cin, nomhos) ;
 						while(!iHostal->existeHostal(nomhos)){
-							cout<< "El nombre ingresado no corresponde a un hostal del sistema./n" ;
-							cout<<"Ingrese un nombre correspondiente a un hostal del sistema./n" ;
-							cin>>nomhos ;
+							cout<< "El nombre ingresado no corresponde a un hostal del sistema.\n" ;
+							cout<<"Ingrese un nombre correspondiente a un hostal del sistema.\n" ;
+							getline(cin, nomhos) ;
 						}
 						int dia, anio,mes, hora;
-						cout<<"Ingrese fecha de entrada. /n";
-						cout<<"Ingrese dia de entrada. /n";
+						cout<<"Ingrese fecha de entrada. \n";
+						cout<<"Ingrese dia de entrada. \n";
 						cin>>dia;
-						cout<<"Ingrese mes de entrada. /n";
+						cout<<"Ingrese mes de entrada. \n";
 						cin>>mes;
-						cout<<"Ingrese anio de entrada. /n";
+						cout<<"Ingrese anio de entrada. \n";
 						cin>>anio;
-						cout<<"Ingrese hora de entrada. /n";
+						cout<<"Ingrese hora de entrada. \n";
 						cin>>hora;
 						DtFechaHora fechaCheckIn = DtFechaHora(hora, dia,mes,anio);
-						cout<<"Ingrese fecha de salida. /n";
-						cout<<"Ingrese dia de salida. /n";
+						cout<<"Ingrese fecha de salida. \n";
+						cout<<"Ingrese dia de salida. \n";
 						cin>>dia;
-						cout<<"Ingrese mes de salida. /n";
+						cout<<"Ingrese mes de salida. \n";
 						cin>>mes;
-						cout<<"Ingrese anio de salida. /n";
+						cout<<"Ingrese anio de salida. \n";
 						cin>>anio;
-						cout<<"Ingrese hora de salida. /n";
+						cout<<"Ingrese hora de salida. \n";
 						cin>>hora;
 						DtFechaHora fechaCheckOut = DtFechaHora(hora, dia,mes,anio);
 						long int f1 = fechaCheckIn.getHora() + fechaCheckIn.getDia()*24 + fechaCheckIn.getMes()*24*30 + fechaCheckIn.getAnio()*24*12*30;
 						long int f2 = fechaCheckOut.getHora() + fechaCheckOut.getDia()*24 + fechaCheckOut.getMes()*24*30 + fechaCheckOut.getAnio()*24*12*30;
 					    while ((f2 - f1) < 0) {
-							cout<<"Fecha invalida.Fecha de salida debe ser mayor a la fecha de entrada./n";
-							cout<<"Ingrese fecha de entrada. /n";
-							cout<<"Ingrese dia de entrada. /n";
+							cout<<"Fecha invalida.Fecha de salida debe ser mayor a la fecha de entrada.\n";
+							cout<<"Ingrese fecha de entrada. \n";
+							cout<<"Ingrese dia de entrada. \n";
 							cin>>dia;
-							cout<<"Ingrese mes de entrada. /n";
+							cout<<"Ingrese mes de entrada. \n";
 							cin>>mes;
-							cout<<"Ingrese anio de entrada. /n";
+							cout<<"Ingrese anio de entrada. \n";
 							cin>>anio;
-							cout<<"Ingrese hora de entrada. /n";
+							cout<<"Ingrese hora de entrada. \n";
 							cin>>hora;
 							fechaCheckIn = DtFechaHora(hora, dia,mes,anio);
-							cout<<"Ingrese fecha de salida. /n";
-							cout<<"Ingrese dia de salida. /n";
+							cout<<"Ingrese fecha de salida. \n";
+							cout<<"Ingrese dia de salida. \n";
 							cin>>dia;
-							cout<<"Ingrese mes de salida. /n";
+							cout<<"Ingrese mes de salida. \n";
 							cin>>mes;
-							cout<<"Ingrese anio de salida. /n";
+							cout<<"Ingrese anio de salida. \n";
 							cin>>anio;
-							cout<<"Ingrese hora de salida. /n";
+							cout<<"Ingrese hora de salida. \n";
 							cin>>hora;
 							fechaCheckOut = DtFechaHora(hora, dia,mes,anio);
 							 f1 = fechaCheckIn.getHora() + fechaCheckIn.getDia()*24 + fechaCheckIn.getMes()*24*30 + fechaCheckIn.getAnio()*24*12*30;
 							 f2 = fechaCheckOut.getHora() + fechaCheckOut.getDia()*24 + fechaCheckOut.getMes()*24*30 + fechaCheckOut.getAnio()*24*12*30;
 						}
 						bool esGrupal;
-                        cout << "Ingrese 0 si la reserva sera individual o 1 si sera grupal. /n";
+                        cout << "Ingrese 0 si la reserva sera individual o 1 si sera grupal. \n";
                         cin>> j ;
                         if(!cin.good())
-                            {
+                        {
                             cout << "ERROR\n";
                             cin.clear();
                             cin.ignore(1000,'\n');
                             j = 2;
-                            }
+                        }
                         while (j != 0 && j != 1){
                             cout << "Ingrese '0' o '1'\n";
                             cin >> j;
@@ -1357,121 +1358,150 @@ int main()
 
 						 map<int , DtHabitacion> setHabitOp = iHostal->devolverHabitacionesDisponibles(fechaCheckIn, fechaCheckOut, nomhos);
 
-					map<int , DtHabitacion> :: iterator iR2;
-					if(setHabitOp.empty())
-					{
-						throw invalid_argument ("No hay habitaciones disponibles") ;
-					}
-					else 
-					{
-    					int y = 1;
-    					cout<< "Lista de Habitaciones disponibles /n" ;
-    					for(iR2=setHabitOp.begin(); iR2 != setHabitOp.end(); iR2++){
-        					cout<< y <<"Numero: " << iR2->second.getNumero() << "/n";
-							y++;
-						}
-					}
-					int numhab;
-					cout<<"Ingrese el numero  de la habitacion que desea seleccionar. /n" ;
-						cin>> numhab ;
-						while(!cin.good())
-                            {
-                            cout << "ERROR NO ES UN NUMERO VALIDO\n";
-                            cin.clear();
-                            cin.ignore(1000,'\n');
-							cout<<"Ingrese el numero  de la habitacion que desea seleccionar. /n" ;
-							cin>> numhab;
-                            }
-						while(!iHostal->existeHabitacion(numhab,nomhos)){
-							cout<< "El numero ingresado no corresponde a una habitacion del sistema." ;
-							cout<<"Ingrese un numero correspondiente a una habitacion del sistema." ;
-							cin>>numhab;
-						}
-						map<string , DtHuesped> conjuntoHuespedes = iUsuario->listarHuespedes();
-
-						map<string , DtHuesped> :: iterator iR3;
-						if(conjuntoHuespedes.empty())
+						map<int , DtHabitacion> :: iterator iR2;
+						if(setHabitOp.empty())
 						{
-							throw invalid_argument ("No hay huespedes registrados. /n") ;
+							cout<< "No hay habitaciones disponibles" ;
 						}
 						else 
 						{
-    						int y = 1;
-    						cout<< "Lista de Huespedes registrados. /n" ;
-    						for(iR3=conjuntoHuespedes.begin(); iR3 != conjuntoHuespedes.end(); iR3++){
-        						cout<< y <<"Email: " << iR3->second.getEmail() << "/n";
-								y++;
+    					int y = 1;
+    					cout<< "Lista de Habitaciones disponibles \n" ;
+    					for(iR2=setHabitOp.begin(); iR2 != setHabitOp.end(); iR2++){
+        					cout<< y <<"Numero: " << iR2->second.getNumero() << "\n";
+							y++;
+						}
+					
+						int numhab;
+						cout<<"Ingrese el numero  de la habitacion que desea seleccionar. \n" ;
+							cin>> numhab ;
+							while(!cin.good())
+								{
+								cout << "ERROR NO ES UN NUMERO VALIDO\n";
+								cin.clear();
+								cin.ignore(1000,'\n');
+								cout<<"Ingrese el numero  de la habitacion que desea seleccionar. \n" ;
+								cin>> numhab;
+								}
+							while(!iHostal->existeHabitacion(numhab,nomhos)){
+								cout<< "El numero ingresado no corresponde a una habitacion del sistema.\n" ;
+								cout<<"Ingrese un numero correspondiente a una habitacion del sistema.\n" ;
+								cin>>numhab;
+							}
+							map<string , DtHuesped> conjuntoHuespedes = iUsuario->listarHuespedes();
+
+							map<string , DtHuesped> :: iterator iR3;
+							if(conjuntoHuespedes.empty())
+							{
+								cout<< "No hay huespedes registrados. \n" ;
+							}
+							else 
+							{
+								int y = 1;
+								cout<< "Lista de Huespedes registrados. /n" ;
+								for(iR3=conjuntoHuespedes.begin(); iR3 != conjuntoHuespedes.end(); iR3++){
+									cout<< y <<"Email: " << iR3->second.getEmail() << "\n";
+									y++;
+								}
+							
+								cout<<"Ingrese el email del huesped el cual realiza la reserva. \n" ;
+								string mailHuesped ;
+								cin>> mailHuesped ;
+								while(!iUsuario->existeHuesped(mailHuesped)){
+									cout<< "El email ingresado no corresponde a un huesped del sistema.\n" ;
+									cout<<"Ingrese un email correspondiente a un huesped del sistema.\n" ;
+									cin>>mailHuesped;
+								}
+								if (esGrupal) {
+									bool deseaHuespedes = true;
+									map<std::string, Huesped*> grupoHues;
+									string otroHuesped;
+									int cont = 1;
+									while (deseaHuespedes) {
+										cont++;
+										cout<<"Ingrese el email del huesped al cual desea agregar a la reserva. \n" ;
+										cin>> otroHuesped ;
+										while(!iUsuario->existeHuesped(otroHuesped)){
+											cout<< "El email ingresado no corresponde a un huesped del sistema.\n" ;
+											cout<<"Ingrese un email correspondiente a un huesped del sistema.\n" ;
+											cin>>otroHuesped;
+										}
+										Huesped *hues = iUsuario->getHuespedes().find(otroHuesped)->second;
+										grupoHues.insert(make_pair(otroHuesped, hues)); //aca nose lode controlador
+										int j ; 
+										cout << "Si desea agregar otro huesped a la reserva, ingrese '1', de lo contrario ingrese '0'.\n";
+										cin>> j ;
+										if(!cin.good())
+										{
+											cout << "ERROR\n";
+											cin.clear();
+											cin.ignore(1000,'\n');
+											j = 2;
+										}
+										while (j != 0 && j != 1){
+											cout << "Ingrese '0' o '1'\n";
+											cin >> j;
+											if(!cin.good())
+											{
+												cout << "ERROR\n";
+												cin.clear();
+												cin.ignore(1000,'\n');
+													j = 2;
+											}
+										}
+										if (j == 0) {
+											deseaHuespedes = false;
+										}
+									}
+									cout << "Si desea confirmar la reserva, ingrese '1', si desea cancelar ingrese '0'.\n";
+									cin>> j ;
+									if(!cin.good())
+									{
+										cout << "ERROR\n";
+										cin.clear();
+										cin.ignore(1000,'\n');
+										j = 2;
+									}
+									while (j != 0 && j != 1){
+										cout << "Ingrese '0' o '1'\n";
+										cin >> j;
+										if(!cin.good())
+										{
+											cout << "ERROR\n";
+											cin.clear();
+											cin.ignore(1000,'\n');
+											j = 2;
+										}
+									}
+									if (j == 1 ) iReserva->confirmarReservaGrupal(nomhos, numhab, fechaCheckIn, fechaCheckOut, mailHuesped, grupoHues, cont);
+									else cout<< "Se cancelo el la Reserva.\n";
+								}else{
+									cout << "Si desea confirmar la reserva, ingrese '1', si desea cancelar ingrese '0'.\n";
+									cin>> j ;
+									if(!cin.good())
+									{
+										cout << "ERROR\n";
+										cin.clear();
+										cin.ignore(1000,'\n');
+										j = 2;
+									}
+									while (j != 0 && j != 1){
+										cout << "Ingrese '0' o '1'\n";
+										cin >> j;
+										if(!cin.good())
+										{
+											cout << "ERROR\n";
+											cin.clear();
+											cin.ignore(1000,'\n');
+											j = 2;
+										}
+									}
+									if (j == 1) iReserva->confirmarReservaIndividual(nomhos, numhab, fechaCheckIn, fechaCheckOut, mailHuesped);
+									else cout<< "Se cancelo el la Reserva.\n";
+								}
 							}
 						}
-							cout<<"Ingrese el email del huesped el cual realiza la reserva. /n" ;
-							string mailHuesped ;
-							cin>> mailHuesped ;
-							while(!iUsuario->existeHuesped(mailHuesped)){
-								cout<< "El email ingresado no corresponde a un huesped del sistema." ;
-								cout<<"Ingrese un email correspondiente a un huesped del sistema." ;
-								cin>>mailHuesped;
-							}
-							if (esGrupal) {
-								bool deseaHuespedes = true;
-								std::map<std::string, Huesped> grupoHues;
-								string otroHuesped;
-								while (deseaHuespedes) {
-								cout<<"Ingrese el email del huesped al cual desea agregar a la reserva. /n" ;
-								cin>> otroHuesped ;
-								while(!iUsuario->existeHuesped(otroHuesped)){
-									cout<< "El email ingresado no corresponde a un huesped del sistema." ;
-									cout<<"Ingrese un email correspondiente a un huesped del sistema." ;
-									cin>>otroHuesped;
-								}
-									grupoHues.insert(make_pair(otroHuesped, huespedes.find(otroHuesped)->second)); //aca nose lode controlador
-									int j ; 
-                        			cout << "Si desea agregar otro huesped a la reserva, ingrese '1', de lo contrario ingrese '0'.\n";
-                        			cin>> j ;
-                        			if(!cin.good())
-                            		{
-                            		cout << "ERROR\n";
-                            		cin.clear();
-                            		cin.ignore(1000,'\n');
-                            		j = 2;
-                            		}
-                        			while (j != 0 && j != 1){
-                            		cout << "Ingrese '0' o '1'\n";
-                            		cin >> j;
-                            		if(!cin.good())
-                            		{
-                            		cout << "ERROR\n";
-                            		cin.clear();
-                            		cin.ignore(1000,'\n');
-                            		j = 2;
-                            		}
-                        			}
-									if (j == 0) {deseaHuespedes = false;}
-									}
-								}
-                        		cout << "Si desea confirmar la reserva, ingrese '1', si desea cancelar ingrese '0'.\n";
-                        		cin>> j ;
-                        		if(!cin.good())
-                            	{
-                            	cout << "ERROR\n";
-                            	cin.clear();
-                            	cin.ignore(1000,'\n');
-                            	j = 2;
-                            	}
-                        		while (j != 0 && j != 1){
-                            	cout << "Ingrese '0' o '1'\n";
-                            	cin >> j;
-                            	if(!cin.good())
-                            	{
-                            	cout << "ERROR\n";
-                            	cin.clear();
-                            	cin.ignore(1000,'\n');
-                            	j = 2;
-                            	}
-							}
-							if (j == 1) iReserva->confirmarReserva();
-							else iReserva->cancelarReserva();
-
-            		}
+					}
 				}
             	break;
 				case 6:
@@ -1577,10 +1607,6 @@ int main()
               						}
               
                     }
-          					
-              
-              
-					cout << "Hasta luego.\n";
                 	//Consulta de Usuario
             	}
             	break;
@@ -1591,7 +1617,7 @@ int main()
 
 					if(loshostales.empty())
 					{
-						throw invalid_argument ("No hay hostales registrados") ;
+						cout<<"No hay hostales registrados\n" ;
 					}
 					else 
 					{
@@ -1979,13 +2005,12 @@ int main()
           	int capacidadHabitaciones[6] = {2, 7, 3, 12, 2,5};
           	string nombresHostalesH[6]= {"La posada del finger", "La posada del finger", "La posada del finger","La posada del finger","Caverna Lujosa","El Pony Pisador"};
           	for (int i = 0; i < 6; i++)
-              {
+            {
           		iHostal->agregarHabitacion(numerosHabitaciones[i],preciosHabitaciones[i],capacidadHabitaciones[i],nombresHostalesH[i]) ;
-              }
-                 
-                 cout << "Hasta luego.\n";
-            	}
-				break ;            
+            }
+            cout << "Datos cargados.\n";
+        }
+		break ;            
                 
                 
                 

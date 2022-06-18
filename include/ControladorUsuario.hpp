@@ -26,7 +26,9 @@ class ControladorUsuario: public IUsuario {
   public:
     ~ControladorUsuario() ;
     static ControladorUsuario *getInstancia();
-    
+	
+    map<string , Empleado*>	getEmpleados();
+    map<string , Huesped*> getHuespedes();
     bool existeEmpleado(string emailUser) ;
     bool existeHuesped(string emailUser) ;
     // alta de usuario 

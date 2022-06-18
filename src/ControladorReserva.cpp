@@ -45,8 +45,11 @@ map<int,DtReserva> ControladorReserva::obtenerReservas(string nombreHostal)
 }
 
 
-void ControladorReserva::confirmarReserva(){}
-void ControladorReserva::cancelarReserva(){}
+void ControladorReserva::confirmarReservaGrupal(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped, map<string, Huesped*> grupoHues, int cont){
+	
+}
+void ControladorReserva::confirmarReservaIndividual(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped){}
+//void ControladorReserva::cancelarReserva(){}
 //set<DtCalificacion> ControladorReserva::chequearCalificacion(string nombreHostal){}
 //map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, string emailHuesped){}
 //void ControladorReserva::inscribirEstadia(DtReserva reserva){}
