@@ -28,7 +28,7 @@ ControladorHostal *ControladorHostal::getInstancia(){
     return _instancia ;
 }
 
-void ControladorHostal::altaHostal(string nombre, string direccion, int telefono, int calificacionProm){
+void ControladorHostal::altaHostal(string nombre, string direccion, string telefono, int calificacionProm){
     
     Hostal *hos = new Hostal(nombre, direccion, telefono, calificacionProm) ;
     this->SetHostales.insert(make_pair(hos->getNombre(), hos));
@@ -40,8 +40,14 @@ bool ControladorHostal::existeHostal(string nombre){
 }
 
 bool ControladorHostal::existeHabitacion(int numero, string nombreHostal){
-	 Hostal *hostal = SetHostales.find(nombreHostal)->second;
-     return (hostal->getHabitaciones().find(numero) != hostal->getHabitaciones().end());
+	   Hostal *hostal = SetHostales.find(nombreHostal)->second;
+     bool existeh  = false ;
+     map<int, Habitacion *> habshostal= hostal->getHabitaciones() ;
+     map<int, Habitacion *>::iterator h = habshostal.find(numero) ;
+     if(h != habshostal.end()){
+        existeh = true ;
+}
+return existeh ; 
 }
 
 map<string, Hostal*> ControladorHostal::getSetHostales(){

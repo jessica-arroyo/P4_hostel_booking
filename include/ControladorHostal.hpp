@@ -15,16 +15,18 @@ class ControladorHostal: public IHostal {
         ControladorHostal() ;
         static ControladorHostal *_instancia ;
         map<string, Hostal*> SetHostales ;
+        
     
 
     public:
+    
         ~ControladorHostal() ;
         static ControladorHostal *getInstancia() ;
 
         bool existeHostal(string nombre) ; 
         bool existeHabitacion(int numero, string nombreHostal) ; 
         void agregarHabitacion(int numero,int precio,int capacidad,string nombreH) ; 
-        void altaHostal(string nombre, string direccion, int telefono, int calificacionProm) ; 
+        void altaHostal(string nombre, string direccion, string telefono, int calificacionProm) ; 
         map<string , Hostal*> getSetHostales() ; 
 		map<string , DtHostal> listarHostales() ; 
         DtHostal infoHostal(string nombreHostal) ; 

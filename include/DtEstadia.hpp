@@ -14,14 +14,18 @@ class DtEstadia
 {
 private:
     DtFechaHora checkIn, checkOut;
-    string promo;
+	string emailHuesped ;
+	int numeroHabitacion ;
+    
 public:
     DtEstadia();
-    DtEstadia(DtFechaHora checkIn, DtFechaHora checkOut, string promo);
+    DtEstadia(DtFechaHora checkIn, DtFechaHora checkOut, string emailHuesped, int numeroHabitacion);
     ~DtEstadia();
-    string getPromo();
 	DtFechaHora getCheckIn();
 	DtFechaHora getCheckOut();
+	string getEmailHuesped();
+	int getNumeroHabitacion() ;
+	
 };
 
 

@@ -26,6 +26,50 @@
 
 using namespace std;
 
+/*void cargarDatosPrueba(IHostal *iHostal, IUsuario *iUsuario, IReserva *iReserva,IFecha *iFecha)
+{
+	//Empleados
+	string emailEmpleado[4] = {"emilia@mail.com", "leo@mail.com", "alina@mail.com","barli@mail.com"};
+	string nombreEmpleado[4] = {"Emilia", "Leonardo", "Alina", "Barliman"};
+	TipoCargo cargo[4] = {RECEPCION, RECEPCION, ADMINISTRACION, RECEPCION};
+	for (int i = 0; i < 4; i++)
+	{
+		iUsuario->confirmarAltaEmpleado (nombreEmpleado[i],emailEmpleado[i], "123", cargo[i]);
+	}
+	
+	
+	//Huespedes
+	string emailHuespedes[6] = {"sofia@mail.com", "frodo@mail.com", "sam@mail.com","merry@mail.com","pippin@mail.com","seba@mail.com"};
+	string nombreHuespedes[6] = {"Sofia","Frodo", "Sam", "Merry", "Pippin", "Seba"};
+	bool esFinger[6] = {true, true, false,false,false,true};
+	for (int i = 0; i < 6; i++)
+	{
+		iUsuario->confirmarAltaHuesped(nombreHuespedes[i],emailHuespedes[i], "123", esFinger[i]);
+	}
+	
+
+	
+	//Hostels
+	string nombresHostales[5] = {"La posada del finger", "Mochileros", "El Pony Pisador","Altos de Fing","Caverna Lujosa"};
+	string direccionesHostales[5] = {"Av de la playa 123, Maldonado", "Rambla Costanera 333, Rocha", "Bree (preguntar por Gandalf)","Av del Toro 1424","Amaya 2515"};
+	string telefonosHostales[5]={"099111111", "42579512", "000", "099892992", "233233235"};
+	
+	for (int i = 0; i < 5; i++)
+    {
+		iHostal->altaHostal(nombresHostales[i],direccionesHostales[i],telefonosHostales[i],0) ;
+    }
+	
+	//Habitaciones
+	int numerosHabitaciones[6] = {1, 2, 3, 4, 1,1};
+	int preciosHabitaciones[6] = {40, 10, 30, 5, 3,9};
+	int capacidadHabitaciones[6] = {2, 7, 3, 12, 2,5};
+	string nombresHostalesH[6]= {"La posada del finger", "La posada del finger", "La posada del finger","La posada del finger","Caverna Lujosa","El Pony Pisador"};
+	for (int i = 0; i < 6; i++)
+    {
+		iHostal->agregarHabitacion(numerosHabitaciones[i],preciosHabitaciones[i],capacidadHabitaciones[i],nombresHostalesH[i]) ;
+    }
+
+}*/
 /*int cargarMensaje(DtFechaHora fecha, string email, int idClase, int aResponder, string texto){ // pasar -1 al aResponder para no resp.
 	Fabrica* f = Fabrica::getInstancia();
 	IClase *iClase = f->getIClase();
@@ -220,6 +264,7 @@ int main()
 	IHostal *iHostal = f->getIHostal();
 	IUsuario *iUsuario = f->getIUsuario();
 	IReserva *iReserva = f->getIReserva();
+
 	IFecha *iFecha = f->getIFecha();
 	DtFechaHora horaActual = DtFechaHora(0, 1, 1, 2022);
 	iFecha->setFechaHora(horaActual);
@@ -1096,7 +1141,7 @@ int main()
 				{
 					string nombreHostal ;
 					string direccion ;
-					int telefono ; 
+					string telefono ; 
 					cin.clear();
 					cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
@@ -1136,25 +1181,38 @@ int main()
 						int precio ;
 						int capacidad ;
 						string nombreH ; 
+            cin.clear();
+					  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+           
 						cout<< "Ingrese el nombre del hostal al que pertenece la habitación\n" ;
-						cin>> nombreH ;
-						cout<< "Ingrese el numero\n" ;
+						getline(cin,nombreH) ;
+					while(iHostal->existeHostal(nombreH) == false){
+						cout<< "Hostal no registrado\n" ;
+						cout<< "Ingrese nuevamente el nombre\n" ;
+						getline(cin,nombreH) ;
+					}
+            cout<< "Ingrese el numero\n" ;
 						cin>> numero ;
+             while(iHostal->existeHabitacion(numero, nombreH) == true){
+							cout<< "Habitacion ya registrada\n" ;
+							cout<< "Ingrese nuevamente el numero\n" ;
+							cin>> numero ;
+						}             
+                 
 						cout<< "Ingrese el precio\n" ; //hay que aclarar que es sin el signo de pesos?
 						cin>> precio ;
 						cout<< "Ingrese la capacidad\n" ;
 						cin>> capacidad ;
-						while(iHostal->existeHostal(nombreH) == false){
-							cout<< "Hostal no registrado\n" ;
-							cout<< "Ingrese nuevamente el nombre" ;
-							cin>> nombreH ;
-						}
+                            
+              /*
+              	while(iHostal->existeHostal(nombreH) == false){
+						cout<< "Hostal no registrado\n" ;
+						cout<< "Ingrese nuevamente el nombre\n" ;
+						getline(cin,nombreH) ;
+					}
+              */
 						
-						while(iHostal->existeHabitacion(numero, nombreH) == true){
-							cout<< "Habitacion ya registrada\n" ;
-							cout<< "Ingrese nuevamente el numero" ;
-							cin>> numero ;
-						}
+						
 
                         cout << "Si desea confirmar, ingrese '1', si desea cancelar ingrese '0'.\n";
                         cin>> j ;
@@ -1193,7 +1251,6 @@ int main()
 
 				case 4:
            		{
-					cout << "Hasta luego.\n";
                 	//Asignar Empleado a Hostal
             	}
             	break;
@@ -1454,6 +1511,75 @@ int main()
 
 				case 11:
            		{
+                        //Consulta de Usuario
+   					        map<string, DtHuesped>  losHuespe = iUsuario->listarHuespedes();
+          					map<string, DtEmpleado> losEmple = iUsuario->listarEmpleados();
+          					map<string, DtHuesped> :: iterator iHu;
+          					map<string, DtEmpleado> :: iterator iEm;
+                    if (losHuespe.empty() and losEmple.empty()){
+                      cout<<"No hay usuarios registrados.\n";
+                    }else{
+                        if(!losHuespe.empty())
+              					{
+                  					int j = 1;
+                  					cout<< "Lista de Huespedes \n" ;
+                  					for(iHu=losHuespe.begin(); iHu != losHuespe.end(); iHu++){
+                      					cout<< j <<"Email: " << iHu->second.getEmail() << "\n";
+              							j++;
+                  					}
+              					}
+              					if(!losEmple.empty())
+              					{
+                  					int j = 1;
+                  					cout<< "Lista de Empleados \n" ;
+                  					for(iEm=losEmple.begin(); iEm != losEmple.end(); iEm++){
+                      					cout<< j <<"Email: " << iEm->second.getEmail() << "\n";
+              							j++;
+                  					}
+              					}
+              					cout<<"Ingrese el email del usuario del cual desea ver la información. \n" ;
+              					string nomus ;
+              					cin>> nomus ;
+              					while((!iUsuario->existeEmpleado(nomus)) && (!iUsuario->existeHuesped(nomus))){
+              						cout<< "El nombre ingresado no corresponde a un usuario del sistema.\n" ;
+              						cout<<"Ingrese un nombre correspondiente a un usuario del sistema.\n" ;
+              						cin>>nomus ;
+              						}
+              						if (iUsuario->existeHuesped(nomus)) {
+              							DtHuesped infoh = iUsuario->mostrarHuesped(nomus) ;
+              							cout<< "\nInformación básica del Huesped seleccionado:\n" ;
+              							cout<<"Nombre: " << infoh.getNombre() << "\n";
+              							cout<< "Email: " << infoh.getEmail() << "\n";
+              							if (infoh.getEsFinger()) {
+              								cout<< "Es Finger.\n";
+              							} else {
+              								cout<< "No es Finger.\n";
+              							}
+              						} else {
+              							DtEmpleado infoEm = iUsuario->mostrarEmpleado(nomus) ;
+              							cout<< "\nInformación básica del Empleado seleccionado:\n" ;
+              							cout<<"Nombre: " << infoEm.getNombre() << "\n";
+              							cout<< "Email: " << infoEm.getEmail() << "\n";
+              							cout<< "Trabaja en: " << infoEm.getNombreHostal() << "\n";
+										cout<< "Cargo:";
+      											if (infoEm.getCargo() == 0){
+      												cout << "ADMINISTRACION\n";
+      											}
+      											else if (infoEm.getCargo()  == 1){
+      												cout << "LIMPIEZA\n";
+      											}
+      											else if (infoEm.getCargo()  == 2){
+      												cout << "RECEPCION\n";
+      											} 
+												else if (infoEm.getCargo()  == 3){
+      												cout << "INFRAESTRUCTURA\n";
+      											}
+              						}
+              
+                    }
+          					
+              
+              
 					cout << "Hasta luego.\n";
                 	//Consulta de Usuario
             	}
@@ -1812,7 +1938,57 @@ int main()
             	
 				default:
                 cout << "Ingrese un número del 0 al 20\n";   
-		
+		      
+                
+            case 20:
+           		{ 
+                          //Empleados
+          	string emailEmpleado[4] = {"emilia@mail.com", "leo@mail.com", "alina@mail.com","barli@mail.com"};
+          	string nombreEmpleado[4] = {"Emilia", "Leonardo", "Alina", "Barliman"};
+          	TipoCargo cargo[4] = {RECEPCION, RECEPCION, ADMINISTRACION, RECEPCION};
+          	for (int i = 0; i < 4; i++)
+          	{
+          		iUsuario->confirmarAltaEmpleado (nombreEmpleado[i],emailEmpleado[i], "123", cargo[i]);
+          	}
+          	
+          	
+          	//Huespedes
+          	string emailHuespedes[6] = {"sofia@mail.com", "frodo@mail.com", "sam@mail.com","merry@mail.com","pippin@mail.com","seba@mail.com"};
+          	string nombreHuespedes[6] = {"Sofia","Frodo", "Sam", "Merry", "Pippin", "Seba"};
+          	bool esFinger[6] = {true, true, false,false,false,true};
+          	for (int i = 0; i < 6; i++)
+          	{
+          		iUsuario->confirmarAltaHuesped(nombreHuespedes[i],emailHuespedes[i], "123", esFinger[i]);
+          	}
+          	
+          
+          	
+          	//Hostels
+          	string nombresHostales[5] = {"La posada del finger", "Mochileros", "El Pony Pisador","Altos de Fing","Caverna Lujosa"};
+          	string direccionesHostales[5] = {"Av de la playa 123, Maldonado", "Rambla Costanera 333, Rocha", "Bree (preguntar por Gandalf)","Av del   Toro 1424","Amaya 2515"};
+          	string telefonosHostales[5]={"099111111", "42579512", "000", "099892992", "233233235"};
+          	
+          	for (int i = 0; i < 5; i++)
+              {
+          		iHostal->altaHostal(nombresHostales[i],direccionesHostales[i],telefonosHostales[i],0) ;
+              }
+          	
+          	//Habitaciones
+          	int numerosHabitaciones[6] = {1, 2, 3, 4, 1,1};
+          	int preciosHabitaciones[6] = {40, 10, 30, 5, 3,9};
+          	int capacidadHabitaciones[6] = {2, 7, 3, 12, 2,5};
+          	string nombresHostalesH[6]= {"La posada del finger", "La posada del finger", "La posada del finger","La posada del finger","Caverna Lujosa","El Pony Pisador"};
+          	for (int i = 0; i < 6; i++)
+              {
+          		iHostal->agregarHabitacion(numerosHabitaciones[i],preciosHabitaciones[i],capacidadHabitaciones[i],nombresHostalesH[i]) ;
+              }
+                 
+                 cout << "Hasta luego.\n";
+            	}
+				break ;            
+                
+                
+                
 
         //if(c == "1")
         //{}	
