@@ -1414,16 +1414,16 @@ int main()
 							if (esGrupal) {
 								bool deseaHuespedes = true;
 								std::map<std::string, Huesped> grupoHues;
+								string otroHuesped;
 								while (deseaHuespedes) {
 								cout<<"Ingrese el email del huesped al cual desea agregar a la reserva. /n" ;
-								string otroHuesped ;
 								cin>> otroHuesped ;
 								while(!iUsuario->existeHuesped(otroHuesped)){
 									cout<< "El email ingresado no corresponde a un huesped del sistema." ;
 									cout<<"Ingrese un email correspondiente a un huesped del sistema." ;
 									cin>>otroHuesped;
 								}
-								// meter pa q vaya agregar al map los huespedes
+									grupoHues.insert(make_pair(otroHuesped, huespedes.find(otroHuesped)->second)); //aca nose lode controlador
 									int j ; 
                         			cout << "Si desea agregar otro huesped a la reserva, ingrese '1', de lo contrario ingrese '0'.\n";
                         			cin>> j ;

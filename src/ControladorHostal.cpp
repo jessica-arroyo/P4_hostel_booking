@@ -151,38 +151,33 @@ map<int, DtCalificacion> ControladorHostal::listarCalificaciones(string nombreHo
 map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal){
     //Hostal* pHostal = encontrarHostal(nombreHostal)
     Hostal* pHostal = this->SetHostales.find(nombreHostal)->second;
-    map<int , Habitacion *> jaque = pHostal->getHabitaciones(); // aca al copiar si borro algo de la copia se borra en el original???
+    map<int , Habitacion *> jaque = pHostal->getHabitaciones();
     map<int , Reserva *>  loqhay = pHostal->getReservas();
     map<int , DtHabitacion> res; 
     map<int , Habitacion*>:: iterator w;
-    if(loqhay.empty())
-    {
-        if (jaque.empty()) {return res;}
-        else {for(w = jaque.begin(); w != jaque.end(); w++)  {
-            res.insert(make_pair(w->second->getNumero(), w->second->getDtHabitacion()));
-        }
-        return res;
-        }
-        }
-	else {
-        map<int , Reserva*> :: iterator i;
-        long int f1, f2, f3, f4;
-        for(i = loqhay.begin(); i != loqhay.end(); i++){
-            f1 = i->second->getCheckIn().getHora() + i->second->getCheckIn().getDia()*24 + i->second->getCheckIn().getMes()*24*30 + i->second->getCheckIn().getAnio()*24*12*30;
-            f2 = checkin.getHora() + checkin.getDia()*24 + checkin.getMes()*24*30 + checkin.getAnio()*24*12*30;
-            f3 = i->second->getCheckOut().getHora() + i->second->getCheckOut().getDia()*24 + i->second->getCheckOut().getMes()*24*30 + i->second->getCheckOut().getAnio()*24*12*30;
-            f4 = checkout.getHora() + checkout.getDia()*24 + checkout.getMes()*24*30 + checkout.getAnio()*24*12*30;
-            if ((((f2 - f1) <= 0) && ((f2 - f3) <= 0)) || (((f1 - f4) <= 0) && ((f3 - f4) <= 0))) {
-                jaque.erase(i->second->getHabitacion()->getNumero());
-            }
-        } 
-        for(w = jaque.begin(); w != jaque.end(); w++)  {
-            res.insert(make_pair(w->second->getNumero(), w->second->getDtHabitacion()));
-        }
-        return res;
-        }
+	if (jaque.empty()) {return res;} else {
+		for(w = jaque.begin(); w != jaque.end(); w++)  {
+			res.insert(make_pair(w->second->getNumero(), w->second->getDtHabitacion()));
+			}
 
-}
+		if(loqhay.empty()){return res;} else {
+
+			map<int , Reserva*> :: iterator i;
+			long int f1, f2, f3, f4;
+			for(i = loqhay.begin(); i != loqhay.end(); i++){
+				f1 = i->second->getCheckIn().getHora() + i->second->getCheckIn().getDia()*24 + i->second->getCheckIn().getMes()*24*30 + i->second->getCheckIn().getAnio()*24*12*30;
+				f2 = checkin.getHora() + checkin.getDia()*24 + checkin.getMes()*24*30 + checkin.getAnio()*24*12*30;
+				f3 = i->second->getCheckOut().getHora() + i->second->getCheckOut().getDia()*24 + i->second->getCheckOut().getMes()*24*30 + i->second->getCheckOut().getAnio()*24*12*30;
+				f4 = checkout.getHora() + checkout.getDia()*24 + checkout.getMes()*24*30 + checkout.getAnio()*24*12*30;
+				if ((((f2 - f1) <= 0) && ((f2 - f3) <= 0)) || (((f1 - f4) <= 0) && ((f3 - f4) <= 0))) {
+					res.erase(i->second->getHabitacion()->getNumero());
+				}
+			}
+			return res;
+		}
+	}
+
+	}
 
 
 
