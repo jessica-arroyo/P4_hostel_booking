@@ -115,7 +115,7 @@ map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, strin
 	for(iIn = inshostal->listarReservasGrupal(nombreHostal).begin(); iIn != inshostal->listarReservasGrupal(nombreHostal).end(); iIn++)
 	{ 
 		/*	DtReservaGrupal r = DtReserva(i->second->getCodigo(), i->second->getCheckIn(), i->second->getCheckOut(), i->second->getFechaRealizada(), i->second->getEstado(),i->second->getCosto(), i->second->getNombresHuespedes());*/
-			if (iIn->second.getNombresHuespedes().find(emailHuesped)!= iIn->second.getNombresHuespedes().end() and iIn->second.getEstado()!=CANCELADA)
+			if (iIn->second.getNombresHuespedes().find(emailHuesped)!= iIn->second.getNombresHuespedes().end() && iIn->second.getEstado()!=CANCELADA)
 			{
 				SetReservasRes.insert(make_pair(iIn->second.getCodigo(),iIn->second));
 			}
@@ -127,7 +127,7 @@ map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, strin
 			/*DtReservaIndividual r = DtReserva(i->second->getCodigo(), i->second->getCheckIn(), i->second->getCheckOut(), i->second->getFechaRealizada(), i->second->getEstado(),i->second->getCosto());*/
       int codigo=iGp->second.getCodigo();
  
-			if (this->SetReservas.find(codigo)->second->getHuesped()->getEmail()==emailHuesped  and iGp->second.getEstado()!=CANCELADA)
+			if (this->SetReservas.find(codigo)->second->getHuesped()->getEmail()==emailHuesped  && iGp->second.getEstado()!=CANCELADA)
 			{
 				SetReservasRes.insert(make_pair(iGp->second.getCodigo(),iGp->second));
 			}
@@ -169,7 +169,19 @@ void ControladorReserva::inscribirEstadia(int codigo, string emailHuesped){
 //set<DtCalificacion> ControladorReserva::chequearCalificacion(string nombreHostal){}
 //map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, string emailHuesped){}
 //void ControladorReserva::inscribirEstadia(DtReserva reserva){}
-//void ControladorReserva::finalizarEstadia(string nombreHostal, string emailHuesped){}
+
+void ControladorReserva::finalizarEstadia(string emailHuesped){
+	IUsuario *insUsuario = ControladorUsuario::getInstancia();
+	Huesped* hues = insUsuario->getHuespedes().find(emailHuesped)->second;
+	DtFechaHora fechaRealizada =  Fecha::getInstancia()->getFechaHora();
+	Estadia *est = hues->getEstadia();
+	est->setCheckOut(fechaRealizada);
+	hues->setEstadiaFinalizada(est);
+	hues->setEstadia(NULL); 
+
+}
+
+
 //set<DtEstadia> ControladorReserva::obtenerEstadiasFinalizadas(string emailHuesped,string nombreHostal){}
 //DtReserva ControladorReserva::obtenerReservaAsociada(string nombreEstadia){} //la estadia no tiene atributo nombre.
 //DtCalificacion ControladorReserva::obtenerCalificacion(string nombreEstadia){} //la estadia no tiene atributo nombre.

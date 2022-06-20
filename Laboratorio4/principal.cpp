@@ -1895,7 +1895,7 @@ int main()
           					map<string, DtEmpleado> losEmple = iUsuario->listarEmpleados();
           					map<string, DtHuesped> :: iterator iHu;
           					map<string, DtEmpleado> :: iterator iEm;
-                    if (losHuespe.empty() and losEmple.empty()){
+                    if (losHuespe.empty() && losEmple.empty()){
                       cout<<"No hay usuarios registrados.\n";
                     }else{
                         if(!losHuespe.empty())
@@ -2252,7 +2252,7 @@ int main()
           					map<int, DtReservaGrupal> grupales = iHostal->listarReservasGrupal(nomhos);
           					map<int, DtReservaIndividual>::iterator iIn; 
           					map<int, DtReservaGrupal>::iterator iGp; 
-                    if (individuales.empty() and grupales.empty()){
+                    if (individuales.empty() && grupales.empty()){
                       cout<<"No hay reservas registradas en el hostal seleccionado.\n";
                     }else{
                         if(!individuales.empty())
