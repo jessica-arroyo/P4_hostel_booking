@@ -29,10 +29,8 @@ class Reserva {
         DtFechaHora checkIn, checkOut, fechaRealizada;
 		TipoEstado estado;
 		float costo;
-
         Estadia * estadia;
 
-    Estadia * estadia;
 
 		Habitacion * habitacion;
 		Huesped * huesped;
