@@ -188,7 +188,7 @@ map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFec
 				f3 = i->second->getCheckOut().getHora() + i->second->getCheckOut().getDia()*24 + i->second->getCheckOut().getMes()*24*30 + i->second->getCheckOut().getAnio()*24*12*30;
 				f4 = checkout.getHora() + checkout.getDia()*24 + checkout.getMes()*24*30 + checkout.getAnio()*24*12*30;
 				cout<<"llegafor fechas" ;
-				if ((((f2 - f1) <= 0) && ((f2 - f3) <= 0)) || (((f1 - f4) <= 0) && ((f3 - f4) <= 0))) {
+				if (!(((f4 - f1) <= 0) && ((f3 - f2) <= 0))) {
 					res.erase(i->second->getHabitacion()->getNumero());
 					cout<<"llegaforif" ;
 				}
