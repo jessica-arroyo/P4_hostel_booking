@@ -10,18 +10,20 @@
 #include <iterator>
 #include <iostream>
 
+using namespace std ;
+
 class Huesped;
 
 class ReservaGrupal : public Reserva {
 	private : 
         int cantGrupoHues;
-        map<std::string, Huesped *> grupHuespedes;
+        map<string, Huesped *> grupHuespedes;
 	public :
 		~ReservaGrupal();
-		ReservaGrupal(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, int cantGrupoHues, Habitacion* hab, Huesped* hues, map<std::string, Huesped *> grupHuespedes); 
+		ReservaGrupal(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues, int cantGrupoHues, map<string, Huesped *> grupHuespedes); 
 		//setearValoresGrupal(float precio,int cantH);
-        map<std::string, Huesped *> getGrupHuespedes();
-		void setGrupHuespedes(map<std::string, Huesped *> grupHuespedes);
+        map<string, Huesped *> getGrupHuespedes();
+		void setGrupHuespedes(map<string, Huesped *> grupHuespedes);
         int getCantH();
 		DtReservaGrupal getDtReservaGrupal();
 };

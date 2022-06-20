@@ -29,24 +29,83 @@ ControladorReserva *ControladorReserva::getInstancia()
     return _instancia;
 }
 
-// consulta de reserva 
-map<int,DtReserva> ControladorReserva::obtenerReservas(string nombreHostal)
-{
-	IHostal *inshostal =  ControladorHostal::getInstancia();
-	Hostal *hostal=	inshostal->getSetHostales().find(nombreHostal)->second;
-	map<int, DtReserva> reservas;
-	map<int, Reserva*>::iterator i; 
-	for(i->second = hostal->getReservas().begin()->second; i->second != hostal->getReservas().end()->second; i++)
-	{
-		DtReserva r = i->second->getDtReserva();
-		reservas.insert(make_pair(r.getCodigo(),r));
+
+
+// realizar reserva
+
+map<int, Reserva*> ControladorReserva::getSetReservas(){
+    return this->SetReservas;
+}
+
+void ControladorReserva::confirmarReservaGrupal(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped, set<string> grupoHues, int cont){
+    int codigo = 1000 + (this->SetReservas.size());
+    DtFechaHora fechaRealizada =  Fecha::getInstancia()->getFechaHora();
+    IHostal *insHostal = ControladorHostal::getInstancia();
+    Hostal *hos = insHostal->encontrarHostal(nomhos);
+    Habitacion *habu = hos->obtenerHabitacion(numhab);
+    long int f1 = fechaCheckIn.getHora() + fechaCheckIn.getDia()*24 + fechaCheckIn.getMes()*24*30 + fechaCheckIn.getAnio()*24*12*30;
+    long int f2 = fechaCheckOut.getHora() + fechaCheckOut.getDia()*24 + fechaCheckOut.getMes()*24*30 + fechaCheckOut.getAnio()*24*12*30;
+    int dife = (f2 - f1)/24;
+	int precio = habu->getPrecio() ;
+    float costo = cont*precio * dife; 
+    IUsuario *insUsuario = ControladorUsuario::getInstancia();
+    Huesped *hues = insUsuario->obtenerHuesped(mailHuesped);
+    int contador = 0;
+	map <string,Huesped*> huespedesRes ;
+    set<string>::iterator jo;
+	Huesped *cadaotro = NULL ;
+    for(jo = grupoHues.begin(); jo != grupoHues.end(); jo++) {
+		 string email = *jo ;
+		 cout<< "\nEmail:" << email << "\n" ;
+         cadaotro = insUsuario->obtenerHuesped(email) ;
+		 huespedesRes.insert(make_pair(email,cadaotro)) ; //grupo de punteros originales a huespedes a ser insertados en la Reserva Grupal.
+		 if (cadaotro->getEsFinger()) {
+			contador++;
+		 }
+		 if(! (hos->getHuespedes().find(email) != hos->getHuespedes().end())){ //acá no me importa que sea la copia de la colección de huespedes porque solo estoy consultando.
+			 hos->agregarHuespedAHostal(cadaotro) ; //Si no estaban ya en la colección de Huespedes del Hostal, se los agrega.
+		 }
+    }
+    if (contador >= 2) {costo = costo - (costo*0.3);}
+
+    ReservaGrupal *res = new ReservaGrupal(codigo, fechaCheckIn, fechaCheckOut, fechaRealizada, ABIERTA, costo, habu, hues, cont, huespedesRes); 
+
+	cout<<"\nCodigo:" << res->getCodigo() << "\n" ;
+
+    this->SetReservas.insert(make_pair(codigo, res)); //se añade la Reserva a la colección de Reservas.
+    hos->agregarReservaAHostal(res); 
+    
+}
+
+void ControladorReserva::confirmarReservaIndividual(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped){
+    int codigo = 1000 + (this->getSetReservas().size());
+    DtFechaHora fechaRealizada =  Fecha::getInstancia()->getFechaHora();
+    IHostal *insHostal = ControladorHostal::getInstancia();
+    Hostal *hos = insHostal->encontrarHostal(nomhos);
+    Habitacion *habu = hos->obtenerHabitacion(numhab);
+    long int f1 = fechaCheckIn.getHora() + fechaCheckIn.getDia()*24 + fechaCheckIn.getMes()*24*30 + fechaCheckIn.getAnio()*24*12*30;
+    long int f2 = fechaCheckOut.getHora() + fechaCheckOut.getDia()*24 + fechaCheckOut.getMes()*24*30 + fechaCheckOut.getAnio()*24*12*30;
+    int dife = (f2 - f1)/24;
+    int precio = habu->getPrecio() ;
+    float costo = precio * dife; 
+    IUsuario *insUsuario = ControladorUsuario::getInstancia();
+    Huesped *hues = insUsuario->obtenerHuesped(mailHuesped);
+	if(! (hos->getHuespedes().find(mailHuesped) != hos->getHuespedes().end())){ //acá no me importa que sea la copia de la colección de huespedes porque solo estoy consultando.
+		hos->agregarHuespedAHostal(hues) ;
 	}
-	return reservas;
+
+    ReservaIndividual *res = new ReservaIndividual(codigo,fechaCheckIn, fechaCheckOut, fechaRealizada, ABIERTA,costo, habu, hues); 
+	
+	cout<<"\nCodigoInd:" << res->getCodigo() << "\n" ;
+
+    this->SetReservas.insert(make_pair(codigo, res));
+    hos->agregarReservaAHostal(res);
 }
 
 
-void ControladorReserva::confirmarReserva(){}
-void ControladorReserva::cancelarReserva(){}
+
+
+//void ControladorReserva::cancelarReserva(){}
 //set<DtCalificacion> ControladorReserva::chequearCalificacion(string nombreHostal){}
 //map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, string emailHuesped){}
 //void ControladorReserva::inscribirEstadia(DtReserva reserva){}

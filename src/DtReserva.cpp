@@ -3,13 +3,13 @@
 		DtReserva::DtReserva(){}
 		
 		DtReserva::DtReserva(int codigo,DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, string emailHuesped){
-			codigo = codigo ;
-			checkIn = checkIn ;
-			checkOut = checkOut ;
-			fechaRealizada = fechaRealizada ;
-			estado = estado ;
-			costo = costo ;
-			emailHuesped = emailHuesped ;
+			this->codigo = codigo ;
+			this->checkIn = checkIn ;
+			this->checkOut = checkOut ;
+			this->fechaRealizada = fechaRealizada ;
+			this->estado = estado ;
+			this->costo = costo ;
+			this->emailHuesped = emailHuesped ;
 		}
 		
 		DtReserva::~DtReserva(){}

@@ -5,23 +5,28 @@
 #include <iterator>
 #include <iostream>
 
+using namespace std ;
+
 ReservaGrupal::~ReservaGrupal(){}
 
-ReservaGrupal::ReservaGrupal(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo,int cantH , Habitacion* hab, Huesped* hues, map<std::string, Huesped *> grupHuespedes) : Reserva(codigo, checkIn, checkOut, fechaRealizada, estado, costo, hab, hues){
-	cantH = cantH;
-	grupHuespedes = grupHuespedes;
+ReservaGrupal::ReservaGrupal(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues, int cantGrupoHues,  map<string, Huesped *> grupHuespedes) : Reserva(codigo, checkIn, checkOut, fechaRealizada, estado, costo, hab, hues){
+	this->cantGrupoHues = cantGrupoHues;
+	this->grupHuespedes = grupHuespedes; 
+	cout<<"El tamanio del map es: " << grupHuespedes.size() ;
+	map<string, Huesped*>::iterator i = grupHuespedes.begin() ;
+	cout << i->second->getNombre() << "\n" ;
 } 
 //ReservaGrupal::setearValoresGrupal(float precio,int cantH){
 	//precio = precio;
 	//cantH = cantH;
 //}
 
-map<std::string, Huesped *> ReservaGrupal::getGrupHuespedes(){
+map<string, Huesped *> ReservaGrupal::getGrupHuespedes(){
 	return this->grupHuespedes;
 }
 
-void ReservaGrupal::setGrupHuespedes(map<std::string, Huesped *>){
-	grupHuespedes = grupHuespedes;
+void ReservaGrupal::setGrupHuespedes(map<string, Huesped *>){
+	this->grupHuespedes = grupHuespedes;
 }
 
 int ReservaGrupal::getCantH(){
@@ -30,5 +35,6 @@ int ReservaGrupal::getCantH(){
 
 DtReservaGrupal ReservaGrupal::getDtReservaGrupal(){
 	DtReservaGrupal dtr = DtReservaGrupal(this->codigo, this->checkIn, this->checkOut, this->fechaRealizada, this->estado, this->costo, this->huesped->getEmail(), this->cantGrupoHues, this->grupHuespedes);
+ /*DtReservaGrupal dtr = DtReservaGrupal(1, this->checkIn, this->checkOut, this->fechaRealizada, ABIERTA, 20, this->huesped->getEmail(), 2, this->grupHuespedes);*/
     return dtr;
 }

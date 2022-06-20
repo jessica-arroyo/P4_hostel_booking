@@ -33,6 +33,13 @@ ControladorUsuario *ControladorUsuario::getInstancia()
     return instancia;
 }
 
+
+map<string , Empleado*>	ControladorUsuario::getEmpleados(){
+	return empleados;
+}
+map<string , Huesped*> ControladorUsuario::getHuespedes(){
+	return huespedes;
+}
 // alta de usuario 
 bool ControladorUsuario::existeEmpleado(string emailUser)
 {
@@ -98,9 +105,35 @@ DtHuesped ControladorUsuario::mostrarHuesped(string emailHuesped)
 {
     return huespedes.find(emailHuesped)->second->getDtHuesped();
 } 
+
+
+
+
+map<string, DtEmpleado> ControladorUsuario::listarEmpleadosNoAsignados(){
+		map<string , Empleado *>::iterator i;
+    map<string , DtEmpleado> res;
+   for(i = empleados.begin(); i != empleados.end(); i++)
+	 {
+		if(i->second->getHostal() == NULL){
+			res.insert(make_pair(i->first, i->second->getDtEmpleado()));
+     }
+   }
+		return res;
+	}
+ 
+	void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo, Hostal *hostal){
+		Empleado * empleado = empleados.find(emailEmpleado)->second;
+		empleado->setCargo(cargo);
+		hostal->asignarEmpleadoAHostal(empleado);
+		empleado->setHostal(hostal);
+	}
+ 
+  Huesped* ControladorUsuario::obtenerHuesped(string emailHuesped){
+      Huesped* huesped = huespedes.find(emailHuesped)->second;
+      return huesped;
+  }
+
 //map<string, DtHuesped> ControladorUsuario::listarHuespedes(){}
-    //map<string, Empleado *> ControladorUsuario::listarEmpleadosNoAsignados(string nombreHostal){}
-    //void ControladorUsuario::asignarEmpleado(string emailEmpleado, TipoCargo cargo){} //el TipoCargo se pasó al crear el usuario.
     //void ControladorUsuario::cancelarAsignarEmpleado(){}
     //map<string, Huesped *> ControladorUsuario::listarHuespedes(int codigoHabitacion){}
     //void ControladorUsuario::confirmarHuesped(string emailHuespedReserva){}

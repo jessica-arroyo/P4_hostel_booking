@@ -44,7 +44,7 @@ class IHostal {
     
     //virtual map<string , DtHostal> top3hostales()=0 ;
     //virtual map<int , DtHabitacion> listarHabitaciones()=0 ;
-    //virtual Hostal* encontrarHostal(string nombreHostal)=0 ; 
+    virtual Hostal* encontrarHostal(string nombreHostal)=0 ; 
     virtual map<int , DtHabitacion> devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal)=0 ;
     //set<DtCalificacion> listarCalificaciones(string nomhos)=0 ; 
         

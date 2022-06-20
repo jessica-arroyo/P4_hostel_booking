@@ -23,6 +23,10 @@ TipoCargo Empleado::getCargo(){
     return this->cargo;
 }
 
+Hostal *  Empleado::getHostal(){
+    return this->hostal;
+}
+
 void Empleado::setCargo(TipoCargo cargo){
     this->cargo = cargo;
 }
@@ -36,7 +40,7 @@ bool Empleado::estaAsignado(string nombreHostal)
 	else if (nombreHostal == hostal->getNombre()) {
 		asig = true ;
 	}
-	else {
+  else {
 		asig = false ;
 	}
     

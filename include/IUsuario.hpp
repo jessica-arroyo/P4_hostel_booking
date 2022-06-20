@@ -19,6 +19,8 @@ class IUsuario {
     IUsuario();
     virtual ~IUsuario()=0 ;
     
+	virtual map<string , Empleado*>	getEmpleados()=0;
+    virtual map<string , Huesped*> getHuespedes()=0;
     virtual bool existeEmpleado(string emailUser)=0 ;
     virtual bool existeHuesped(string emailUser)=0 ;
     // alta de usuario 
@@ -39,8 +41,11 @@ class IUsuario {
     //virtual void cancelarAlta()=0;
     //virtual void reingresarEmail(string emailUser)=0;
   
-    //virtual map<string, Empleado *> listarEmpleadosNoAsignados(string nombreHostal)=0;
-    //virtual void asignarEmpleado(string emailEmpleado, TipoCargo cargo) = 0; //el TipoCargo se pasó al crear el usuario.
+  virtual Huesped* obtenerHuesped(string emailHuesped)=0;
+  
+    virtual map<string, DtEmpleado> listarEmpleadosNoAsignados()=0;
+	virtual void asignarEmpleado(string emailEmpleado, TipoCargo cargo, Hostal *hostal) = 0;
+
     //virtual void cancelarAsignarEmpleado() = 0;
     virtual map<string, DtHuesped> listarHuespedes()=0;
 	virtual map<string, DtEmpleado> listarEmpleados()=0;	//a

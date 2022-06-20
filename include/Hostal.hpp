@@ -47,7 +47,7 @@ class Hostal {
     void agregarReservaAHostal(Reserva *res);
     void agregarHuespedAHostal(Huesped *hues) ;
     void asignarEmpleadoAHostal(Empleado *emp) ; //añade el empleado a la colección de Empleados del Hostal.
- 
+    Habitacion* obtenerHabitacion(int numero);
  
     DtHostal getDtHostal() ;
 

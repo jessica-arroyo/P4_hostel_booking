@@ -80,6 +80,11 @@ void Hostal::setHabitacion(Habitacion *hab){
     this->habitaciones.insert(make_pair(hab->getNumero(),hab));
 }
 
+Habitacion* Hostal::obtenerHabitacion(int numero){
+  Habitacion * hab= habitaciones.find(numero)->second;
+  return hab;
+}
+
  //void Hostal::accesoHostal(){}
  //void Hostal::entrarRes(){}
  //void Hostal::obtenerEstadiasdelHostal(string emailHuesped){} //Debería devolver un map de DtEstadia.

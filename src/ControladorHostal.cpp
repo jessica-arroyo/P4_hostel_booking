@@ -117,9 +117,12 @@ map<int,DtReservaIndividual> ControladorHostal::listarReservasIndividual(string 
 	map<int,Reserva*> reser = hos->getReservas() ;
 	map<int,Reserva*>::iterator reshos ;
 	map<int,DtReservaIndividual> resdehos ;
+ 
 	for(reshos=reser.begin(); reshos!=reser.end(); reshos++){
-		if(dynamic_cast <ReservaIndividual*> (reshos->second) != NULL){
-			DtReservaIndividual a = dynamic_cast <ReservaIndividual*> (reshos->second)->getDtReservaIndividual() ;
+		
+		if(dynamic_cast <ReservaIndividual*> (reshos->second)){
+			ReservaIndividual *rind = dynamic_cast <ReservaIndividual*> (reshos->second) ;
+			DtReservaIndividual a = rind->getDtReservaIndividual() ;
 			resdehos.insert(make_pair(a.getCodigo(),a)) ;
 		}
 	}
@@ -146,43 +149,56 @@ map<int, DtCalificacion> ControladorHostal::listarCalificaciones(string nombreHo
 
 //map<string , DtHostal> ControladorHostal::top3hostales(){}
 
-//Hostal* ControladorHostal::encontrarHostal(string nombreHostal){} //originalmente era el objeto Hostal. Debería devolver un puntero a un Hostal.
+Hostal* ControladorHostal::encontrarHostal(string nombreHostal){
+  Hostal *hostal= SetHostales.find(nombreHostal)->second;
+  return hostal;
+} 
 
 map<int , DtHabitacion> ControladorHostal::devolverHabitacionesDisponibles(DtFechaHora checkin, DtFechaHora checkout, string nombreHostal){
     //Hostal* pHostal = encontrarHostal(nombreHostal)
-    Hostal* pHostal = this->SetHostales.find(nombreHostal)->second;
-    map<int , Habitacion *> jaque = pHostal->getHabitaciones(); // aca al copiar si borro algo de la copia se borra en el original???
+	cout<<"llega" ;
+   Hostal* pHostal = this->SetHostales.find(nombreHostal)->second;
+    map<int , Habitacion *> jaque = pHostal->getHabitaciones();
     map<int , Reserva *>  loqhay = pHostal->getReservas();
     map<int , DtHabitacion> res; 
     map<int , Habitacion*>:: iterator w;
-    if(loqhay.empty())
-    {
-        if (jaque.empty()) {return res;}
-        else {for(w = jaque.begin(); w != jaque.end(); w++)  {
-            res.insert(make_pair(w->second->getNumero(), w->second->getDtHabitacion()));
-        }
-        return res;
-        }
-        }
-	else {
-        map<int , Reserva*> :: iterator i;
-        long int f1, f2, f3, f4;
-        for(i = loqhay.begin(); i != loqhay.end(); i++){
-            f1 = i->second->getCheckIn().getHora() + i->second->getCheckIn().getDia()*24 + i->second->getCheckIn().getMes()*24*30 + i->second->getCheckIn().getAnio()*24*12*30;
-            f2 = checkin.getHora() + checkin.getDia()*24 + checkin.getMes()*24*30 + checkin.getAnio()*24*12*30;
-            f3 = i->second->getCheckOut().getHora() + i->second->getCheckOut().getDia()*24 + i->second->getCheckOut().getMes()*24*30 + i->second->getCheckOut().getAnio()*24*12*30;
-            f4 = checkout.getHora() + checkout.getDia()*24 + checkout.getMes()*24*30 + checkout.getAnio()*24*12*30;
-            if ((((f2 - f1) <= 0) && ((f2 - f3) <= 0)) || (((f1 - f4) <= 0) && ((f3 - f4) <= 0))) {
-                jaque.erase(i->second->getHabitacion()->getNumero());
-            }
-        } 
-        for(w = jaque.begin(); w != jaque.end(); w++)  {
-            res.insert(make_pair(w->second->getNumero(), w->second->getDtHabitacion()));
-        }
-        return res;
-        }
+	cout<<"llega" ;
+	if (jaque.empty()) {
+			cout<<"llegaemptyhabs" ;
+			return res;
+		} 
+		else {
+			cout<<"llega1" ;
+		for(w = jaque.begin(); w != jaque.end(); w++)  {
+			res.insert(make_pair(w->second->getNumero(), w->second->getDtHabitacion()));
+			}
+			cout<<"llega luego insertar habs" ;
+		if(loqhay.empty()){
+			cout<<"llega no hay reservas" ;
+			return res;
+			} 
+			else {
+			cout<<"llega hay reservas" ;
+			map<int , Reserva*> :: iterator i;
+			long int f1, f2, f3, f4;
+			cout<<"llega" ;
+			for(i = loqhay.begin(); i != loqhay.end(); i++){
+				f1 = i->second->getCheckIn().getHora() + i->second->getCheckIn().getDia()*24 + i->second->getCheckIn().getMes()*24*30 + i->second->getCheckIn().getAnio()*24*12*30;
+				f2 = checkin.getHora() + checkin.getDia()*24 + checkin.getMes()*24*30 + checkin.getAnio()*24*12*30;
+				f3 = i->second->getCheckOut().getHora() + i->second->getCheckOut().getDia()*24 + i->second->getCheckOut().getMes()*24*30 + i->second->getCheckOut().getAnio()*24*12*30;
+				f4 = checkout.getHora() + checkout.getDia()*24 + checkout.getMes()*24*30 + checkout.getAnio()*24*12*30;
+				cout<<"llegafor fechas" ;
+				if ((((f2 - f1) <= 0) && ((f2 - f3) <= 0)) || (((f1 - f4) <= 0) && ((f3 - f4) <= 0))) {
+					res.erase(i->second->getHabitacion()->getNumero());
+					cout<<"llegaforif" ;
+				}
+			}
+			cout<<"llega fin" ;
+			return res;
+		}
+	}
 
-}
+	}
 
 
 

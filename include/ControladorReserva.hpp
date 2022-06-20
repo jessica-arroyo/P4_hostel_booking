@@ -19,6 +19,8 @@
 #include <set>
 #include <iterator>
 #include <iostream>
+#include "Fecha.hpp"
+
 using namespace std;
 
 class ControladorReserva: public IReserva
@@ -35,8 +37,10 @@ private:
 public:
     ~ControladorReserva();
     static ControladorReserva *getInstancia() ;
-    void confirmarReserva();
-    void cancelarReserva();
+    void confirmarReservaGrupal(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped, set<string> grupoHues, int cont);
+	void confirmarReservaIndividual(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped);
+    map<int, Reserva*> getSetReservas();
+    //void cancelarReserva();
     //set<DtCalificacion> chequearCalificacion(string nombreHostal);
     //map<int,DtReserva> listarReservas(string nombreHostal, string emailHuesped);
     //void inscribirEstadia(DtReserva reserva);
@@ -46,7 +50,8 @@ public:
     //DtCalificacion obtenerCalificacion(string nombreEstadia); //la estadia no tiene atributo nombre.
     //DtEstadia obtenerEstadia(string nombreEstadia); //la estadia no tiene atributo nombre.
     //set<DtEstadia> listarEstadias(string nombreHostal);
-    map<int,DtReserva> obtenerReservas(string nombreHostal);
+    //map<int,DtReservaIndividual> listarIndividuales(string nombreHostal);
+    //map<int,DtReserva> listarGrupales(string nombreHostal);
     //map<int,DtReserva> listarReservas();
     //set<DtCalificacion> listarCalificaciones();
     //void ingresarComentario(string comentario,string respuesta);

@@ -31,6 +31,7 @@ class Empleado: public Usuario  {
     ~Empleado();
     Empleado(string nombre , string email, string password, TipoCargo cargo) ;
     TipoCargo getCargo() ;
+    Hostal * getHostal();
     void setCargo(TipoCargo cargo);
     bool estaAsignado(string nombreHostal);
     DtEmpleado getDtEmpleado();

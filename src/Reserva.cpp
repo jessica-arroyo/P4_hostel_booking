@@ -9,53 +9,54 @@ Reserva::Reserva() {
 }
 
 Reserva::Reserva(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues){
-	codigo = codigo ;
-	checkIn = checkIn ;
-	checkOut = checkOut ;
-	fechaRealizada = fechaRealizada ;
-	estado = estado ;
-	costo = costo ;
-	hab = hab;
-	hues = hues;
+	this->codigo = codigo ;
+	this->checkIn = checkIn ;
+	this->checkOut = checkOut ;
+	this->fechaRealizada = fechaRealizada ;
+	this->estado = estado ;
+	this->costo = costo ;
+	this->habitacion = hab;
+	this->huesped = hues;
+	this->estadia = NULL ;
 } 
 
 Reserva::~Reserva() {
 }
 
 void Reserva::setCodigo (int codigo){
-	codigo = codigo ;
+	this->codigo = codigo ;
 }
 
 void Reserva::setCheckIn (DtFechaHora checkIn){
-	checkIn = checkIn ;
+	this->checkIn = checkIn ;
 }
 
 void Reserva::setCheckOut (DtFechaHora checkOut){
-	checkOut = checkOut ;
+	this->checkOut = checkOut ;
 }
 
 void Reserva::setFechaRealizada (DtFechaHora fechaRealizada){
-	fechaRealizada = fechaRealizada ;
+	this->fechaRealizada = fechaRealizada ;
 }
 
 void Reserva::setEstado (TipoEstado estado){
-	estado = estado ;
+	this->estado = estado ;
 }
 
 void Reserva::setCosto (float costo){
-	costo = costo ;
+	this->costo = costo ;
 }
 
 void Reserva::setEstadia (Estadia * est){
-	est = est ;
+	this->estadia = est ;
 }
 
 void Reserva::setHabitacion(Habitacion *hab){
-	hab = hab ;
+	this->habitacion = hab ;
 }
 
 void Reserva::setHuesped(Huesped* hues){
-	hues = hues ;
+	this->huesped = hues ;
 }
 
 int Reserva::getCodigo (){

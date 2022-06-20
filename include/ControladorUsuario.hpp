@@ -2,6 +2,7 @@
 #define CONTROLADORUSUARIO_H
 
 #include "Reserva.hpp" 
+#include "Hostal.hpp"
 #include "DtEmpleado.hpp"
 #include "DtHuesped.hpp"
 #include "Empleado.hpp"
@@ -26,7 +27,9 @@ class ControladorUsuario: public IUsuario {
   public:
     ~ControladorUsuario() ;
     static ControladorUsuario *getInstancia();
-    
+	
+    map<string , Empleado*>	getEmpleados();
+    map<string , Huesped*> getHuespedes();
     bool existeEmpleado(string emailUser) ;
     bool existeHuesped(string emailUser) ;
     // alta de usuario 
@@ -46,10 +49,11 @@ class ControladorUsuario: public IUsuario {
     //void cancelarAlta();
     //void reingresarEmail(string emailUser);
     
+    Huesped* obtenerHuesped(string emailHuesped);
     
     //las que comenté de acá abajo son para que compile sin que estén hechas aun.
-    //map<string, Empleado *> listarEmpleadosNoAsignados(string nombreHostal);
-    //void asignarEmpleado(string emailEmpleado, TipoCargo cargo); //el TipoCargo se pasó al crear el usuario.
+    map<string, DtEmpleado> listarEmpleadosNoAsignados();
+	void asignarEmpleado(string emailEmpleado, TipoCargo cargo, Hostal *hostal);
     //void cancelarAsignarEmpleado();  
     map<string, DtHuesped> listarHuespedes();
 	map<string, DtEmpleado> listarEmpleados();
