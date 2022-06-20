@@ -86,19 +86,24 @@ void cargarDatosPrueba(IHostal *iHostal, IUsuario *iUsuario, IReserva *iReserva,
 	iReserva->confirmarReservaGrupal("El Pony Pisador", 1, fig, fog, "frodo@mail.com", grupoHues, 4);
 	
 	//Estadias 
-	/*string nomhosEst[6] = {"La posada del finger", "El Pony Pisador", "El Pony Pisador", "El Pony Pisador", "El Pony Pisador", "Caverna Lujosa"};
+
+	string nomhosEst[6] = {"La posada del finger", "El Pony Pisador", "El Pony Pisador", "El Pony Pisador", "El Pony Pisador", "Caverna Lujosa"};
 	string emailHuespedesEst[6] = {"sofia@mail.com", "frodo@mail.com", "sam@mail.com","merry@mail.com","pippin@mail.com","seba@mail.com"};
 	int checkInEst[6][4] = {{14,01,05,2022}, {20,04,01,2001}, {20,04,01,2001}, {20,04,01,2001}, {20,04,01,2001}, {14,10,06,2022}};
 	int checkOutEst[6][4] = {{10,10,05,2022}, {2,05,01,2001}, {2,05,01,2001}, {2,05,01,2001}, {2,05,01,2001}, {11,30,06,2022}};
+  int codres[6]={1000,1003,1003,1003,1003,1002};
+
 	for (int i = 0; i < 6; i++)
 	{
 		DtFechaHora fechaCheckIn = DtFechaHora(checkInEst[i][0], checkInEst[i][1], checkInEst[i][2], checkInEst[i][3]);
 		DtFechaHora fechaCheckOut = DtFechaHora(checkOutEst[i][0], checkOutEst[i][1], checkOutEst[i][2], checkOutEst[i][3]);
-		int codres = iReserva->encontrarCodigoReservadelHuesped(emailHuespedesEst[i],nomhosEst[i],fechaCheckIn, fechaCheckOut)
-		iReserva->inscribirEstadia(codres, emailHuespedesEst[i]);
+
+		//int codres = iReserva->encontrarCodigoReservadelHuesped(emailHuespedesEst[i],nomhosEst[i],fechaCheckIn, fechaCheckOut)
+		iReserva->inscribirEstadia(codres[i], emailHuespedesEst[i]);
 	}
 	
-	//Finalizacion de Estadias
+	/* //Finalizacion de Estadias
+
 	string emailHuespedesFin[3] = {"sofia@mail.com", "frodo@mail.com", "seba@mail.com"};
 	for (int i = 0; i < 3; i++)
 	{
@@ -1712,7 +1717,119 @@ int main()
 
 				case 7:
            		{
-					cout << "Hasta luego.\n";
+
+					        map<string, DtHostal> hostales = iHostal->listarHostales();
+    				map<string , DtHostal> :: iterator i;
+					if(hostales.empty())
+					{
+						cout<< "\n" ;
+						cout<< "No hay hostales registrados\n" ;
+						cout<< "\n" ;
+					}
+					else 
+					{
+    					int j = 1;
+						cout<< "\n" ;
+    					cout<< "Lista de Hostales \n" ;
+						cout<< "\n" ;
+    					for(i=hostales.begin(); i != hostales.end(); i++){
+        					cout<< j <<") Nombre: " << i->second.getNombre() << "\n";
+							cout<< "Dirección: " << i->second.getDireccion() << "\n";
+							cout<< "Teléfono: " << i->second.getTelefono() << "\n";
+							cout<< "Calificación Promedio: " << i->second.getCalificacionPromedio() << "\n";
+							cout<< "\n" ;
+        					j++;
+    					}
+						cin.clear(); 
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout<<"Ingrese el nombre del hostal del que desea ver la información. \n" ;
+						string nomhos ;
+						getline(cin, nomhos) ;
+						while(!iHostal->existeHostal(nomhos)){
+							cout<< "\n" ;
+							cout<< "El nombre ingresado no corresponde a un hostal del sistema.\n" ;
+							cout<<"Ingrese un nombre correspondiente a un hostal del sistema.\n" ;
+							getline(cin, nomhos) ;
+						}
+			
+						cout<<"Ingrese el email del huesped del que desea ver las reservas." ;
+						string nomus ;
+						cin>> nomus ;
+						while(!iUsuario->existeHuesped(nomus)){
+							cout<< "El email ingresado no corresponde a un huesped del sistema." ;
+							cout<<"Ingrese un email correspondiente a un huesped del sistema." ;
+              cout<< "\n" ;
+							cin>>nomus ;
+						}
+						map<int, DtReserva> reservas = iReserva->listarReservas(nomhos,nomus) ;
+            map<int, DtReserva>::iterator i; 
+						if(reservas.empty())
+						{
+							throw invalid_argument ("No hay reservas no canceladas en ese hostal para ese huesped ") ;
+              cout<< "\n" ;
+						}
+						else 
+						{
+    						int j = 1;
+    						cout<< "Lista de Reservas /n" ;
+                cout<< "\n" ;
+    						for(i=reservas.begin(); i != reservas.end(); i++){        
+                  
+                 	  cout<< j << "Código: " << i->second.getCodigo() << "\n";
+										DtFechaHora DeCheckIn = i->second.getCheckIn() ;
+										cout << "CheckIn: " << DeCheckIn.getHora() << " del " << DeCheckIn.getDia() << "/" << DeCheckIn.getMes() << "/" << DeCheckIn.getAnio() << "\n";
+										DtFechaHora DeCheckOut = i->second.getCheckOut() ;
+										cout<< "CheckOut: " << DeCheckOut.getHora() << " del " << DeCheckOut.getDia() << "/" << DeCheckOut.getMes() << "/" << DeCheckOut.getAnio() << "\n";
+                						DtFechaHora DeRealizada = i->second.getFechaRealizada() ;
+										cout << "CheckIn: " << DeRealizada.getHora() << " del " << DeRealizada.getDia() << "/" << DeRealizada.getMes() << "/" << DeRealizada.getAnio() << "\n";
+                                
+										cout<<"Estado de la Reserva: ";
+											if (i->second.getEstado() == 0){
+												cout << "ABIERTA\n";
+											}
+											else if (i->second.getEstado() == 1){
+												cout << "CERRADA\n";
+											}
+											else if (i->second.getEstado() == 2){
+												cout << "CANCELADA\n";
+											}
+											
+                						cout<< "Costo:" << i->second.getCosto() << "\n";
+										cout<<"Email del Huesped: " << i->second.getEmailHuesped() ;
+										cout<< "\n" ;
+              							j++;
+ 					         }            
+                              
+               
+							/*if (dynamic_cast<ReservaGrupal *>(i->second)!=NULL))
+							{	
+								set<string>::iterator it; 
+								cout<< "Huespedes /n" ;
+                cout<< "\n" ;
+								int k = 1;
+								for(it=i->second.begin(); it != i->second.end(); i++)
+								{
+									cout<< "Nombre:" << i->second << "/n";
+                  cout<< "\n" ;
+									k++;
+								}
+							}*/
+        						j++;		
+						} 
+						cout<<"Ingrese el código de la reserva que desea registrar la estadía." ;
+						int codres ;
+						cin>> codres ;
+						while(!iReserva->existeReserva(codres)){
+							cout<< "El código ingresado no corresponde a una reserva del sistema." ;
+							cout<<"Ingrese un código correspondiente a una reserva del sistema." ;
+							cin>>codres ;
+              cout<< "\n" ;
+						}
+						iReserva->inscribirEstadia(codres,nomus);
+						
+					}
+				
+
                 	//Registrar Estadía
             	}
             	break;
@@ -2168,6 +2285,7 @@ int main()
 										set<string>::iterator it; 
                 								cout<< "Huespedes de la reserva\n" ;
                 								int k = 1;
+
                 								for(it=nomHuespedes.begin(); it != nomHuespedes.end(); it++)
                 								{
 													string elnombre = *it ;
@@ -2176,6 +2294,7 @@ int main()
                 								}
 												
 										cout<< "\n" ;
+
               							j++;
                   					}
               					}

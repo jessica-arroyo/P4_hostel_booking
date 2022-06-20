@@ -18,6 +18,7 @@ Reserva::Reserva(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaH
 	this->habitacion = hab;
 	this->huesped = hues;
 	this->estadia = NULL ;
+
 } 
 
 Reserva::~Reserva() {

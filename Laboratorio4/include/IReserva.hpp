@@ -24,6 +24,11 @@ public:
     virtual void confirmarReservaGrupal(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped, set<string>grupoHues, int cont) = 0;
 	  virtual void confirmarReservaIndividual(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped) = 0;
     virtual map<int, Reserva*> getSetReservas() = 0;
+
+    virtual map<int,DtReserva> listarReservas(string nombreHostal, string emailHuesped)=0;
+    virtual bool existeReserva(int codigo)=0;
+    virtual void inscribirEstadia(int codigo, string emailHuesped)=0;
+
     //virtual map<int,DtReservaIndividual> listarIndividuales(string nombreHostal) = 0;
     //virtual map<int,DtReservaGrupal> listarGrupales(string nombreHostal) = 0;
     //virtual void cancelarReserva() = 0;

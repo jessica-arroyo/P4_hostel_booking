@@ -17,6 +17,9 @@ class Huesped;
 class ReservaGrupal : public Reserva {
 	private : 
         int cantGrupoHues;
+
+        set<Estadia *>estadiasReserva;
+
         map<string, Huesped *> grupHuespedes;
 	public :
 		~ReservaGrupal();
@@ -26,5 +29,8 @@ class ReservaGrupal : public Reserva {
 		void setGrupHuespedes(map<string, Huesped *> grupHuespedes);
         int getCantH();
 		DtReservaGrupal getDtReservaGrupal();
+
+   void setEstadiaEnReservaGrupal(Estadia *est);
+
 };
 #endif

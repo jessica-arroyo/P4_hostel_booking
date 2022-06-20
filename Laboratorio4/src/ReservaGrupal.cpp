@@ -11,10 +11,9 @@ ReservaGrupal::~ReservaGrupal(){}
 
 ReservaGrupal::ReservaGrupal(int codigo, DtFechaHora checkIn, DtFechaHora checkOut, DtFechaHora fechaRealizada, TipoEstado estado, float costo, Habitacion* hab, Huesped* hues, int cantGrupoHues,  map<string, Huesped *> grupHuespedes) : Reserva(codigo, checkIn, checkOut, fechaRealizada, estado, costo, hab, hues){
 	this->cantGrupoHues = cantGrupoHues;
+
 	this->grupHuespedes = grupHuespedes; 
-	cout<<"El tamanio del map es: " << grupHuespedes.size() ;
-	map<string, Huesped*>::iterator i = grupHuespedes.begin() ;
-	cout << i->second->getNombre() << "\n" ;
+
 } 
 //ReservaGrupal::setearValoresGrupal(float precio,int cantH){
 	//precio = precio;
@@ -38,3 +37,9 @@ DtReservaGrupal ReservaGrupal::getDtReservaGrupal(){
  /*DtReservaGrupal dtr = DtReservaGrupal(1, this->checkIn, this->checkOut, this->fechaRealizada, ABIERTA, 20, this->huesped->getEmail(), 2, this->grupHuespedes);*/
     return dtr;
 }
+
+
+ void ReservaGrupal::setEstadiaEnReservaGrupal(Estadia *est){
+   this->estadiasReserva.insert(est);
+ };
+

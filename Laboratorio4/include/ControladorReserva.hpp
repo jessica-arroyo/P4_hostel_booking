@@ -40,6 +40,12 @@ public:
     void confirmarReservaGrupal(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped, set<string> grupoHues, int cont);
 	void confirmarReservaIndividual(string nomhos, int numhab, DtFechaHora fechaCheckIn, DtFechaHora fechaCheckOut, string mailHuesped);
     map<int, Reserva*> getSetReservas();
+
+    map<int,DtReserva> listarReservas(string nombreHostal, string emailHuesped);
+    bool existeReserva(int codigo);
+    void inscribirEstadia(int codigo, string emailHuesped);
+    
+
     //void cancelarReserva();
     //set<DtCalificacion> chequearCalificacion(string nombreHostal);
     //map<int,DtReserva> listarReservas(string nombreHostal, string emailHuesped);

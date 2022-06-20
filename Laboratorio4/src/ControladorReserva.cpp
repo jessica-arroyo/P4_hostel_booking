@@ -56,7 +56,7 @@ void ControladorReserva::confirmarReservaGrupal(string nomhos, int numhab, DtFec
 	Huesped *cadaotro = NULL ;
     for(jo = grupoHues.begin(); jo != grupoHues.end(); jo++) {
 		 string email = *jo ;
-		 cout<< "\nEmail:" << email << "\n" ;
+
          cadaotro = insUsuario->obtenerHuesped(email) ;
 		 huespedesRes.insert(make_pair(email,cadaotro)) ; //grupo de punteros originales a huespedes a ser insertados en la Reserva Grupal.
 		 if (cadaotro->getEsFinger()) {
@@ -101,6 +101,66 @@ void ControladorReserva::confirmarReservaIndividual(string nomhos, int numhab, D
     this->SetReservas.insert(make_pair(codigo, res));
     hos->agregarReservaAHostal(res);
 }
+
+
+
+// registrar estadia
+map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, string emailHuesped){
+	IHostal *inshostal =  ControladorHostal::getInstancia();
+	//Hostal *hostal=	inshostal->encontrarHostal(nombreHostal);
+	map<int, DtReserva> SetReservasRes;
+	map<int, DtReservaIndividual>::iterator iGp; 
+ map<int, DtReservaGrupal>::iterator iIn; 
+ 
+	for(iIn = inshostal->listarReservasGrupal(nombreHostal).begin(); iIn != inshostal->listarReservasGrupal(nombreHostal).end(); iIn++)
+	{ 
+		/*	DtReservaGrupal r = DtReserva(i->second->getCodigo(), i->second->getCheckIn(), i->second->getCheckOut(), i->second->getFechaRealizada(), i->second->getEstado(),i->second->getCosto(), i->second->getNombresHuespedes());*/
+			if (iIn->second.getNombresHuespedes().find(emailHuesped)!= iIn->second.getNombresHuespedes().end() and iIn->second.getEstado()!=CANCELADA)
+			{
+				SetReservasRes.insert(make_pair(iIn->second.getCodigo(),iIn->second));
+			}
+	}
+	
+  for(iGp = inshostal->listarReservasIndividual(nombreHostal).begin(); iGp != inshostal->listarReservasIndividual(nombreHostal).end(); iGp++)
+	{	
+   
+			/*DtReservaIndividual r = DtReserva(i->second->getCodigo(), i->second->getCheckIn(), i->second->getCheckOut(), i->second->getFechaRealizada(), i->second->getEstado(),i->second->getCosto());*/
+      int codigo=iGp->second.getCodigo();
+ 
+			if (this->SetReservas.find(codigo)->second->getHuesped()->getEmail()==emailHuesped  and iGp->second.getEstado()!=CANCELADA)
+			{
+				SetReservasRes.insert(make_pair(iGp->second.getCodigo(),iGp->second));
+			}
+		
+		
+		
+	}
+	return SetReservasRes;
+}
+
+bool ControladorReserva::existeReserva(int codigo){
+    return (this->SetReservas.find(codigo) != this->SetReservas.end()) ; // ver el end funca
+}
+
+
+void ControladorReserva::inscribirEstadia(int codigo, string emailHuesped){
+	Fecha *insFecha = Fecha::getInstancia();
+	ControladorUsuario *insUsuario =  ControladorUsuario::getInstancia();
+	Reserva *reserva=SetReservas.find(codigo)->second;
+	reserva->setEstado(CANCELADA);
+	Estadia *estadia= new Estadia(insFecha->getFechaHora(), insFecha->getFechaHora(),reserva->getHabitacion(),insUsuario->obtenerHuesped(emailHuesped));
+	if (dynamic_cast<ReservaGrupal *>(reserva)!=NULL){
+ // REVISAR SI VA SEPARADO
+		dynamic_cast<ReservaGrupal *>(reserva)->setEstadiaEnReservaGrupal(estadia);
+	}
+	if (dynamic_cast<ReservaIndividual *>(reserva)!=NULL){
+		reserva->setEstadia(estadia);
+	}
+	insUsuario->obtenerHuesped(emailHuesped)->setEstadia(estadia);
+	estadia->agregarHabitacionAEstadia(reserva->getHabitacion());
+	estadia->agregarCalificacion(NULL);
+}
+
 
 
 
