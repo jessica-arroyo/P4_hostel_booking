@@ -26,7 +26,7 @@ public:
     //virtual set<DtCalificacion> chequearCalificacion(string nombreHostal) = 0;
     //virtual map<int,DtReserva> listarReservas(string nombreHostal, string emailHuesped) = 0;
     //virtual void inscribirEstadia(DtReserva reserva) = 0;
-    //virtual void finalizarEstadia(string nombreHostal, string emailHuesped) = 0;
+    virtual void finalizarEstadia(string emailHuesped) = 0;
     //virtual set<DtEstadia> obtenerEstadiasFinalizadas(string emailHuesped,string nombreHostal) = 0;
     //virtual DtReserva obtenerReservaAsociada(string nombreEstadia) = 0; //la estadia no tiene atributo nombre.
     //virtual DtCalificacion obtenerCalificacion(string nombreEstadia) = 0; //la estadia no tiene atributo nombre.

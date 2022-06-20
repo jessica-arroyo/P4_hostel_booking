@@ -1520,9 +1520,42 @@ int main()
 
 				case 8:
            		{
-					cout << "Hasta luego.\n";
                 	//Finalizar Estadía
-            	}
+					map<string, DtHostal> hostales = iHostal->listarHostales();
+    				map<string , DtHostal> :: iterator i;
+					if(hostales.empty())
+					{
+						cout<< "No hay hostales registrados\n" ;
+					}
+					else 
+					{
+    					int j = 1;
+    					cout<< "Lista de Hostales \n" ;
+    					for(i=hostales.begin(); i != hostales.end(); i++){
+        					cout<< j <<") Nombre: " << i->second.getNombre() << "\n";
+							cout<< "Teléfono: " << i->second.getTelefono() << "\n";
+        					j++;
+    					}
+						cin.clear(); 
+						cin.ignore(numeric_limits<streamsize>::max(), '\n');
+						cout<<"Ingrese el nombre del hostal del que desea ver la información. \n" ;
+						string nomhos ;
+						getline(cin, nomhos) ;
+						while(!iHostal->existeHostal(nomhos)){
+							cout<< "El nombre ingresado no corresponde a un hostal del sistema.\n" ;
+							cout<<"Ingrese un nombre correspondiente a un hostal del sistema.\n" ;
+							getline(cin, nomhos) ;
+						}
+						cout<<"Ingrese el email del huesped del cual quiere finalizar su estadia. \n" ;
+						string mailhues ;
+						cin>> mailhues;
+						if ((iUsuario->getHuespedes().find(mailhues)->second->getEstadia()) != NULL) {
+							iReserva->finalizarEstadia(mailhues);
+							cout<< "Se finalizo la estadia.\n";
+						}
+            		}
+				}
+
             	break;
 
 				case 9:

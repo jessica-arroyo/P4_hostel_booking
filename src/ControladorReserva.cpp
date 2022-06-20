@@ -95,7 +95,19 @@ void ControladorReserva::confirmarReservaIndividual(string nomhos, int numhab, D
 //set<DtCalificacion> ControladorReserva::chequearCalificacion(string nombreHostal){}
 //map<int,DtReserva> ControladorReserva::listarReservas(string nombreHostal, string emailHuesped){}
 //void ControladorReserva::inscribirEstadia(DtReserva reserva){}
-//void ControladorReserva::finalizarEstadia(string nombreHostal, string emailHuesped){}
+
+void ControladorReserva::finalizarEstadia(string emailHuesped){
+	IUsuario *insUsuario = ControladorUsuario::getInstancia();
+	Huesped* hues = insUsuario->getHuespedes().find(emailHuesped)->second;
+	DtFechaHora fechaRealizada =  Fecha::getInstancia()->getFechaHora();
+	Estadia *est = hues->getEstadia();
+	est->setCheckOut(fechaRealizada);
+	hues->setEstadiaFinalizada(est);
+	hues->setEstadia(NULL); 
+
+}
+
+
 //set<DtEstadia> ControladorReserva::obtenerEstadiasFinalizadas(string emailHuesped,string nombreHostal){}
 //DtReserva ControladorReserva::obtenerReservaAsociada(string nombreEstadia){} //la estadia no tiene atributo nombre.
 //DtCalificacion ControladorReserva::obtenerCalificacion(string nombreEstadia){} //la estadia no tiene atributo nombre.

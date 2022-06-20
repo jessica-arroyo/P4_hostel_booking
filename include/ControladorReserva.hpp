@@ -43,7 +43,7 @@ public:
     //set<DtCalificacion> chequearCalificacion(string nombreHostal);
     //map<int,DtReserva> listarReservas(string nombreHostal, string emailHuesped);
     //void inscribirEstadia(DtReserva reserva);
-    //void finalizarEstadia(string nombreHostal, string emailHuesped);
+    void finalizarEstadia(string emailHuesped);
     //set<DtEstadia> obtenerEstadiasFinalizadas(string emailHuesped,string nombreHostal);
     //DtReserva obtenerReservaAsociada(string nombreEstadia); //la estadia no tiene atributo nombre.
     //DtCalificacion obtenerCalificacion(string nombreEstadia); //la estadia no tiene atributo nombre.
