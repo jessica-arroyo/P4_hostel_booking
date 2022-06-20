@@ -56,6 +56,7 @@ void ControladorReserva::confirmarReservaGrupal(string nomhos, int numhab, DtFec
 	Huesped *cadaotro = NULL ;
     for(jo = grupoHues.begin(); jo != grupoHues.end(); jo++) {
 		 string email = *jo ;
+
          cadaotro = insUsuario->obtenerHuesped(email) ;
 		 huespedesRes.insert(make_pair(email,cadaotro)) ; //grupo de punteros originales a huespedes a ser insertados en la Reserva Grupal.
 		 if (cadaotro->getEsFinger()) {
@@ -100,6 +101,7 @@ void ControladorReserva::confirmarReservaIndividual(string nomhos, int numhab, D
     this->SetReservas.insert(make_pair(codigo, res));
     hos->agregarReservaAHostal(res);
 }
+
 
 
 // registrar estadia

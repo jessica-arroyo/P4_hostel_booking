@@ -86,20 +86,24 @@ void cargarDatosPrueba(IHostal *iHostal, IUsuario *iUsuario, IReserva *iReserva,
 	iReserva->confirmarReservaGrupal("El Pony Pisador", 1, fig, fog, "frodo@mail.com", grupoHues, 4);
 	
 	//Estadias 
+
 	string nomhosEst[6] = {"La posada del finger", "El Pony Pisador", "El Pony Pisador", "El Pony Pisador", "El Pony Pisador", "Caverna Lujosa"};
 	string emailHuespedesEst[6] = {"sofia@mail.com", "frodo@mail.com", "sam@mail.com","merry@mail.com","pippin@mail.com","seba@mail.com"};
 	int checkInEst[6][4] = {{14,01,05,2022}, {20,04,01,2001}, {20,04,01,2001}, {20,04,01,2001}, {20,04,01,2001}, {14,10,06,2022}};
 	int checkOutEst[6][4] = {{10,10,05,2022}, {2,05,01,2001}, {2,05,01,2001}, {2,05,01,2001}, {2,05,01,2001}, {11,30,06,2022}};
   int codres[6]={1000,1003,1003,1003,1003,1002};
+
 	for (int i = 0; i < 6; i++)
 	{
 		DtFechaHora fechaCheckIn = DtFechaHora(checkInEst[i][0], checkInEst[i][1], checkInEst[i][2], checkInEst[i][3]);
 		DtFechaHora fechaCheckOut = DtFechaHora(checkOutEst[i][0], checkOutEst[i][1], checkOutEst[i][2], checkOutEst[i][3]);
+
 		//int codres = iReserva->encontrarCodigoReservadelHuesped(emailHuespedesEst[i],nomhosEst[i],fechaCheckIn, fechaCheckOut)
 		iReserva->inscribirEstadia(codres[i], emailHuespedesEst[i]);
 	}
 	
 	/* //Finalizacion de Estadias
+
 	string emailHuespedesFin[3] = {"sofia@mail.com", "frodo@mail.com", "seba@mail.com"};
 	for (int i = 0; i < 3; i++)
 	{
@@ -1713,6 +1717,7 @@ int main()
 
 				case 7:
            		{
+
 					        map<string, DtHostal> hostales = iHostal->listarHostales();
     				map<string , DtHostal> :: iterator i;
 					if(hostales.empty())
@@ -1824,6 +1829,7 @@ int main()
 						
 					}
 				
+
                 	//Registrar Estadía
             	}
             	break;
@@ -2279,17 +2285,16 @@ int main()
 										set<string>::iterator it; 
                 								cout<< "Huespedes de la reserva\n" ;
                 								int k = 1;
-                                if (nomHuespedes.empty()){
-                                    cout<< "No hay huespedes" << "\n";
-                                }else{
+
                 								for(it=nomHuespedes.begin(); it != nomHuespedes.end(); it++)
                 								{
-												        	string elnombre = *it ;
-                									cout<<k<< ") Nombre:" << elnombre << "\n";
+													string elnombre = *it ;
+                									cout<< k << ") Nombre:" << elnombre << "\n";
                 									k++;
-                								} 
-                                }            
-								         		cout<< "\n" ;
+                								}
+												
+										cout<< "\n" ;
+
               							j++;
                   					}
               					}

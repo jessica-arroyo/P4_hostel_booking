@@ -8,7 +8,9 @@
 			map<std::string, Huesped *>::iterator grupHues ;
 			set<string> nombresHuespedes;
 			for(grupHues=grupHuespedes.begin(); grupHues!=grupHuespedes.end(); grupHues++){
-				nombresHuespedes.insert(grupHues->second->getNombre());
+
+				this->nombresHuespedes.insert(grupHues->second->getNombre());
+
 			}
 			this->cantGrupHuespedes = cantGrupHuespedes;
 			
